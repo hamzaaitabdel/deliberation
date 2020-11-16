@@ -23,10 +23,15 @@ public class Filiere {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_filiere;
 	private String nom_filiere;
-	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Etudiant> etudiants;
 	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "filiere")
 	private ResponsableFiliere responsableFiliere;
+	
+	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionAdministrative> inscriptionAdministratives;
+	
+	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
 	
 }

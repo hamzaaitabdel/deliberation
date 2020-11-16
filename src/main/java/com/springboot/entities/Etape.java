@@ -30,9 +30,14 @@ public class Etape {
 	private Date annee_universitaire;
 	private String libelle_etape;
 	private boolean etats;
-	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Etudiant> etudiants;
+	
+	
 	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Semestre> semestres;
+	
+	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
+	
 	private boolean hasDiplome;
 }

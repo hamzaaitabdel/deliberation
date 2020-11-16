@@ -21,9 +21,11 @@ public class ResponsableModul {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_responsableModule;
 	private String nom_resp_md;
+	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_Module")
+    @JoinColumn(name = "id_module")
 	private Module module;
+	
 	private String email;
 	private String password;
 }

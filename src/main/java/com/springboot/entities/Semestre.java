@@ -25,9 +25,12 @@ public class Semestre {
 	private Long id_semestre;
 	private String libelle_semestre;
 	private boolean etats;
+	
 	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Module> modules;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_Etape")
+	@JoinColumn(name = "id_etape")
 	private Etape etape;
+	
 }

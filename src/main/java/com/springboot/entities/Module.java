@@ -3,6 +3,7 @@ package com.springboot.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,13 +28,21 @@ public class Module {
 	private String libelle_module;
 	private boolean hasElement;
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_Semestre")
+	@JoinColumn(name = "id_semestre")
 	private Semestre semestre;
+	
 	@OneToMany(mappedBy = "module" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Element> elements;
+	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "module")
 	private Professeur professeur;
+	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "module")
 	private ResponsableModul responsableModul;
-	private boolean valide;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_note")
+	private Note note;
+	
+	private boolean module_valide;
 }
