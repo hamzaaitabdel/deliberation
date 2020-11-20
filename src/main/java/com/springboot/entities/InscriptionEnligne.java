@@ -1,4 +1,5 @@
 package com.springboot.entities;
+import java.time.Year;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,8 +41,8 @@ public class InscriptionEnligne {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date_inscription;
-	@Lob
-	private byte[] photo;
+	//@Lob
+	//private byte[] photo;
 	private String annee_bac;
 	private String serie_bac;
 	private String mention_bac;
@@ -55,6 +56,8 @@ public class InscriptionEnligne {
 	private String etat_physique;
 	@Column(name = "GSP")
 	private String groupe_socioprofessionnel;
+	
+	private boolean valide_enligne;
 	
 	@OneToOne(mappedBy = "inscriptionEnligne")
 	InscriptionAdministrative inscriptionAdministrative;

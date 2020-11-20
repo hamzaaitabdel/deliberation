@@ -25,13 +25,12 @@ public class InscriptionAdministrative {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDIA")
+	@Column(name = "IDIA" )
 	Long id_inscription_administrative;
 	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     @JoinColumn(name = "id_inscription_enligne")//foreign key
 	InscriptionEnligne inscriptionEnligne;
-	
 	String annee_academique;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -44,6 +43,7 @@ public class InscriptionAdministrative {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date date_inscription_valide;
+	
 	boolean inscription_valide;
 	
 }

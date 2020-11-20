@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+	name="viewport">
+<title>Inscription EnLigne</title>
+
+<!-- General CSS Files -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous">
+
+<!-- CSS Libraries -->
+
+<!-- Template CSS -->
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+</head>
+
+<body>
+	<div id="app">
+		<section class="section">
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+						<div class="login-brand">Inscription EnLigne</div>
+
+						<div class="card card-primary">
+							<div class="row">
+								<div class="col-12 col-md-12 col-lg-5 p-0">
+									<div class="card-header text-center">
+										<h4>Formulaire de saisie</h4>
+									</div>
+									<div class="card-body">
+										<form th:action="@{saveEnligne}" method="post">
+
+											<div class="form-group">
+												<label>NomFr</label> <input type="text" name="nom_fr"
+													class="form-control" th:value="${enligne.nom_fr}" required="required">
+											</div>
+
+
+											<div class="form-group">
+												<label>NomFr</label> <input type="text" name="nom_fr"
+													class="form-control" th:value="${enligne.nom_fr}" required="required">
+
+											</div>
+											<div class="form-group">
+												<label>PrenomFr</label> <input type="text" name="prenom_fr"
+													class="form-control" th:value="${enligne.prenom_fr}" required="required">
+
+											</div>
+											<div class="form-group">
+												<label>NomAr</label> <input type="text" name="nom_ar"
+													class="form-control" th:value="${enligne.nom_ar}" required="required">
+
+											</div>
+											<div class="form-group">
+												<label>PrenomAr</label> <input type="text" name="prenom_ar"
+													class="form-control" th:value="${enligne.prenom_ar}" required="required">
+
+											</div>
+											<div class="form-group">
+												<label class="d-block">Sexe</label>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="sexe"
+														id="exampleRadios1" th:checked="${enligne.sexe}" required="required">
+													<label class="form-check-label" for="exampleRadios1">
+														Male </label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="sexe"
+														id="exampleRadios2" th:checked="${enligne.sexe}" required="required">
+													<label class="form-check-label" for="exampleRadios2">
+														Femelle </label>
+												</div>
+												<span th:errors=${enligne.sexe} class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label>Date de Naissance</label> <input type="date"
+													name="date_naissance" class="form-control"
+													th:value="${enligne.date_naissance}" required="required"> <span
+													th:errors=${enligne.date_naissance} class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label>Lieu de Naissance en Francais</label> <input
+													type="text" name="lieu_naissance_fr" class="form-control"
+													th:value="${enligne.lieu_naissance_fr}" required="required"> <span
+													th:errors=${enligne.lieu_naissance_fr} class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label>Lieu de Naissance en Arabe</label> <input type="text"
+													name="lieu_naissance_ar" class="form-control"
+													th:value="${enligne.lieu_naissance_ar}" required="required"> <span
+													th:errors=${enligne.lieu_naissance_ar} class="text-danger"></span>
+											</div>
+
+											<div class="form-group">
+												<label>CIN</label> <input type="text" name="cin"
+													class="form-control" th:value="${enligne.cin}" required="required"> <span
+													th:errors=${enligne.cin} class="text-danger"></span>
+											</div>
+											<div class="form-group">
+												<label>Date Inscription</label> <input type="date"
+													name="date_inscription" class="form-control"
+													th:value="${enligne.date_inscription}" required="required">
+											</div>
+
+											<!-- <div class="form-group">
+                      <label>Photo</label>
+                      <input type="file" class="form-control" name="file">
+                    </div>
+                     -->
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+								<div class="col-12 col-md-12 col-lg-5 p-0">
+									<div class="card">
+										<div class="card-header text-center">
+											<p></p>
+										</div>
+										<div class="card-body">
+											<div class="form-group">
+												<label>Annee de Bac</label> <input type="text"
+													name="annee_bac" class="form-control"
+													th:value="${enligne.annee_bac}" placeholder="yyyy" required="required">
+											</div>
+											<div class="form-group">
+												<label>Serie de Bac</label> <input type="text"
+													name="serie_bac" class="form-control"
+													th:value="${enligne.serie_bac}" required="required">
+											</div>
+
+											<div class="form-group">
+												<label>Mention de Bac</label> <select name="mention_bac"
+													class="form-control">
+													<option>Assez bien</option>
+													<option>Bien</option>
+													<option>Tres bien</option>
+													<option>Excellent</option>
+
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Lycee de Bac</label> <input type="text"
+													name="lycee_bac" class="form-control"
+													th:value="${enligne.lycee_bac}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Ville de Bac</label> <input type="text"
+													name="ville_bac" class="form-control"
+													th:value="${enligne.ville_bac}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Academie</label> <input type="text" name="academie"
+													class="form-control" th:value="${enligne.academie}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Nationalite</label> <input type="text"
+													name="nationalite" class="form-control"
+													th:value="${enligne.nationalite}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Ville de Naissance</label> <input type="text"
+													name="ville_naissance" class="form-control"
+													th:value="${enligne.ville_naissance}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Province</label> <input type="text" name="province"
+													class="form-control" th:value="${enligne.province}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Region</label> <input type="text" name="region"
+													class="form-control" th:value="${enligne.region}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Etat Physique</label> <input type="text"
+													name="etat_physique" class="form-control"
+													th:value="${enligne.etat_physique}" required="required">
+											</div>
+											<div class="form-group">
+												<label>Group Socioprofessionel</label> <input type="text"
+													name="groupe_socioprofessionnel" class="form-control"
+													th:value="${enligne.groupe_socioprofessionnel}" required="required">
+											</div>
+
+
+
+											<div class="form-group text-right">
+												<button type="submit"
+													class="btn btn-round btn-lg btn-primary">Send Form
+												</button>
+											</div>
+											</form>
+
+
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- General JS Scripts -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="../assets/js/stisla.js"></script>
+
+	<!-- JS Libraies -->
+	<script
+		src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
+	<script src="../node_modules/gmaps/gmaps.min.js"></script>
+
+	<!-- Template JS File -->
+	<script src="../assets/js/scripts.js"></script>
+	<script src="../assets/js/custom.js"></script>
+
+	<!-- Page Specific JS File -->
+	<script src="../assets/js/page/utilities-contact.js"></script>
+</body>
+</html>
