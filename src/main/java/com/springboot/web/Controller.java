@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -113,7 +114,7 @@ public class Controller {
 	}
 	
 */
-	@PostMapping(path="/saveEnligne")
+	@RequestMapping(path="/saveEnligne" , method = RequestMethod.POST)
 	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult){
 		if(bindingResult.hasErrors()) return "formEnligne";
 		inscriptionEnligneRepository.save(inscriptionEnligne);
