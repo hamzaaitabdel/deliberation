@@ -426,6 +426,7 @@
                     <table class="table table-striped mb-0">
                       <thead>
                         <tr>
+                        <th>CNE</th>
                           <th>Name</th>
                           <th>Prenom</th>
     					<th>Mention</th>
@@ -438,6 +439,8 @@
                 
                         <tr th:each="p:${enlignes}">
                         
+						<td th:text="${p.cne}"></td>
+				   
 						<td th:text="${p.nom_fr}"></td>
 						<td th:text="${p.prenom_fr}"></td>
 						<td th:text="${p.mention_bac}"></td>
@@ -449,7 +452,7 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfermationEnligne(id=${p.id_inscription_enligne})}
+                            <a  th:href=@{ConfermationEnligne(id=${p.cne})}
                             class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"

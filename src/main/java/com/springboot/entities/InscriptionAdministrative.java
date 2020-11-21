@@ -26,24 +26,31 @@ public class InscriptionAdministrative {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDIA" )
-	Long id_inscription_administrative;
+	private Long id_inscription_administrative;
 	
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_inscription_enligne")//foreign key
-	InscriptionEnligne inscriptionEnligne;
-	String annee_academique;
+    @JoinColumn(name = "cne")//foreign key
+	private InscriptionEnligne inscriptionEnligne;
 	
+	private String annee_academique;
+	
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date date_inscription_valide;
+	//diplome ?
+	//bourse ?
+	private String adresse_personnel;
+	private String ville;
+	private String telephone;
+	private String email_etud;
+	private String email_parent;
+	
+	private String massarEtud;
+	
+	//?
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
-	Filiere filiere;
-	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date date_pres_inscription;
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date date_inscription_valide;
-	
-	boolean inscription_valide;
+	private Filiere filiere;
 	
 }

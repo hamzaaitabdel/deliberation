@@ -35,9 +35,13 @@ import com.springboot.entities.InscriptionEnligne;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-
-  	
+	@Autowired
+	InscriptionEnligneRepository inscriptionEnligneRepository;
+	@Autowired
+	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
 	
+  	
+	//Affichage avec pagination : chercher
 	@GetMapping(path="/enlignes") 
 	public String listEnligne(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
@@ -51,7 +55,7 @@ public class Controller {
 		model.addAttribute("size",size);
 		return "listeEnligne";
 	} 
-	
+	//Affichage avec pagination :tous
 	@GetMapping(path="/enlignesAll") 
 	public String listEnligneAll(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
@@ -64,34 +68,51 @@ public class Controller {
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
 		return "listeEnligne";
-	} 
-	
-	 
-	@GetMapping(path="/deleteEnligne")
-	public String deleteEnligne(Long id ) {
-		inscriptionEnligneRepository.deleteById(id);
-		return "redirect:/enlignesAll";
 	}
-	/*
-	@GetMapping(path="/formClient")
-	public String formPatient(Model model) {
-		//model.addAttribute("patient", new Patient(null,"qwertz",null,false,7));
-		model.addAttribute("client", new Client());
-		model.addAttribute("mode", "new");
-		return "formClient";
-	}
-*/
-
-	@Autowired
-	InscriptionEnligneRepository inscriptionEnligneRepository;
 	
+	//Insertion
 	@RequestMapping(path="/enligne")
 	public String inscriptionEnligne(Model model) {
 		model.addAttribute("enligne", new InscriptionEnligne());
 		model.addAttribute("mode", "new");
 		return "formEnligne";
 	}
-/*	
+	 //Supprission
+	@GetMapping(path="/deleteEnligne")
+	public String deleteEnligne(String id ) {
+		inscriptionEnligneRepository.deleteByCne(id);
+		return "redirect:/enlignesAll";
+	}
+	//Validation 
+	@RequestMapping(path="/saveEnligne" , method = RequestMethod.POST)
+	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "formEnligne";
+		inscriptionEnligneRepository.save(inscriptionEnligne);
+		model.addAttribute("enligne", inscriptionEnligne);
+		return "redirect:/enlignesAll";
+	}	 
+
+	//Valider InscriptionEnligne : mis valide_enligne=true
+	@GetMapping(path="/validerEnligne")
+	public String validerEnligne(Model model,String id ,
+			@RequestParam(value="bar", required = true , defaultValue = "true")
+    boolean bar) {
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
+		enligne.setValide_enligne(bar);
+		inscriptionEnligneRepository.save(enligne);
+		model.addAttribute("bar", bar);
+		model.addAttribute("enligne",enligne);
+		return "redirect:/enlignesAll?bar="+bar;
+	}
+	//Les enregistrements
+	@GetMapping(path="/ConfermationEnligne")
+	public String ConfermationEnligne(Model model,String id) {
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
+		model.addAttribute("enligne", enligne);
+		return "ConfirmationEnligne";
+	}
+	
+	/*	
 	@GetMapping(path="/saveEnligne")
 	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult,
 			MultipartFile file) throws IOException{
@@ -114,36 +135,4 @@ public class Controller {
 	}
 	
 */
-	@RequestMapping(path="/saveEnligne" , method = RequestMethod.POST)
-	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult){
-		if(bindingResult.hasErrors()) return "formEnligne";
-		inscriptionEnligneRepository.save(inscriptionEnligne);
-		model.addAttribute("enligne", inscriptionEnligne);
-		return "redirect:/enlignesAll";
-	}
-	
-	@Autowired
-	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
-	
-	@GetMapping(path="/validerEnligne")
-	public String validerEnligne(Model model,Long id ,
-			@RequestParam(value="bar", required = true , defaultValue = "true")
-    boolean bar) {
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(id).get();
-		enligne.setValide_enligne(bar);
-		inscriptionEnligneRepository.save(enligne);
-		model.addAttribute("bar", bar);
-		model.addAttribute("enligne",enligne);
-		return "redirect:/enlignesAll?bar="+bar;
-	}
-	
-	@GetMapping(path="/ConfermationEnligne")
-	public String ConfermationEnligne(Model model,Long id) {
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(id).get();
-		model.addAttribute("enligne", enligne);
-
-		return "ConfirmationEnligne";
-	}
-	
-	
 }

@@ -23,9 +23,9 @@ import lombok.ToString;
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class InscriptionEnligne {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDIE")
-	private Long id_inscription_enligne;
+	@Id
+	@Column(name = "CNE" , unique = true)
+	String cne;
 	private String nom_fr;
 	private String prenom_fr;
 	private String nom_ar;

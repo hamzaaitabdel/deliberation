@@ -41,6 +41,10 @@
 									</div>
 									<div class="card-body">
 										<form th:action="@{saveEnligne}" method="post">
+											<div class="form-group">
+												<label>CNE</label> <input type="text" name="cne"
+													class="form-control" th:value="${enligne.cne}" required="required">
+											</div>
 
 											<div class="form-group">
 												<label>NomFr</label> <input type="text" name="nom_fr"
@@ -49,8 +53,8 @@
 
 
 											<div class="form-group">
-												<label>NomFr</label> <input type="text" name="nom_fr"
-													class="form-control" th:value="${enligne.nom_fr}" required="required">
+												<label>NomAr</label> <input type="text" name="nom_ar"
+													class="form-control" th:value="${enligne.nom_ar}" required="required">
 
 											</div>
 											<div class="form-group">

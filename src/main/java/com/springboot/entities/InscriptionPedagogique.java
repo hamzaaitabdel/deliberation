@@ -29,7 +29,7 @@ public class InscriptionPedagogique {
 	Long id_inscription_pedagogique;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "massar_etud")
+	@JoinColumn(name = "massarEtud")
 	Etudiant etudiant;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
