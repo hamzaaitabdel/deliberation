@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+	name="viewport">
+<title>Validation Inscription EnLigne</title>
+
+<!-- General CSS Files -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous">
+
+<!-- CSS Libraries -->
+
+<!-- Template CSS -->
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+</head>
+
+<body>
+	<div id="app">
+		<section class="section">
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+						<div class="login-brand">Validation Inscription EnLigne</div>
+
+						<div class="card card-primary">
+							<div class="row">
+								<div class="col-12 col-md-12 col-lg-5 p-0">
+									<div class="card-header text-center">
+										<h4>Enregistrement effectue</h4>
+									</div>
+									<div class="card-body">					
+					<div class="form-group">
+					<label>CNE : </label>
+					<strong><label th:text="${enligne.cne}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Nom en Francais : </label>
+					<strong><label th:text="${enligne.nom_fr}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Prenom en Francais : </label>
+					<strong><label th:text="${enligne.prenom_fr}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Date de Naissance : </label>
+					<strong><label th:text="${enligne.date_naissance}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Annee de Bac : </label>
+					<strong><label th:text="${enligne.annee_bac}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Serie de Bac : </label>
+					<strong><label th:text="${enligne.serie_bac}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Mention : </label>
+					<strong><label th:text="${enligne.mention_bac}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>CIN : </label>
+					<strong><label th:text="${enligne.cin}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Lieu de Naissance en Francais : </label>
+					<strong><label th:text="${enligne.lieu_naissance_fr}"></label></strong>
+					</div>
+					<div class="form-group">
+					<label>Nationalite : </label>
+					<strong><label th:text="${enligne.nationalite}"></label></strong>
+					</div>
+					<div class="form-group">
+                      <label>info1</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>info2</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>info3</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>info4</label>
+                      <input type="text" class="form-control">
+                    </div>
+									</div>
+								</div>
+
+										</div>
+										
+										
+										
+										
+			
+            <div class="col-12 col-md-12 col-lg-5 p-0">
+              <!-- <form method="get" th:action="@{validerEnligne}" class="needs-validation" novalidate=""> -->
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Validation</h4>
+                  </div>
+                  <!-- <div class="card-body pb-0">
+                  	<div class="form-group">
+                      
+                      <input type="checkbox" name="valide_enligne" th:checked=${valide_enligne} class="form-control">
+                      
+                  </div> -->
+                  <div class="card-body pb-0">
+                  <a 
+                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+                            th:href=@{deleteEnligne(id=${enligne.cne})}><i class="fas fa-trash"></i>
+                            </a>
+                            <span></span>
+                            
+                  <a  th:href=@{validerAdmini(id=${enligne.cne},bar=${bar})}
+                            class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept" onclick="return confirm('Etes vous sur de vouloir valider cette inscription?')"><i class="far fa-folder-open"></i>
+                            </a>
+                  </div>
+                  <p></p>
+                  <div class="card-footer pt-0">
+                  
+                  <a  th:href=@{enlignesAll}
+                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Back" ><i class="fas fa-arrow-circle-left"></i>
+                            </a>
+                            
+                  
+                    <!-- <button class="btn btn-primary">Save</button> -->
+                  </div>
+                </div>
+              <!-- </form> -->
+            </div>
+
+										
+										
+										
+										
+										
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- General JS Scripts -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="../assets/js/stisla.js"></script>
+
+	<!-- JS Libraies -->
+	<script
+		src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
+	<script src="../node_modules/gmaps/gmaps.min.js"></script>
+
+	<!-- Template JS File -->
+	<script src="../assets/js/scripts.js"></script>
+	<script src="../assets/js/custom.js"></script>
+
+	<!-- Page Specific JS File -->
+	<script src="../assets/js/page/utilities-contact.js"></script>
+</body>
+</html>
