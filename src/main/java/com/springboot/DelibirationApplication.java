@@ -7,7 +7,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.springboot.dao.*;
-import com.springboot.entities.*;
 
 @SpringBootApplication
 public class DelibirationApplication implements CommandLineRunner{
@@ -18,6 +17,8 @@ public class DelibirationApplication implements CommandLineRunner{
 	private ResponsableFiliereRepository responsableFiliereRepository;
 	@Autowired
 	private InscriptionEnligneRepository inscriptionRepository;
+	@Autowired
+	private NoteRepository noteRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(DelibirationApplication.class, args);
 	}

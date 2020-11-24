@@ -30,5 +30,38 @@ public class Note {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "massarEtud")
 	private Etudiant etudiant;
+
+	public Long getId_note() {
+		return id_note;
+	}
+
+	public void setId_note(Long id_note) {
+		this.id_note = id_note;
+	}
+
+	public double getNote() {
+		return note;
+	}
+
+	public void setNote(double note) {
+		this.note = note;
+	}
+
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
+	}
+	
 	
 }

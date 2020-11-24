@@ -1,35 +1,20 @@
 package com.springboot.web;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.validation.Valid;
 
-import org.apache.commons.io.IOUtils;
+import com.springboot.dao.InscriptionAdministrativeRepository;
+import com.springboot.dao.InscriptionEnligneRepository;
+import com.springboot.entities.InscriptionEnligne;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.springboot.dao.EtudiantRepository;
-import com.springboot.dao.InscriptionAdministrativeRepository;
-import com.springboot.dao.InscriptionEnligneRepository;
-import com.springboot.entities.InscriptionAdministrative;
-import com.springboot.entities.InscriptionEnligne;
 
 
 @org.springframework.stereotype.Controller

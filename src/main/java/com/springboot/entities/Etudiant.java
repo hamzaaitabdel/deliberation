@@ -58,6 +58,14 @@ public class Etudiant {
 	private String nom_etud;
 	private String tel_etud;
 	private String email_etud;
+
+	public String getMassarEtud() {
+		return massarEtud;
+	}
+
+	public void setMassarEtud(String massarEtud) {
+		this.massarEtud = massarEtud;
+	}
 	
 	
 }
