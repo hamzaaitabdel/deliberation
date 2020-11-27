@@ -252,8 +252,9 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Inscription</a></li>
-                  <li><a class="nav-link" href="#">Administrative</a></li>
+                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enilgne</a></li>
+                  <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+                  <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
                 </ul>
               </li>
               <li class="menu-header">Starter</li>
@@ -456,7 +457,7 @@
                             class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${p.id_inscription_enligne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
+                            th:href=@{deleteEnligne(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
                           </td>
                         </tr>
  						

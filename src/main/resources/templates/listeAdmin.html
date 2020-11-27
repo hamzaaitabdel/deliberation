@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Inscription EnLigne</title>
+  <title>Inscription Administrative</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -252,8 +252,9 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Inscription</a></li>
-                  <li><a class="nav-link" href="#">Administrative</a></li>
+                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enilgne</a></li>
+                  <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+                  <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
                 </ul>
               </li>
               <li class="menu-header">Starter</li>
@@ -403,7 +404,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Liste des inscriptions enligne</h1>
+            <h1>Liste des inscriptions administrative</h1>
           </div>
          
 
@@ -412,39 +413,40 @@
                 <div class="card-header">
                   <h4>Latest Inscriptions</h4>
                   <div class="card-header-action">
-                    <a th:href="@{enlignesAll}" class="btn btn-primary">View All</a>
+                    <a th:href="@{adminsAll}" class="btn btn-primary">View All</a>
                   </div>
                 </div>
                 <div class="card-body p-0">
-                <form th:action="@{enlignes}" method="get">
+                 <form th:action="@{admins}" method="get">
 				<div class="form-group"></div>
 				<label>Name</label>
 				<input type="text" name="keyword" th:value="${keyword}">
 				<button class="btn btn-info">Chercher</button>
 				</form>
-                  <div class="table-responsive">
+                   <div class="table-responsive">
                     <table class="table table-striped mb-0">
                       <thead>
                         <tr>
-                        <th>CNE</th>
+                        <!-- <th>CNE</th>
                           <th>Name</th>
-                          <th>Prenom</th>
-    					<th>Mention</th>
-    					<th>Valide</th>
+                          <th>Prenom</th> -->
+                        
+    					<th>CNE</th>
+    					
+    					<th>email</th>
+    					<th>Annee Academique</th>
     					
     				      <th>Action</th>
                         </tr>
                       </thead>
                       <tbody >
                 
-                        <tr th:each="p:${enlignes}">
+                        <tr th:each="p:${admins}">
                         
-						<td th:text="${p.cne}"></td>
-				   
-						<td th:text="${p.nom_fr}"></td>
-						<td th:text="${p.prenom_fr}"></td>
-						<td th:text="${p.mention_bac}"></td>
-						<td th:text="${p.valide_enligne}"></td>
+                        	<td th:text="${p.InscriptionEnligne.cne}"></td>
+						
+                        	<td th:text="${p.email_etud}"></td>
+						<td th:text="${p.annee_academique}"></td>
 					
 							  <!-- 
                           <td>
@@ -452,11 +454,12 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfermationEnligne(id=${p.cne})}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                            <!-- <a 
+                            <!-- <a  th:href=@{editAdmin(id=${p.id_inscription_administrative})}
+                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a> -->
+                            <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${p.id_inscription_enligne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
+                            th:href=@{deleteAdmin(id=${p.id_inscription_administrative},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i>
+                            </a> 
                           </td>
                         </tr>
  						
@@ -466,7 +469,7 @@
                     <ul class="nav nav-pills">
 				<li  th:each="page,status:${pages}">
 					<a th:class="${status.index==currentPage?'btn btn-warning':'btn'}" 
-					th:href="@{enlignesAll(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:href="@{adminsAll(page=${status.index},keyword=${keyword},size=${size})}" 
 					th:text="${status.index}"></a>
 				</ul>
                   </div>

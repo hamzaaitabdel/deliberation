@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.dao.EtudiantRepository;
+import com.springboot.dao.FiliereRepository;
 import com.springboot.dao.InscriptionAdministrativeRepository;
 import com.springboot.dao.InscriptionEnligneRepository;
+import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
 
@@ -39,8 +41,10 @@ public class Controller {
 	InscriptionEnligneRepository inscriptionEnligneRepository;
 	@Autowired
 	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
-	
-  	
+	@Autowired
+	FiliereRepository filiereRepository;
+	//1.Inscription Enligne
+
 	//Affichage avec pagination : chercher
 	@GetMapping(path="/enlignes") 
 	public String listEnligne(Model model ,
@@ -53,8 +57,10 @@ public class Controller {
 		model.addAttribute("currentPage",page);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
+		
 		return "listeEnligne";
-	} 
+	}
+	
 	//Affichage avec pagination :tous
 	@GetMapping(path="/enlignesAll") 
 	public String listEnligneAll(Model model ,
@@ -69,7 +75,7 @@ public class Controller {
 		model.addAttribute("size",size);
 		return "listeEnligne";
 	}
-	
+
 	//Insertion
 	@RequestMapping(path="/enligne")
 	public String inscriptionEnligne(Model model) {
@@ -77,7 +83,7 @@ public class Controller {
 		model.addAttribute("mode", "new");
 		return "formEnligne";
 	}
-	 //Supprission
+	//Supprission
 	@GetMapping(path="/deleteEnligne")
 	public String deleteEnligne(String id ) {
 		inscriptionEnligneRepository.deleteByCne(id);
@@ -96,7 +102,7 @@ public class Controller {
 	@GetMapping(path="/validerEnligne")
 	public String validerEnligne(Model model,String id ,
 			@RequestParam(value="bar", required = true , defaultValue = "true")
-    boolean bar) {
+	boolean bar) {
 		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
 		enligne.setValide_enligne(bar);
 		inscriptionEnligneRepository.save(enligne);
@@ -112,27 +118,114 @@ public class Controller {
 		return "ConfirmationEnligne";
 	}
 	
-	/*	
-	@GetMapping(path="/saveEnligne")
-	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult,
-			MultipartFile file) throws IOException{
-		if(bindingResult.hasErrors()) return "bootstrap-form";
-		if(!file.isEmpty()) {
-			BufferedImage image = ImageIO.read(file.getInputStream());
-			inscriptionEnligne.setPhoto(file.getBytes());
+		//2.Inscription Administrative
+	
+	//Les enregistrements avec Insertion Admin
+		@GetMapping(path="/ConfermationAdmin")
+		public String ConfermationAdmin(Model model , String id) {
+			InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
+			model.addAttribute("enligne", enligne);
+			model.addAttribute("admin", new InscriptionAdministrative());
+			id = inscriptionEnligneRepository.findByCne(id).getCne();
+			model.addAttribute("cne", id);
+			
+			
+			model.addAttribute("mode", "new");
+			
+			return "ConfirmationAdmin";
 		}
-		inscriptionEnligneRepository.save(inscriptionEnligne);
-		model.addAttribute("enligne", inscriptionEnligne);
-		return "index-0";
-	}
-	@GetMapping(path="/photoEtud",produces = MediaType.IMAGE_JPEG_VALUE)
-	@ResponseBody
-	public byte[] photoEtud(Long id) throws IOException{
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(id).get();
 		
-		return IOUtils.toByteArray(new ByteArrayInputStream(enligne.getPhoto()));
+		//Validation 
+		@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
+		public String saveAdmin(Model model,@RequestParam("cne")String id,
+				
+				@Valid InscriptionAdministrative admin,BindingResult bindingResult){
+			if(bindingResult.hasErrors()) return "formAdmin";
+			
+			InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
+			id = inscriptionEnligneRepository.findByCne(id).getCne();
+			
+			
+			enligne.setCne(id);
+			admin.setInscriptionEnligne(enligne);
+			inscriptionAdministrativeRepository.save(admin);
+			model.addAttribute("admin", admin);
+			model.addAttribute("enligne", enligne);
+			model.addAttribute("cne", id);
+			
+			return "redirect:/adminsAll";
+		}
+
 		
+		//Edition
+		@RequestMapping(path="/editAdmin")
+		public String editAdmin(Model model , Long id 
+				) {
+			InscriptionAdministrative administrative = inscriptionAdministrativeRepository.findById(id).get();
+			
+			model.addAttribute("admin", administrative);
+			
+			model.addAttribute("mode", "edit");
+			return "ConfirmationAdmin";//Encore des problemes ici , pas encore fini, il fait pas l'edition , il fait l'ajout
+		}
+
+
+		
+		
+	//afichage des inscriptionr Enligne valide
+	@GetMapping(path="/administrativeAll") 
+	public String listAdministrativeAll(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword){
+		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValide_enligne(PageRequest.of(page, size));
+
+		model.addAttribute("enligne",pageEnlignes.getContent());
+		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "confirmAdmini";
 	}
 	
-*/
+	@GetMapping(path="/admins") 
+	public String listAdmin(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findByAnnee_academiqueContains(keyword, PageRequest.of(page, size));
+		model.addAttribute("admins",pageAdmins.getContent());
+		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "listeAdmin";
+	}
+	   
+	
+	//Affichage avec pagination :tous
+	@GetMapping(path="/adminsAll") 
+	public String listAdminAll(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findAll(PageRequest.of(page, size));
+		model.addAttribute("admins",pageAdmins.getContent());
+		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "listeAdmin";
+	}
+
+
+	//Supprission
+	@GetMapping(path="/deleteAdmin")
+	public String deleteAdmin(Long id ) {
+		inscriptionAdministrativeRepository.deleteById(id);
+		return "redirect:/adminsAll";
+	}
+
+
+
 }

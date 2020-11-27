@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
 	name="viewport">
-<title>Validation Inscription EnLigne</title>
+<title>Inscription EnLigne</title>
 
 <!-- General CSS Files -->
 <link rel="stylesheet"
@@ -31,16 +31,17 @@
 			<div class="container mt-5">
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">Validation Inscription EnLigne</div>
+						<div class="login-brand">Inscription EnLigne</div>
 
 						<div class="card card-primary">
 							<div class="row">
 								<div class="col-12 col-md-12 col-lg-5 p-0">
 									<div class="card-header text-center">
-										<h4>Enregistrement effectue</h4>
+											<h4>Enregistrement effectue</h4>
 									</div>
-					
-									<div class="card-body">					
+									
+									
+				<div class="card-body">					
 					<div class="form-group">
 					<label>CNE : </label>
 					<strong><label th:text="${enligne.cne}"></label></strong>
@@ -81,59 +82,126 @@
 					<label>Nationalite : </label>
 					<strong><label th:text="${enligne.nationalite}"></label></strong>
 					</div>
-									</div>
+									</div>									
+									
+									
 								</div>
 
+								<div class="col-12 col-md-12 col-lg-5 p-0">
+									<div class="card">
+										<!-- <div class="card-header text-center">
+											<div class="card-header text-center" th:if="${mode=='new'}">
+										<h4>Formulaire de saisie </h4>
+									</div>
+									<div class="card-header text-center" th:if="${mode=='edit'}">
+										<h4>Formulaire de mise a jour </h4>
+									</div>
 										</div>
+										 -->
+										 <div class="card-header text-center">
+											<div class="card-header text-center" th:if="${mode=='new'}">
+										<h4>Formulaire de saisie </h4>
+									</div>
+									<div class="card-header text-center" th:if="${mode=='edit'}">
+										<h4>Formulaire de mise a jour </h4>
+									</div>
+									</div>
 										
-										
-										
-										
-			
-            <div class="col-12 col-md-12 col-lg-5 p-0">
-              <!-- <form method="get" th:action="@{validerEnligne}" class="needs-validation" novalidate=""> -->
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Validation</h4>
-                  </div>
-                  <!-- <div class="card-body pb-0">
-                  	<div class="form-group">
-                      
-                      <input type="checkbox" name="valide_enligne" th:checked=${valide_enligne} class="form-control">
-                      
-                  </div> -->
-                  <div class="card-body pb-0">
-                  <a 
-                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${enligne.cne})}><i class="fas fa-trash"></i>
-                            </a>
-                            <span></span>
-                            
-                  <a  th:href=@{validerEnligne(id=${enligne.cne},bar=${bar})}
-                            class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Accept" onclick="return confirm('Etes vous sur de vouloir valider cette inscription?')"><i class="far fa-folder-open"></i>
-                            </a>
-                  </div>
-                  <p></p>
-                  <div class="card-footer pt-0">
-                  
-                  <a  th:href=@{enlignesAll}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Back" ><i class="fas fa-arrow-circle-left"></i>
-                            </a>
-                            
-                  
-                    <!-- <button class="btn btn-primary">Save</button> -->
-                  </div>
-                </div>
-              <!-- </form> -->
-            </div>
+									<div class="card-body">
 
-										
+										<form th:action="@{saveAdmin}" method="post">
+										<div class="form-group">
+												<label>CNE</label> 
+												 
+													 <input type="text" class="form-control" name="cne" th:value="${cne}" readonly="readonly">
+											</div> 
+																							<div class="form-group">
+<!-- 												<label>Filiere</label> 
+												<select name="id" th:value="${admin.Filiere.id_filiere}"
+													class="form-control">
+													<option items="${id}"></option>
+
+												</select>
+											</div>
+								 -->
+											<div class="form-group">
+												<label>Annee Academique</label> <input type="text"
+													name="annee_academique" class="form-control"
+													th:value="${admin.annee_academique}" placeholder="yyyy"
+													required="required">
+											</div>
+											 
+						
+											
+
+											<div class="form-group">
+												<label>Date de validation d'inscription</label> <input
+													type="date" name="date_inscription_valide"
+													class="form-control"
+													th:value="${admin.date_inscription_valide}"
+													required="required">
+											</div>
+
+
+											<div class="form-group">
+												<label>Adresse Personnel</label> <input type="text"
+													name="adresse_personnel" class="form-control"
+													th:value="${admin.adresse_personnel}" required="required">
+
+											</div>
+											<div class="form-group">
+												<label>Ville</label> <input type="text" name="ville"
+													class="form-control" th:value="${admin.ville}"
+													required="required">
+
+											</div>
+											<div class="form-group">
+												<label>Telephone</label> <input type="text" name="telephone"
+													class="form-control" th:value="${admin.telephone}"
+													placeholder="tt-tt-tt" required="required">
+
+											</div>
+											<div class="form-group">
+												<label>Email Etudiant</label> <input type="email"
+													name="email_etud" class="form-control"
+													th:value="${admin.email_etud}" placeholder="xyz@gmail.abc"
+													required="required">
+
+											</div>
+											<div class="form-group">
+												<label>Email Parent</label> <input type="email"
+													name="email_parent" class="form-control"
+													th:value="${admin.email_parent}"
+													placeholder="xyz@gmail.abc" required="required">
+
+											</div>
+
+
+											<!-- <div class="form-group">
+                      <label>Photo</label>
+                      <input type="file" class="form-control" name="file">
+                    </div>
+                     -->
+
+
+											<div class="form-group text-right">
+												<button type="submit"
+													class="btn btn-round btn-lg btn-success">Send Form
+												</button>
+											</div>
+										</form>
+
+
+									</div>
 										
 										
 										
 										
 									</div>
 								</div>
+
+
+
 
 
 

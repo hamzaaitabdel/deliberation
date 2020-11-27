@@ -25,7 +25,7 @@ public class InscriptionEnligne {
 	
 	@Id
 	@Column(name = "CNE" , unique = true)
-	String cne;
+	private String cne;
 	private String nom_fr;
 	private String prenom_fr;
 	private String nom_ar;
