@@ -26,7 +26,7 @@ public class Module {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_module;
 	private String libelle_module;
-	private boolean hasElement;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_semestre")
 	private Semestre semestre;

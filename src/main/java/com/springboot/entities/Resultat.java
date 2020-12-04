@@ -26,5 +26,5 @@ public class Resultat {
 	
 	@OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "resultat")
 	private List<Etudiant> etudiants;
-		
+	
 }
