@@ -58,6 +58,7 @@ public class Etudiant {
 	private String nom_etud;
 	private String tel_etud;
 	private String email_etud;
+
 	
 	
 }
