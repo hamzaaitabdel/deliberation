@@ -36,13 +36,8 @@ public class Etudiant {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date annee_academique;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etape")
-	private Etape etape;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_filiere")
-	private Filiere filiere;
+	
 	
 	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionPedagogique> inscriptionPedagogiques;

@@ -30,7 +30,7 @@ public class Note {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cne")
 	private Etudiant etudiant;
-
+	
 	public Long getId_note() {
 		return id_note;
 	}
