@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.springboot.MyUploadForm;
+import com.springboot.service.MyUploadForm;
 
 
 @org.springframework.stereotype.Controller

@@ -148,14 +148,32 @@
 													name="annee_bac" class="form-control"
 													th:value="${enligne.annee_bac}" placeholder="yyyy" required="required">
 											</div>
-											<div class="form-group">
-												<label>Serie de Bac</label> <input type="text"
-													name="serie_bac" class="form-control"
-													th:value="${enligne.serie_bac}" required="required">
-											</div>
+																						<div class="form-group">
+												<label>Serie de Bac</label> 
+												<select name="serie_bac" th:value="${enligne.serie_bac}"
+													class="form-control">
+													<option>SVT</option>
+													<option>SPC</option>
+													<option>SMA</option>
+													<option>SC</option>
+													<option>STE</option>
+													<option>STM</option>
 
+												</select>
+											</div>
+									<!-- 
+											Sciences de la Vie et de la Terre
+Sciences Physiques et Chimiques
+Sciences Maths A
+Sciences Maths B
+Sciences Economiques
+Techniques de Gestion et de Comptabilité
+Sciences agronomiques
+Sciences et Technologies Electriques
+Sciences et Technologies Mécaniques -->
 											<div class="form-group">
-												<label>Mention de Bac</label> <select name="mention_bac"
+												<label>Mention de Bac</label> 
+												<select name="mention_bac"
 													class="form-control">
 													<option>Assez bien</option>
 													<option>Bien</option>

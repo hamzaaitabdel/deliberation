@@ -28,7 +28,7 @@ public class Note {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "massarEtud")
+	@JoinColumn(name = "cne")
 	private Etudiant etudiant;
 	
 }

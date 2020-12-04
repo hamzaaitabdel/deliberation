@@ -43,6 +43,22 @@ public class Controller {
 	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
 	@Autowired
 	FiliereRepository filiereRepository;
+	
+	/*
+	 * @Autowired com.springboot.service.MailService mailService;
+	 * 
+	 * @GetMapping(path="/send") public String test(String recipient, String
+	 * objectif , String message ) { com.springboot.bean.Mail mail = new
+	 * com.springboot.bean.Mail(); mail.setMailFrom("ryfysafwane@gmail.com");
+	 * mail.setMailTo("ryfy1103.saf1999@gmail.com"); mail.setMailSubject("dfgfgh");
+	 * mail.setMailContent(" rghm");
+	 * 
+	 * mailService.sendEmail(mail);
+	 * 
+	 * return "email"; }
+	 */	
+	
+	
 	//1.Inscription Enligne
 
 	//Affichage avec pagination : chercher
@@ -111,7 +127,7 @@ public class Controller {
 		return "redirect:/enlignesAll?bar="+bar;
 	}
 	//Les enregistrements
-	@GetMapping(path="/ConfermationEnligne")
+	@GetMapping(path="/ConfirmationEnligne")
 	public String ConfermationEnligne(Model model,String id) {
 		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
 		model.addAttribute("enligne", enligne);
@@ -122,36 +138,71 @@ public class Controller {
 	
 	//Les enregistrements avec Insertion Admin
 		@GetMapping(path="/ConfermationAdmin")
-		public String ConfermationAdmin(Model model , String id) {
+		public String ConfermationAdmin(Model model , String id 
+				//@RequestParam(name = "id_filiere" , defaultValue = "1")Long id_filiere
+				) {
 			InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
 			model.addAttribute("enligne", enligne);
-			model.addAttribute("admin", new InscriptionAdministrative());
+			InscriptionAdministrative admin = new InscriptionAdministrative();
+			model.addAttribute("admin", admin);
 			id = inscriptionEnligneRepository.findByCne(id).getCne();
+			//Filiere filiere = filiereRepository.getOne(id_filiere);
+			//filiere.getNom_filiere();
+			//model.addAttribute("filiere", filiere);
 			model.addAttribute("cne", id);
 			
-			
+
 			model.addAttribute("mode", "new");
 			
 			return "ConfirmationAdmin";
 		}
-		
+//		
+//		//Validation 
+//		@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
+//		public String saveAdmin(@Valid InscriptionEnligne enligne,@Valid Filiere filiere,
+//				@Valid InscriptionAdministrative admin,
+//				BindingResult bindingResult){
+//			if(bindingResult.hasErrors()) return "formAdmin";
+//			
+//			//InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
+//			//id = inscriptionEnligneRepository.findByCne(id).getCne();
+//			//Filiere filiere = filiereRepository.getOne(id_filiere);
+//			//id_filiere = filiereRepository.findById(id_filiere).get().getId_filiere();
+//			
+//			//filiere.setId_filiere(id_filiere);
+//			//enligne.setCne(id);
+//			//admin.setInscriptionEnligne(enligne);
+//			//admin.setFiliere(filiere);
+//			inscriptionAdministrativeRepository.save(admin);
+//			model.addAttribute("admin", admin);
+//			model.addAttribute("enligne", enligne);
+//			model.addAttribute("filiere", filiere);
+//			
+//			model.addAttribute("cne", id);
+//			
+//			return "redirect:/adminsAll";
+//		}
+//		
+
 		//Validation 
 		@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
-		public String saveAdmin(Model model,@RequestParam("cne")String id,
-				
-				@Valid InscriptionAdministrative admin,BindingResult bindingResult){
+		public String saveAdmin(Model model ,@RequestParam("cne")String cne,@RequestParam("filiere")Long filiere,
+				@Valid InscriptionAdministrative admin,
+				BindingResult bindingResult){
 			if(bindingResult.hasErrors()) return "formAdmin";
 			
-			InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
-			id = inscriptionEnligneRepository.findByCne(id).getCne();
-			
-			
-			enligne.setCne(id);
+			InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(cne);
+			enligne.setCne(cne);
 			admin.setInscriptionEnligne(enligne);
+			
+			Filiere f = filiereRepository.findById(filiere).get();
+			f.setId_filiere(filiere);
+			admin.setFiliere(f);
+			
 			inscriptionAdministrativeRepository.save(admin);
 			model.addAttribute("admin", admin);
 			model.addAttribute("enligne", enligne);
-			model.addAttribute("cne", id);
+			model.addAttribute("filiere", f);
 			
 			return "redirect:/adminsAll";
 		}
@@ -159,18 +210,40 @@ public class Controller {
 		
 		//Edition
 		@RequestMapping(path="/editAdmin")
-		public String editAdmin(Model model , Long id 
+		public String editAdmin(Model model , Long id,String cne 
 				) {
 			InscriptionAdministrative administrative = inscriptionAdministrativeRepository.findById(id).get();
 			
 			model.addAttribute("admin", administrative);
+			InscriptionEnligne enligne =inscriptionEnligneRepository.findById(cne).get();
+			model.addAttribute("enligne", enligne);
+			cne =inscriptionEnligneRepository.findByCne(cne).getCne();
+
+			model.addAttribute("cne", cne);
 			
 			model.addAttribute("mode", "edit");
 			return "ConfirmationAdmin";//Encore des problemes ici , pas encore fini, il fait pas l'edition , il fait l'ajout
 		}
-
-
-		
+	/*
+	 * //Edition
+	 * 
+	 * @RequestMapping(path="/editAdmin") public String editAdmin(Model model , Long
+	 * id , @RequestParam("cne")String cne
+	 * ,@RequestParam(name="filiere",defaultValue = "1")Long id_filiere ) {
+	 * InscriptionAdministrative administrative =
+	 * inscriptionAdministrativeRepository.getOne(id);
+	 * 
+	 * model.addAttribute("admin", administrative); InscriptionEnligne enligne =
+	 * inscriptionEnligneRepository.getOne(cne); cne =
+	 * inscriptionEnligneRepository.findByCne(cne).getCne(); //Filiere filiere =
+	 * filiereRepository.getOne(id); id_filiere =
+	 * filiereRepository.findById(id_filiere).get().getId_filiere();
+	 * model.addAttribute("enligne", enligne);
+	 * model.addAttribute("filiere",id_filiere); model.addAttribute("cne", cne);
+	 * model.addAttribute("mode", "edit"); return "ConfirmationAdmin";//Encore des
+	 * problemes ici , pas encore fini, il fait pas l'edition , il fait l'ajout }
+	 * 
+	 */
 		
 	//afichage des inscriptionr Enligne valide
 	@GetMapping(path="/administrativeAll") 
@@ -227,5 +300,5 @@ public class Controller {
 	}
 
 
-
+	
 }

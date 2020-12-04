@@ -1,4 +1,4 @@
-package com.springboot;
+package com.springboot.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

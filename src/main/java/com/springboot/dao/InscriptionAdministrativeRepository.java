@@ -1,6 +1,7 @@
 package com.springboot.dao;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -8,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
+import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
 @Repository
@@ -28,14 +31,17 @@ public interface InscriptionAdministrativeRepository extends JpaRepository<Inscr
 	/*
 	 * @Modifying
 	 * 
+	 * @Transactional
+	 * 
 	 * @Query("UPDATE InscriptionAdministrative c SET c.annee_academique = :annee_academique  c.date_inscription_valide = :date_inscription_valide "
 	 * 
 	 * + "c.adresse_personnel = :adresse_personnel" + "c.ville = :ville" +
 	 * "c.telephone = :telephone" + "c.email_etud = :email_etud" +
-	 * "c.email_parent = :email_parent"
+	 * "c.email_parent = :email_parent" + "c.cne = :cne" +
+	 * "c.id_filiere = :id_filiere" +
+	 * "WHERE c.id_inscription_administrative = :id_inscription_administrative"
 	 * 
-	 * + "WHERE c.id_inscription_administrative = :id_inscription_administrative")
-	 * public InscriptionAdministrative update(
+	 * ) public InscriptionAdministrative update(
 	 * 
 	 * @Param("id_inscription_administrative") Long id,
 	 * 
@@ -51,6 +57,16 @@ public interface InscriptionAdministrativeRepository extends JpaRepository<Inscr
 	 * 
 	 * @Param("email_etud") String email_etud,
 	 * 
-	 * @Param("email_parent") String email_parent);
-	 */
+	 * @Param("email_parent") String email_parent,
+	 * 
+	 * @Param("cne") InscriptionEnligne inscriptionEnligne,
+	 * 
+	 * @Param("id_filiere") Filiere filiere
+	 * 
+	 * );
+	 * 
+	 * 
+	 */	
+	
+	
 }

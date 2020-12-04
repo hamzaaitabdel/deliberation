@@ -31,7 +31,7 @@ public class Etudiant {
 	
 	@Id
 	@Column(name = "CNE")
-	private String massarEtud;
+	private String cne;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date annee_academique;

@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
 	name="viewport">
-<title>Inscription EnLigne</title>
+<title>Inscription Administrative</title>
 
 <!-- General CSS Files -->
 <link rel="stylesheet"
@@ -116,14 +116,17 @@
 													 <input type="text" class="form-control" name="cne" th:value="${cne}" readonly="readonly">
 											</div> 
 																							<div class="form-group">
-<!-- 												<label>Filiere</label> 
-												<select name="id" th:value="${admin.Filiere.id_filiere}"
+					<label>Filiere</label> 
+												<select name="filiere" th:value="${filiere}"
 													class="form-control">
-													<option items="${id}"></option>
+													<option  value="1"  >BGI</option>
+													<option  value="2"  >BGB</option>
+													<option  value="3"  >BCA</option>
+													
 
 												</select>
 											</div>
-								 -->
+								 
 											<div class="form-group">
 												<label>Annee Academique</label> <input type="text"
 													name="annee_academique" class="form-control"
