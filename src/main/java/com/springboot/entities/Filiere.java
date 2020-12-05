@@ -24,8 +24,6 @@ public class Filiere {
 	private Long id_filiere;
 	private String nom_filiere;
 	
-	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "filiere")
-	private ResponsableFiliere responsableFiliere;
 	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionAdministrative> inscriptionAdministratives;
@@ -47,14 +45,6 @@ public class Filiere {
 
 	public void setNom_filiere(String nom_filiere) {
 		this.nom_filiere = nom_filiere;
-	}
-
-	public ResponsableFiliere getResponsableFiliere() {
-		return responsableFiliere;
-	}
-
-	public void setResponsableFiliere(ResponsableFiliere responsableFiliere) {
-		this.responsableFiliere = responsableFiliere;
 	}
 
 	public List<InscriptionAdministrative> getInscriptionAdministratives() {

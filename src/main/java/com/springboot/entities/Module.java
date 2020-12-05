@@ -26,19 +26,11 @@ public class Module {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_module;
 	private String libelle_module;
-	private boolean hasElement;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_semestre")
 	private Semestre semestre;
 	
-	@OneToMany(mappedBy = "module" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	private List<Element> elements;
-	
-	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "module")
-	private Professeur professeur;
-	
-	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "module")
-	private ResponsableModul responsableModul;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_note")

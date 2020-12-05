@@ -19,10 +19,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Data @NoArgsConstructor @AllArgsConstructor
+import lombok.ToString;
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
 @Entity
 public class InscriptionAdministrative {
-
+ 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDIA" )
@@ -45,8 +46,6 @@ public class InscriptionAdministrative {
 	private String telephone;
 	private String email_etud;
 	private String email_parent;
-	
-	
 	
 	//?
 	@ManyToOne(cascade = CascadeType.ALL)

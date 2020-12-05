@@ -31,7 +31,7 @@ public class Etudiant {
 
 	@Id
 	@Column(name = "CNE")
-	private String massarEtud;
+	private String cne;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date annee_academique;
@@ -48,6 +48,13 @@ public class Etudiant {
 
 
 
+	
+	
+	
+	
+	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_resultat")
 	private Resultat resultat;
@@ -102,6 +109,22 @@ public class Etudiant {
 	
 
 	
+
+	public String getCne() {
+		return cne;
+	}
+
+	public void setCne(String cne) {
+		this.cne = cne;
+	}
+
+	public List<InscriptionPedagogique> getInscriptionPedagogiques() {
+		return inscriptionPedagogiques;
+	}
+
+	public void setInscriptionPedagogiques(List<InscriptionPedagogique> inscriptionPedagogiques) {
+		this.inscriptionPedagogiques = inscriptionPedagogiques;
+	}
 
 	public String getPrenomAr_etud() {
 		return prenomAr_etud;
@@ -257,13 +280,6 @@ public class Etudiant {
 		this.groupe_socioprofessionnel = groupe_socioprofessionnel;
 	}
 
-	public String getMassarEtud() {
-		return massarEtud;
-	}
-
-	public void setMassarEtud(String massarEtud) {
-		this.massarEtud = massarEtud;
-	}
 
 	public Date getAnnee_academique() {
 		return annee_academique;
@@ -344,6 +360,7 @@ public class Etudiant {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+
 
 	
 }

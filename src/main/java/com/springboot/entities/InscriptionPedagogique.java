@@ -27,9 +27,9 @@ public class InscriptionPedagogique {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDIP")
 	Long id_inscription_pedagogique;
-
+	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "massarEtud")
+	@JoinColumn(name = "cne")
 	Etudiant etudiant;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
