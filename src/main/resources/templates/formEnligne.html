@@ -35,12 +35,14 @@
 
 						<div class="card card-primary">
 							<div class="row">
-								<div class="col-12 col-md-12 col-lg-5 p-0">
+							<form th:action="@{saveEnligne}" method="post">
+								<div class="col-20 col-md-20 col-lg-7 p-0">
 									<div class="card-header text-center">
 										<h4>Formulaire de saisie</h4>
 									</div>
+									
 									<div class="card-body">
-										<form th:action="@{saveEnligne}" method="post">
+										
 											<div class="form-group">
 												<label>CNE</label> <input type="text" name="cne"
 													class="form-control" th:value="${enligne.cne}" required="required">
@@ -118,11 +120,6 @@
 													th:value="${enligne.date_inscription}" required="required">
 											</div>
 
-											<!-- <div class="form-group">
-                      <label>Photo</label>
-                      <input type="file" class="form-control" name="file">
-                    </div>
-                     -->
 									</div>
 								</div>
 
@@ -201,11 +198,7 @@ Sciences et Technologies Mécaniques -->
 													name="nationalite" class="form-control"
 													th:value="${enligne.nationalite}" required="required">
 											</div>
-											<div class="form-group">
-												<label>Ville de Naissance</label> <input type="text"
-													name="ville_naissance" class="form-control"
-													th:value="${enligne.ville_naissance}" required="required">
-											</div>
+											
 											<div class="form-group">
 												<label>Province</label> <input type="text" name="province"
 													class="form-control" th:value="${enligne.province}" required="required">
@@ -232,13 +225,13 @@ Sciences et Technologies Mécaniques -->
 													class="btn btn-round btn-lg btn-primary">Send Form
 												</button>
 											</div>
-											</form>
+											
 
-
-
+										
 										</div>
 									</div>
 								</div>
+						</form>
 
 
 

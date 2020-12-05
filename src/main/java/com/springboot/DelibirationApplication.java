@@ -18,6 +18,10 @@ public class DelibirationApplication implements CommandLineRunner{
 	private InscriptionEnligneRepository inscriptionRepository;
 	@Autowired
 	private NoteRepository noteRepository;
+	@Autowired
+	private EtudiantRepository etudiantRepository;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(DelibirationApplication.class, args);
 	}
