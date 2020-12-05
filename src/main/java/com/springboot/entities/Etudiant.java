@@ -54,6 +54,78 @@ public class Etudiant {
 	private String tel_etud;
 	private String email_etud;
 
+	public String getCne() {
+		return cne;
+	}
+
+	public void setCne(String cne) {
+		this.cne = cne;
+	}
+
+	public Date getAnnee_academique() {
+		return annee_academique;
+	}
+
+	public void setAnnee_academique(Date annee_academique) {
+		this.annee_academique = annee_academique;
+	}
+
+	public List<InscriptionPedagogique> getInscriptionPedagogiques() {
+		return inscriptionPedagogiques;
+	}
+
+	public void setInscriptionPedagogiques(List<InscriptionPedagogique> inscriptionPedagogiques) {
+		this.inscriptionPedagogiques = inscriptionPedagogiques;
+	}
+
+	public Resultat getResultat() {
+		return resultat;
+	}
+
+	public void setResultat(Resultat resultat) {
+		this.resultat = resultat;
+	}
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
+	public String getPrenom_etud() {
+		return prenom_etud;
+	}
+
+	public void setPrenom_etud(String prenom_etud) {
+		this.prenom_etud = prenom_etud;
+	}
+
+	public String getNom_etud() {
+		return nom_etud;
+	}
+
+	public void setNom_etud(String nom_etud) {
+		this.nom_etud = nom_etud;
+	}
+
+	public String getTel_etud() {
+		return tel_etud;
+	}
+
+	public void setTel_etud(String tel_etud) {
+		this.tel_etud = tel_etud;
+	}
+
+	public String getEmail_etud() {
+		return email_etud;
+	}
+
+	public void setEmail_etud(String email_etud) {
+		this.email_etud = email_etud;
+	}
+
 	
 	
 }
