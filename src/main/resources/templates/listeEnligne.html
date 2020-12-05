@@ -250,10 +250,10 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Inscription</li>
               <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Inscriptions</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Inscription</a></li>
-                  <li><a class="nav-link" href="#">Administrative</a></li>
+                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">En Ligne</a></li>
+                  <li><a class="nav-link" th:href="@{administratives}">Administrative</a></li>
                 </ul>
               </li>
               <li class="menu-header">Starter</li>
@@ -452,7 +452,7 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfermationEnligne(id=${p.cne})}
+                            <a  th:href=@{ConfirmationEnligne(id=${p.cne})}
                             class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
