@@ -50,7 +50,6 @@ public class InscriptionEnligne {
 	private String ville_bac;
 	private String academie;
 	private String nationalite;
-	private String ville_naissance;
 	private String province;
 	private String region;
 	private String etat_physique;
@@ -207,13 +206,6 @@ public class InscriptionEnligne {
 		this.nationalite = nationalite;
 	}
 
-	public String getVille_naissance() {
-		return ville_naissance;
-	}
-
-	public void setVille_naissance(String ville_naissance) {
-		this.ville_naissance = ville_naissance;
-	}
 
 	public String getProvince() {
 		return province;
