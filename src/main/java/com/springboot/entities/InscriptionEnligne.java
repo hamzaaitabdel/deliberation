@@ -50,7 +50,10 @@ public class InscriptionEnligne {
 	private String ville_bac;
 	private String academie;
 	private String nationalite;
+<<<<<<< Upstream, based on branch 'master' of https://github.com/hamzaaitabdel/deliberation
 	
+=======
+>>>>>>> bd0b7ea affectation des etapes,modules,semestres
 	private String province;
 	private String region;
 	private String etat_physique;
@@ -232,6 +235,10 @@ public class InscriptionEnligne {
 		this.nationalite = nationalite;
 	}
 
+<<<<<<< Upstream, based on branch 'master' of https://github.com/hamzaaitabdel/deliberation
+=======
+
+>>>>>>> bd0b7ea affectation des etapes,modules,semestres
 	public String getProvince() {
 		return province;
 	}

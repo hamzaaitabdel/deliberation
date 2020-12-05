@@ -25,11 +25,10 @@ public class Etape {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_etape;
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date annee_universitaire;
+//	@Temporal(TemporalType.DATE)
+//	@DateTimeFormat(pattern = "yyyy-MM-dd")
+//	private Date annee_universitaire;
 	private String libelle_etape;
-	private boolean etats;
 	
 	
 	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
@@ -40,4 +39,5 @@ public class Etape {
 	
 	
 	private boolean hasDiplome;
+	private int ordre;
 }
