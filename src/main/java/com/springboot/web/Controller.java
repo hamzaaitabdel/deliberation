@@ -55,8 +55,7 @@ public class Controller {
 	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
 	@Autowired
 	EtudiantRepository etudiantRepository;
-
-
+	@Autowired
 	FiliereRepository filiereRepository;
 	
 	/*
@@ -197,21 +196,14 @@ public class Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			etudiantRepository.saveAll(le);
 			
 			model.addAttribute("imports", le);
-			return "ValiderImportEtudiants";
-		}
-
-		
-		//import etudiants
-		@GetMapping(path="/validerimportetudiants") 
-		public String validerimportetudiants(Model model, List<Etudiant> le) {
-			for(int i=0;i<le.size();i++) etudiantRepository.save(le.get(i));
-			
-			//etudiantRepository.saveAll(le);
 			return "redirect:/etudiantsAll";
 		}
 
+		
+		
 		
 
 
@@ -271,19 +263,36 @@ public class Controller {
 	}
 
 	//list etudiants
-	@GetMapping(path="/etudiants") 
-	public String etudiants(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<Etudiant> pageEtudiants = etudiantRepository.findByNom_etudContains(keyword, PageRequest.of(page, size));
-		model.addAttribute("etudiants",pageEtudiants.getContent());
-		model.addAttribute("pages",new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "ListEtudiant";
-	}
+		@GetMapping(path="/etudiants") 
+		public String etudiants(Model model ,
+				@RequestParam(name="page",defaultValue = "0")int page ,
+				@RequestParam(name="size",defaultValue = "5")int size , 
+				@RequestParam(name="keyword",defaultValue = "")String keyword) {
+			Page<Etudiant> pageEtudiants = etudiantRepository.findByNom_etudContains(keyword, PageRequest.of(page, size));
+			model.addAttribute("etudiants",pageEtudiants.getContent());
+			model.addAttribute("pages",new int[pageEtudiants.getTotalPages()]);
+			model.addAttribute("currentPage",page);
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("size",size);
+			return "ListEtudiant";
+		}
+		
+		// filieres
+		@GetMapping(path="/filiere") 
+		public String filiere(Model model ,
+				@RequestParam(name="page",defaultValue = "0")int page ,
+				@RequestParam(name="size",defaultValue = "5")int size , 
+				@RequestParam(name="keyword",defaultValue = "")String keyword) {
+			Page<Filiere> pagefiliere = filiereRepository.findAll(PageRequest.of(page, size));
+			model.addAttribute("filiere",pagefiliere.getContent());
+			model.addAttribute("pages",new int[pagefiliere.getTotalPages()]);
+			model.addAttribute("currentPage",page);
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("size",size);
+			return "ListFiliere";
+		}
+		
+	
 
 	/*	
 	@GetMapping(path="/saveEnligne")
@@ -433,7 +442,7 @@ public class Controller {
 		model.addAttribute("currentPage",page);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
-		return "confirmAdmini";
+		return "ListAdmin";
 	}
 
 

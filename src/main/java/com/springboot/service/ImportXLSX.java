@@ -85,10 +85,11 @@ public class ImportXLSX {
 				}
 				k++;
 			}
+			if(i!=0) listetd.add(e);
 			i++;
 
 
-			listetd.add(e);
+			
 		}
 		return listetd;  
 	}

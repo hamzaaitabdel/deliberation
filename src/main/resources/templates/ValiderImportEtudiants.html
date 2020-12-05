@@ -50,7 +50,7 @@
 
 											<tr th:each="p:${imports}">
 
-												<td th:text="${p.massarEtud}"></td>
+												<td th:text="${p.cne}"></td>
 
 												<td th:text="${p.nom_etud}"></td>
 												<td th:text="${p.prenom_etud}"></td>
@@ -64,7 +64,7 @@
 									</table>
 								</div>
 							</div>
-							<form method="get" action=@{validerimportetudiants(${imports})}>
+							<form method="get" th:action=@{validerimportetudiants}>
 								<input type="submit" value="Valider">
 							</form>
     						
