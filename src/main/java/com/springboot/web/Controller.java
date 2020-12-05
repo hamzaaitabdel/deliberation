@@ -1,6 +1,5 @@
 package com.springboot.web;
 
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hamzaaitabdel/deliberation
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,29 +7,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-=======
+
 import java.util.List;
->>>>>>> bd0b7ea affectation des etapes,modules,semestres
 
 import javax.validation.Valid;
 
 import com.springboot.dao.EtudiantRepository;
 import com.springboot.dao.InscriptionAdministrativeRepository;
 import com.springboot.dao.InscriptionEnligneRepository;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hamzaaitabdel/deliberation
+
 import com.springboot.entities.Etudiant;
 import com.springboot.entities.InscriptionAdministrative;
-=======
+
 import com.springboot.dao.ModuleRepository;
 import com.springboot.dao.SemestreRepository;
->>>>>>> bd0b7ea affectation des etapes,modules,semestres
+
 import com.springboot.entities.InscriptionEnligne;
-<<<<<<< Upstream, based on branch 'master' of https://github.com/hamzaaitabdel/deliberation
+
 import com.springboot.service.ImportXLSX;
-=======
+
 import com.springboot.entities.Module;
 import com.springboot.entities.Semestre;
->>>>>>> bd0b7ea affectation des etapes,modules,semestres
+
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
