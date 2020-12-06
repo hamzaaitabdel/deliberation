@@ -41,8 +41,8 @@ public class InscriptionEnligne {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date_inscription;
-	//@Lob
-	//private byte[] photo;
+	
+	
 	private String annee_bac;
 	private String serie_bac;
 	private String mention_bac;
@@ -61,6 +61,31 @@ public class InscriptionEnligne {
 	
 	@OneToOne(mappedBy = "inscriptionEnligne")
 	InscriptionAdministrative inscriptionAdministrative;
+	
+	//new
+	private String email;
+	
+	@Lob
+	private Byte[] photo; 
+	
+	private String tel;
+	
+
+	public Byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Byte[] photo) {
+		this.photo = photo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getCne() {
 		return cne;
@@ -205,8 +230,6 @@ public class InscriptionEnligne {
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
 	}
-
-
 	public String getProvince() {
 		return province;
 	}
@@ -253,6 +276,14 @@ public class InscriptionEnligne {
 
 	public void setInscriptionAdministrative(InscriptionAdministrative inscriptionAdministrative) {
 		this.inscriptionAdministrative = inscriptionAdministrative;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	
 }

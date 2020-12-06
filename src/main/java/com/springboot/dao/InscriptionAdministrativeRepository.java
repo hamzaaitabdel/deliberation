@@ -1,5 +1,9 @@
 package com.springboot.dao;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
 import java.util.Date;
 import java.util.Optional;
 
@@ -20,12 +24,21 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Repository;
 
+import com.springboot.entities.Etudiant;
 import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
+
 @Repository
 public interface InscriptionAdministrativeRepository extends JpaRepository<InscriptionAdministrative,Long> {
-	
+
+	/*@Query(value="SELECT * FROM InscriptionAdministative",nativeQuery=true)
+	public Page<InscriptionAdministrative> selectAll(Pageable pa);
+	*/
+	/*
+	@Query("select e from InscriptionAdministrative e where e.cne like :x ")
+    public Page<InscriptionAdministrative> findByCneContains(@Param("x")String keyword, Pageable of);
+*/	
 	@Query("select e from InscriptionAdministrative e where e.annee_academique like :x ")
 	public Page<InscriptionAdministrative> findByAnnee_academiqueContains(@Param("x")String keyword, Pageable of);
 	/*
@@ -68,5 +81,7 @@ public interface InscriptionAdministrativeRepository extends JpaRepository<Inscr
 	 * 
 	 */	
 	
-	
+	/*@Query("select e from InscriptionAdministrative e where e.id=? ")
+	public InscriptionAdministrative findById(String id);
+	*/
 }
