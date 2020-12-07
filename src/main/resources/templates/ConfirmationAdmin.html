@@ -31,7 +31,7 @@
 			<div class="container mt-5">
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">Inscription EnLigne</div>
+						<div class="login-brand">Inscription Administrative</div>
 
 						<div class="card card-primary">
 							<div class="row">
@@ -127,13 +127,26 @@
 												</select>
 											</div>
 								 
-											<div class="form-group">
-												<label>Annee Academique</label> <input type="text"
-													name="annee_academique" class="form-control"
-													th:value="${admin.annee_academique}" placeholder="yyyy"
-													required="required">
+											 	<div class="form-group">
+												<label>Annee Academique</label> 
+												<select name="annee_academique" 
+													class="form-control">
+			
+            
+            <option value="2020/2021"> 2020/2021 </option>
+            <option value="2021/2022"> 2021/2022 </option>
+            <option value="2022/2023"> 2022/2023 </option>
+            <option value="2023/2024"> 2023/2024 </option>
+            <option value="2024/2025"> 2024/2025 </option>
+            <option value="2025/2026"> 2025/2026 </option>
+            
+            <option value="2026/2027"> 2026/2027 </option>
+            <option value="2027/2028"> 2027/2028 </option>
+            
+            
+            									</select>
 											</div>
-											 
+										
 						
 											
 
@@ -152,12 +165,73 @@
 													th:value="${admin.adresse_personnel}" required="required">
 
 											</div>
-											<div class="form-group">
-												<label>Ville</label> <input type="text" name="ville"
-													class="form-control" th:value="${admin.ville}"
-													required="required">
 
+																<div class="form-group">
+												<label>Ville</label> 
+												<select name="ville" 
+													class="form-control">
+													
+										<option value=" AL HAJEB"> AL HAJEB </option>
+              <option value=" AGADIR "> AGADIR </option>
+              <option value="AL HOCEIMA "> AL HOCEIMA </option>
+              <option value="ASSA "> ASSA </option>
+              <option value="ZAG "> ZAG </option>
+              <option value="AZILAL "> AZILAL </option>
+              <option value="BENI MELLAL"> BENI MELLAL </option>
+              <option value=" BENSLIMANE "> BENSLIMANE </option>
+              <option value="BOUJDOUR"> BOUJDOUR </option>
+              <option value=" BOULEMANE "> BOULEMANE </option>
+              <option value="BERRECHID "> BERRECHID </option>
+              <option value="CASABLANCA "> CASABLANCA </option>
+              <option value="CHEFCHAOUEN "> CHEFCHAOUEN </option>
+              <option value="CHTOUKA "> CHTOUKA </option>
+              <option value="AIT BAHA "> AIT BAHA </option>
+              <option value="CHICHAOUA"> CHICHAOUA </option>
+              <option value=" EL JADIDA"> EL JADIDA </option>
+              <option value=" EL KELAA DES SRAGHNAS"> EL KELAA DES SRAGHNAS </option>
+              <option value=" ERRACHIDIA "> ERRACHIDIA </option>
+              <option value="ESSAOUIRA"> ESSAOUIRA </option>
+              <option value=" ES SEMARA"> ES SEMARA </option>
+              <option value=" FES "> FES </option>
+              <option value="FIGUIG"> FIGUIG </option>
+              <option value=" GUELMIM"> GUELMIM </option>
+              <option value=" IFRANE"> IFRANE </option>
+              <option value=" KENITRA"> KENITRA </option>
+              <option value=" KHEMISSET"> KHEMISSET </option>
+              <option value=" KHENIFRA "> KHENIFRA </option>
+              <option value="KHOURIBGA "> KHOURIBGA </option>
+              <option value="LAAYOUNE"> LAAYOUNE </option>
+              <option value=" LARACHE "> LARACHE </option>
+              <option value="MOHAMMEDIA "> MOHAMMEDIA </option>
+              <option value="MARRAKECH "> MARRAKECH </option>
+              <option value="MEKNES "> MEKNES </option>
+              <option value="NADOR"> NADOR </option>
+              <option value=" OUARZAZATE"> OUARZAZATE </option>
+              <option value=" OUJDA "> OUJDA </option>
+              <option value="OUED EDDAHAB "> OUED EDDAHAB </option>
+              <option value="RABAT "> RABAT </option>
+              <option value="SALE "> SALE </option>
+              <option value="SKHIRAT"> SKHIRAT </option>
+              <option value=" TEMARA "> TEMARA </option>
+              <option value="SEFROU"> SEFROU </option>
+              <option value=" SAFI"> SAFI </option>
+              <option value=" SETTAT"> SETTAT </option>
+              <option value=" SIDI KACEM "> SIDI KACEM </option>
+              <option value="TANGER "> TANGER </option>
+              <option value="TAN TAN"> TAN TAN </option>
+              <option value=" TAOUNAT "> TAOUNAT </option>
+              <option value="TAROUDANNT"> TAROUDANNT </option>
+              <option value=" TATA"> TATA </option>
+              <option value=" TAZA"> TAZA </option>
+              <option value=" TETOUAN "> TETOUAN </option>
+              <option value="TIZNIT"> TIZNIT </option>
+
+               <option value="AUTRES"> AUTRES </option>
+															
+
+												</select>
 											</div>
+				
 											<div class="form-group">
 												<label>Telephone</label> <input type="text" name="telephone"
 													class="form-control" th:value="${admin.telephone}"

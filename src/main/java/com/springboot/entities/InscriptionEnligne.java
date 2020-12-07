@@ -50,7 +50,6 @@ public class InscriptionEnligne {
 	private String ville_bac;
 	private String academie;
 	private String nationalite;
-	
 	private String province;
 	private String region;
 	private String etat_physique;
@@ -231,7 +230,6 @@ public class InscriptionEnligne {
 	public void setNationalite(String nationalite) {
 		this.nationalite = nationalite;
 	}
-
 	public String getProvince() {
 		return province;
 	}

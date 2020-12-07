@@ -1,5 +1,8 @@
 package com.springboot.web;
 
+
+import java.util.List;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,15 +11,26 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
 import javax.validation.Valid;
 
 import com.springboot.dao.EtudiantRepository;
 import com.springboot.dao.InscriptionAdministrativeRepository;
 import com.springboot.dao.InscriptionEnligneRepository;
+
+import com.springboot.dao.ModuleRepository;
+import com.springboot.dao.SemestreRepository;
+
 import com.springboot.entities.Etudiant;
 import com.springboot.entities.InscriptionAdministrative;
+
 import com.springboot.entities.InscriptionEnligne;
+
+import com.springboot.entities.Module;
+import com.springboot.entities.Semestre;
+
 import com.springboot.service.ImportXLSX;
+
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -37,10 +51,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.springboot.dao.EtapeRepository;
 import com.springboot.dao.EtudiantRepository;
 import com.springboot.dao.FiliereRepository;
 import com.springboot.dao.InscriptionAdministrativeRepository;
 import com.springboot.dao.InscriptionEnligneRepository;
+import com.springboot.entities.Etape;
 import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
@@ -126,7 +142,7 @@ public class Controller {
 		if(bindingResult.hasErrors()) return "formEnligne";
 		inscriptionEnligneRepository.save(inscriptionEnligne);
 		model.addAttribute("enligne", inscriptionEnligne);
-		return "redirect:/enlignesAll";
+		return "EnregistrementEnligne";
 	}	 
 
 	//Valider InscriptionEnligne : mis valide_enligne=true
@@ -444,5 +460,162 @@ public class Controller {
 		
 	//afichage des inscriptionr Enligne valide
 	
+<<<<<<< HEAD
+=======
+	@GetMapping(path="/admins") 
+	public String listAdmin(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findByAnnee_academiqueContains(keyword, PageRequest.of(page, size));
+		model.addAttribute("admins",pageAdmins.getContent());
+		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "listeAdmin";
+	}
+	   
 	
+	//Affichage avec pagination :tous
+	@GetMapping(path="/adminsAll") 
+	public String listAdminAll(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findAll(PageRequest.of(page, size));
+		model.addAttribute("admins",pageAdmins.getContent());
+		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "listeAdmin";
+	}
+
+
+	//Supprission
+	@GetMapping(path="/deleteAdmin")
+	public String deleteAdmin(Long id ) {
+		inscriptionAdministrativeRepository.deleteById(id);
+		return "redirect:/adminsAll";
+	}
+	
+
+	//3. Inscription Pedagogique
+>>>>>>> 07d53ff897620300881443822371b6fbd1a04187
+	
+	@GetMapping(path="/formEtape")
+	public String formEtape(Model model) {
+		Etape etape = new Etape();
+		model.addAttribute("etape", etape);
+		List<Etape> etapes = etapeRepository.findAll();
+		model.addAttribute("etapes", etapes);
+		
+		Semestre semestre = new Semestre();
+		model.addAttribute("semestre", semestre);
+		List<Semestre> semestres = semestreRepository.findAll();
+		model.addAttribute("semestres", semestres);
+		Module module = new Module();
+		model.addAttribute("module", module);
+		List<Module> modules = moduleRepository.findAll();
+		model.addAttribute("modules", modules);
+		
+		return "formEtape";
+	}
+	@Autowired
+	ModuleRepository moduleRepository;
+	@Autowired
+	EtapeRepository etapeRepository;
+	@Autowired
+	SemestreRepository semestreRepository;
+	//Validation 
+	@RequestMapping(path="/saveEtape" , method = RequestMethod.POST)
+	public String saveEtape(Model model,@Valid Etape  etape,BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "formEtape";
+		etapeRepository.save(etape);
+		model.addAttribute("etape", etape);
+		return "redirect:/etapes";
+	}	 
+	@RequestMapping(path="/saveSemestre" , method = RequestMethod.POST) public
+	  String saveEtape(Model model,@Valid Semestre
+	  semestre,@RequestParam("id_etape")Long id ,BindingResult bindingResult){
+	  if(bindingResult.hasErrors()) return "formEtape";
+	  
+	  
+	  Etape etape = etapeRepository.findById(id).get(); 
+	  etape.setId_etape(id);
+	  semestre.setEtape(etape);
+	  
+	  semestreRepository.save(semestre); model.addAttribute("semestre", semestre);
+	  
+	  model.addAttribute("id_etape", id);
+	  
+	  return "redirect:/etapes";
+	}
+	@RequestMapping(path="/saveModule" , method = RequestMethod.POST) public
+	  String saveEtape(Model model,@Valid Module module
+	  ,@RequestParam("id_semestre")Long id ,BindingResult bindingResult){
+	  if(bindingResult.hasErrors()) return "formEtape";
+	  
+	  
+	  Semestre semestre = semestreRepository.findById(id).get();
+	  semestre.setId_semestre(id);
+	  module.setSemestre(semestre);
+	  
+	  moduleRepository.save(module);
+	  model.addAttribute("module", module);
+	 
+	  model.addAttribute("id_semestre", id);
+	  
+	  return "redirect:/etapes";
+	}
+	@GetMapping(path="/etapes") 
+	public String listEtapes(Model model
+			) {
+		List<Etape> etapes = etapeRepository.findAll();
+		model.addAttribute("etapes", etapes);
+		
+		List<Semestre> semestres = semestreRepository.findAll();
+		model.addAttribute("semestres", semestres);
+		
+		List<Module> modules = moduleRepository.findAll();
+		model.addAttribute("modules", modules);
+		
+		return "redirect:/formEtape";
+	}
+	
+	/*
+	 * @GetMapping(path="/formSemestre") public String formSemestre(Model model
+	 * 
+	 * ) { Long id = null; Etape etape = etapeRepository.getOne(id);
+	 * 
+	 * 
+	 * model.addAttribute("semestre", new Semestre());
+	 * 
+	 * List<Semestre> semestres = semestreRepository.findAll();
+	 * model.addAttribute("semestres", semestres);
+	 * 
+	 * 
+	 * return "formSemestre"; }
+	 * 
+	 * @RequestMapping(path="/saveSemestre" , method = RequestMethod.POST) public
+	 * String saveEtape(Model model,@Valid Semestre
+	 * semestre,@RequestParam("id_etape")Long id ,BindingResult bindingResult){
+	 * if(bindingResult.hasErrors()) return "formEtape";
+	 * 
+	 * 
+	 * Etape etape = etapeRepository.findById(id).get(); etape.setId_etape(id);
+	 * semestre.setEtape(etape);
+	 * 
+	 * semestreRepository.save(semestre); model.addAttribute("semestre", semestre);
+	 * 
+	 * model.addAttribute("id_etape", id);
+	 * 
+	 * return "redirect:/semestres"; }
+	 * 
+	 * @GetMapping(path="/semestres") public String listSemestres(Model model ) {
+	 * List<Semestre> semestres = semestreRepository.findAll();
+	 * model.addAttribute("semestres", semestres); return "redirect:/formSemestre";
+	 * }
+	 */
 }
