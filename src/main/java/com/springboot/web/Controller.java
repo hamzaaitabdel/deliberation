@@ -292,7 +292,20 @@ public class Controller {
 			return "ListFiliere";
 		}
 		
+		@GetMapping(path="/importStudents") //had method hya dyal import dyalk mn excel 
+		public String listAdministrativeAll(Model model ,
+				@RequestParam(name="page",defaultValue = "0")int page ,
+				@RequestParam(name="size",defaultValue = "5")int size , 
+				@RequestParam(name="keyword",defaultValue = "")String keyword){
+			Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValide_enligne(PageRequest.of(page, size));
 	
+			model.addAttribute("enligne",pageEnlignes.getContent());
+			model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
+			model.addAttribute("currentPage",page);
+			model.addAttribute("keyword",keyword);
+			model.addAttribute("size",size);
+			return "ListAdmin";
+		}
 
 	/*	
 	@GetMapping(path="/saveEnligne")
@@ -430,61 +443,6 @@ public class Controller {
 	 */
 		
 	//afichage des inscriptionr Enligne valide
-	@GetMapping(path="/administrativeAll") 
-	public String listAdministrativeAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword){
-		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValide_enligne(PageRequest.of(page, size));
-
-		model.addAttribute("enligne",pageEnlignes.getContent());
-		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "ListAdmin";
-	}
-
-
 	
-	@GetMapping(path="/admins") 
-	public String listAdmin(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findByAnnee_academiqueContains(keyword, PageRequest.of(page, size));
-		model.addAttribute("admins",pageAdmins.getContent());
-		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "listeAdmin";
-	}
-	   
-	
-	//Affichage avec pagination :tous
-	@GetMapping(path="/adminsAll") 
-	public String listAdminAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("admins",pageAdmins.getContent());
-		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "listeAdmin";
-	}
-
-
-	//Supprission
-	@GetMapping(path="/deleteAdmin")
-	public String deleteAdmin(Long id ) {
-		inscriptionAdministrativeRepository.deleteById(id);
-		return "redirect:/adminsAll";
-	}
-
-
 	
 }
