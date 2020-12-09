@@ -255,7 +255,9 @@
                   <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
                   <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
-                  <li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+                  
                 </ul>
               </li><li class="menu-header">Structure</li>
               <li class="nav-item dropdown">
@@ -462,6 +464,11 @@
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteAdmin(id=${p.id_inscription_administrative},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i>
                             </a> 
+                            <a 
+                            class="btn btn-success btn-action" data-toggle="tooltip" title="Valid"  onclick="return confirm('Etes vous sur de vouloir continuer la Validation de l'inscription administrative?')"
+                            th:href=@{validAdmin(id=${p.id_inscription_administrative},keyword=${keyword},page=${currentPage},size=${size})}><i class="fa fa-folder"></i>
+                            </a> 
+                            
                           </td>
                         </tr>
  						

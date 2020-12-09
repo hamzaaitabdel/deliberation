@@ -99,10 +99,7 @@ public class DeliberationTest {
 					case 5:
 						//if(str.contains("etape")) e.setEtape(etape);
 
-						Date dat= new Date();
-						System.out.println("str:"+str);
-						dat.setYear((int) Double.parseDouble(str));
-						e.setAnnee_academique(dat);
+						e.setAnnee_academique(str);
 
 						System.out.println("str:"+str);
 						break;

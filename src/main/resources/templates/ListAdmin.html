@@ -271,7 +271,9 @@
 								<li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
                   <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
-                  <li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+                  
 							</ul></li>
 						<li class="menu-header">Starter</li>
 						<li class="nav-item dropdown"><a href="#"
@@ -450,66 +452,22 @@
 
 					<div class="container mt-5">
 						<div class="card">
-							<div class="card-header">
+							 <div class="card-header">
 								<h4>Inscriptions Administratives</h4>
 								<div class="card-header-action">
 									<a th:href="@{administrativesAll}" class="btn btn-primary">View
 										All</a>
 								</div>
 							</div>
+							 
 							<div class="card-body p-0">
-								<form th:action="@{administratives}" method="get">
-									<div class="form-group"></div>
-									<label>Name</label> <input type="text" name="keyword"
-										th:value="${keyword}">
-									<button class="btn btn-info">Chercher</button>
+							<div class="card-header">	
+								<form th:action="@{/importStudents}" method="post" enctype="multipart/form-data">
+									<input type="file" th:name="file" value="Choisir Fichier Excel" class="btn btn-info"><p></p>
+									<input th:type="submit" value="Importer étudiants" class="btn btn-warning">
 								</form>
-								<br>
-								<form th:action="@{/importetudiants}" method="post" enctype="multipart/form-data">
-									<input type="file" th:name="file" value="Choisir Fichier Excel" class="btn btn-info">
-									<input th:type="submit" value="Importer étudiants" class="btn btn-info">
-								</form>
-								<div class="table-responsive">
-									<table class="table table-striped mb-0">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>CNE</th>
-												<th>Année académique</th>
-
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-
-											<tr th:each="p:${administratives}">
-
-												<td th:text="${p.id_inscription_administrative}"></td>
-
-												<td th:text="${p.inscriptionEnligne.getCne()}"></td>
-												<td th:text="${p.annee_academique}"></td>
-
-
-												<td><a
-													th:href=@{validerAdministrative(id=${p.id_inscription_administrative})}
-													class="btn btn-primary btn-action mr-1"
-													data-toggle="tooltip" title="Edit"><i
-														class="fas fa-pencil-alt"></i></a> <!-- <a 
-                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${p.id_inscription_enligne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
-												</td>
-											</tr>
-
-
-										</tbody>
-									</table>
-									<ul class="nav nav-pills">
-										<li th:each="page,status:${pages}"><a
-											th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-											th:href="@{enlignesAll(page=${status.index},keyword=${keyword},size=${size})}"
-											th:text="${status.index}"></a>
-									</ul>
 								</div>
+								
 							</div>
 						</div>
 					</div>

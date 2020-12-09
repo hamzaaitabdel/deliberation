@@ -48,9 +48,14 @@
 													th:value="${etape.libelle_etape}" required="required">
 											</div>
 											<div class="form-group">
-												<label>Ordre</label> <input type="text"
-													name="ordre" class="form-control"
-													th:value="${etape.ordre}" required="required">
+												<label>Filiere</label> 
+												<select name="filiere" th:value="${filiere}"
+													class="form-control">
+													<option  value="1"  >BGI</option>
+													<option  value="2"  >BGB</option>
+													<option  value="3"  >BCA</option>
+
+												</select>
 											</div>
 											<div class="form-group">
 												<label>HasDiplome</label> <input type="checkbox"
@@ -80,8 +85,13 @@
 												<thead>
 													<tr>
 														<th scope="col">IDE</th>
-														<th scope="col">Libelle Etape</th>
-														<th scope="col">Has Diplome</th>
+														<th scope="col">Etape</th>
+										
+														
+														<th scope="col">Diplome</th>
+														<th scope="col">ID Filiere</th>
+														
+														<th scope="col">Delete</th>
 
 													</tr>
 												</thead>
@@ -92,7 +102,13 @@
 														<td th:text="${p.libelle_etape}"></td>
 
 														<td th:text="${p.hasDiplome}"></td>
-
+														<td th:text="${p.Filiere.id_filiere}"></td>
+														<td>
+														<a 
+                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+                            th:href=@{deleteEtape(id=${p.id_etape})}><i class="fas fa-trash"></i></a>
+														</td>
+														
 													</tr>
 
 												</tbody>
@@ -124,11 +140,7 @@
 													name="libelle_semestre" class="form-control"
 													th:value="${semestre.libelle_semestre}" required="required">
 											</div>
-											<div class="form-group">
-												<label>Ordre</label> <input type="text"
-													name="ordre" class="form-control"
-													th:value="${semestre.ordre}" required="required">
-											</div>
+											
 											<div class="form-group">
 												<label>ID Etape</label> <input type="text"
 													name="id_etape" class="form-control"
@@ -157,8 +169,9 @@
 												<thead>
 													<tr>
 														<th scope="col">IDS</th>
-														<th scope="col">Libelle Semestre</th>
+														<th scope="col">Semestre</th>
 														<th scope="col">ID Etape</th>
+														<th scope="col">Delete</th>
 
 													</tr>
 												</thead>
@@ -169,7 +182,11 @@
 														<td th:text="${p.libelle_semestre}"></td>
 
 														<td th:text="${p.Etape.id_etape}"></td>
-
+<td>
+														<a 
+                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+                            th:href=@{deleteSemestre(id=${p.id_semestre})}><i class="fas fa-trash"></i></a>
+														</td>
 													</tr>
 
 												</tbody>
@@ -230,8 +247,9 @@
 												<thead>
 													<tr>
 														<th scope="col">IDM</th>
-														<th scope="col">Libelle Module</th>
+														<th scope="col">Module</th>
 														<th scope="col">ID Semestre</th>
+														<th scope="col">Delete</th>
 
 													</tr>
 												</thead>
@@ -242,7 +260,12 @@
 														<td th:text="${p.libelle_module}"></td>
 
 														<td th:text="${p.Semestre.id_semestre}"></td>
-
+												<td>
+														<a 
+                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+                            th:href=@{deleteModule(id=${p.id_module})}><i class="fas fa-trash"></i></a>
+														</td>
+												
 													</tr>
 
 												</tbody>

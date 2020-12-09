@@ -30,7 +30,11 @@ public class Filiere {
 	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionPedagogique> inscriptionPedagogiques;
-
+	
+	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Etape> etapes;
+	
+	
 	public Long getId_filiere() {
 		return id_filiere;
 	}

@@ -32,13 +32,16 @@ public class InscriptionPedagogique {
 	@JoinColumn(name = "cne")
 	Etudiant etudiant;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etape")
-	Etape etape;
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
 	Filiere filiere;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_semestre")
+	Semestre semestre;
+	
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
