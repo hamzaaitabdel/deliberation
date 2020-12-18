@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -40,21 +42,33 @@ public class Etudiant {
 	private String tel_etud;
 	private String email_etud;
 	
-
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_filiere")
-	private Filiere filiere;
-
-
-
+	
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(
+        name = "NOTES",
+        joinColumns = { @JoinColumn(name = "cne") },
+        inverseJoinColumns = { @JoinColumn(name = "id_module") }
+    )
+    private List<Module> modules;
 	
 	
 	
 	
-	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<InscriptionPedagogique> inscriptionPedagogiques;
+
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "id_filiere")
+//	private Filiere filiere;
+//	
+
+	String id_filiere;
 	
+	
+	
+	
+//	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	List<InscriptionPedagogique> inscriptionPedagogiques;
+//	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_resultat")
 	private Resultat resultat;

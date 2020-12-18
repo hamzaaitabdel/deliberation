@@ -28,9 +28,9 @@ public class Filiere {
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionAdministrative> inscriptionAdministratives;
 	
-	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<InscriptionPedagogique> inscriptionPedagogiques;
-	
+//	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	List<InscriptionPedagogique> inscriptionPedagogiques;
+//	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etape> etapes;
 	
@@ -59,14 +59,7 @@ public class Filiere {
 		this.inscriptionAdministratives = inscriptionAdministratives;
 	}
 
-	public List<InscriptionPedagogique> getInscriptionPedagogiques() {
-		return inscriptionPedagogiques;
-	}
 
-	public void setInscriptionPedagogiques(List<InscriptionPedagogique> inscriptionPedagogiques) {
-		this.inscriptionPedagogiques = inscriptionPedagogiques;
-	}
-	
 	
 	
 	
