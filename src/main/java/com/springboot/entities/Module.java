@@ -36,12 +36,14 @@ public class Module {
 	@ManyToMany(mappedBy = "modules")
     private List<Etudiant> etudiants;
 	
-	
+	private double note_eliminatoire;//5
+	private double note_validation;//10
 	
 	
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "id_note")
 //	private Note note;
 //	
+	
 	private boolean module_valide;
 }

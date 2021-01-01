@@ -28,17 +28,17 @@ public class InscriptionPedagogique {
 	@Column(name = "IDIP")
 	Long id_inscription_pedagogique;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "cne")
-//	Etudiant etudiant;
-//	
-	String cne;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cne")
+	Etudiant etudiant;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_filiere")
-//	Filiere filiere;
-//	
-	Long id_filiere;
+	
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_filiere")
+	Filiere filiere;
+	
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_semestre")

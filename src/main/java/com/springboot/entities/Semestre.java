@@ -36,5 +36,4 @@ public class Semestre {
 	@JoinColumn(name = "id_etape")
 	private Etape etape;
 	
-	//private int ordre;
 }

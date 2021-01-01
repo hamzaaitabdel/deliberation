@@ -170,7 +170,7 @@
 													<tr>
 														<th scope="col">IDS</th>
 														<th scope="col">Semestre</th>
-														<th scope="col">ID Etape</th>
+														<th scope="col">Etape</th>
 														<th scope="col">Delete</th>
 
 													</tr>
@@ -223,6 +223,16 @@
 													name="id_semestre" class="form-control"
 													th:value="${id_semestre}" required="required">
 											</div>
+											<div class="form-group">
+												<label>Note Validation</label> <input type="text"
+													name="note_validation" class="form-control"
+													th:value="10" required="required">
+											</div>
+											<div class="form-group">
+												<label>Note Eliminatoire</label> <input type="text"
+													name="note_eliminatoire" class="form-control"
+													th:value="5" required="required">
+											</div>
 											
 											
 												<div class="form-group text-right">
@@ -242,13 +252,17 @@
 										</div>
 										<div class="card-body">
 
-											<div class="section-title">Dark</div>
+											<!-- <div class="section-title">Dark</div>
                     						<table class="table table-striped table-dark">
+                    						 -->
+                    						<div class="section-title mt-0">Light</div> 
+                    						<table class="table table-striped">
+											
 												<thead>
 													<tr>
 														<th scope="col">IDM</th>
 														<th scope="col">Module</th>
-														<th scope="col">ID Semestre</th>
+														<th scope="col">Semestre</th>
 														<th scope="col">Delete</th>
 
 													</tr>

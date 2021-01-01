@@ -44,26 +44,23 @@ public class Etudiant {
 	
 	
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(
-        name = "NOTES",
-        joinColumns = { @JoinColumn(name = "cne") },
-        inverseJoinColumns = { @JoinColumn(name = "id_module") }
-    )
-    private List<Module> modules;
+	
+	  @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	  
+	  @JoinTable( name = "NOTES", joinColumns = { @JoinColumn(name = "cne") },
+	  inverseJoinColumns = { @JoinColumn(name = "id_module") } ) private
+	  List<Module> modules;
+	 
 	
 	
 	
 	
 
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_filiere")
-//	private Filiere filiere;
-//	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_filiere")
+	private Filiere filiere;
+	
 
-	String id_filiere;
-	
-	
 	
 	
 //	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
