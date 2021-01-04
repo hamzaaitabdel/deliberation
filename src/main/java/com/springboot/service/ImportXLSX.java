@@ -67,7 +67,7 @@ public class ImportXLSX {
 						Date dat= new Date();
 						System.out.println("str:"+str);
 						dat.setYear((int) Double.parseDouble(str));
-						e.setAnnee_academique(dat);
+						//e.setAnnee_academique(dat);
 
 						System.out.println("str:"+str);
 						break;

@@ -9,7 +9,7 @@ import com.springboot.entities.Filiere;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere,Long> {
 	
-	@Query("select f from Filiere f where f.id_filiere =: id_filiere")
-	public Filiere findById_filiere(@Param("filiere")Long id_filiere);
+	@Query("select f from Filiere f where f.id_filiere = :x ")
+	public Filiere findById_filiere(@Param("x")Long id_filiere);
 
 }

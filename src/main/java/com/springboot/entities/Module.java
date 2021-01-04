@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -32,9 +33,8 @@ public class Module {
 	private Semestre semestre;
 	
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_note")
-	private Note note;
+	@ManyToMany(mappedBy = "modules")
+    private List<Etudiant> etudiants;
 	
 	private boolean module_valide;
 }

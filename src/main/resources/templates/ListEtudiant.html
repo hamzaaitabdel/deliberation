@@ -482,13 +482,13 @@
 												<td th:text="${p.Prenom_etud}"></td>
 												
 												
-												<td><a th:href="@{modifetud}"
+												<td><a th:href="@{editEtudiant(cne=${p.cne})}"
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
 														class="fas fa-pencil-alt"></i></a> 
-														<!-- <a 
+														 <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${p.id_inscription_enligne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
+                            th:href=@{deleteEtudiant(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> 
 												</td>
 											</tr>
 

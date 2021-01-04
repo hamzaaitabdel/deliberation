@@ -67,7 +67,7 @@ public class DelibirationController {
             for (Note note :notes) {
                 double n = note.getNote();
                 //table.addCell(new Cell().add(new Paragraph(note.getCne() +"")));
-                table.addCell(new Cell().add(new Paragraph(note.getEtudiant().getCne()+ "")));
+                //table.addCell(new Cell().add(new Paragraph(note.getEtudiant().getCne()+ "")));
                 table.addCell(new Cell().add(new Paragraph(n + "")));
                 table.addCell(new Cell().add(new Paragraph(n >= 10 ? "V" : "NV")));
             }

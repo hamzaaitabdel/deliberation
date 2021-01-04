@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,10 +36,12 @@ public class Etape {
 	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Semestre> semestres;
 	
-	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_filiere")
+	private Filiere filiere;
 	
 	
 	private boolean hasDiplome;
-	private int ordre;
+	//private int ordre;
 }

@@ -23,56 +23,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @org.springframework.stereotype.Controller
 public class AdminiController {
-    @Autowired
+	@Autowired
 	InscriptionEnligneRepository inscriptionEnligneRepository;
 	@Autowired
 	InscriptionAdministrativeRepository inscriptionAdministrativeRepository;
 	@Autowired
 	EtudiantRepository etudiantRepository;
 	@Autowired
-    FiliereRepository filiereRepository;
-    @GetMapping(path="/ConfermationAdmin")
-		public String ConfermationAdmin(Model model , String id 
-				//@RequestParam(name = "id_filiere" , defaultValue = "1")Long id_filiere
-				) {
-			InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
-			model.addAttribute("enligne", enligne);
-			InscriptionAdministrative admin = new InscriptionAdministrative();
-			model.addAttribute("admin", admin);
-			id = inscriptionEnligneRepository.findByCne(id).getCne();
-			//Filiere filiere = filiereRepository.getOne(id_filiere);
-			//filiere.getNom_filiere();
-			//model.addAttribute("filiere", filiere);
-			model.addAttribute("cne", id);
-			
+	FiliereRepository filiereRepository;
+	@GetMapping(path="/ConfermationAdmin")
+	public String ConfermationAdmin(Model model , String id 
+			//@RequestParam(name = "id_filiere" , defaultValue = "1")Long id_filiere
+			) {
+		InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
+		model.addAttribute("enligne", enligne);
+		InscriptionAdministrative admin = new InscriptionAdministrative();
+		model.addAttribute("admin", admin);
+		id = inscriptionEnligneRepository.findByCne(id).getCne();
+		//Filiere filiere = filiereRepository.getOne(id_filiere);
+		//filiere.getNom_filiere();
+		//model.addAttribute("filiere", filiere);
+		model.addAttribute("cne", id);
 
-			model.addAttribute("mode", "new");
-			
-			return "ConfirmationAdmin";
-        }
-        
-        @RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
-		public String saveAdmin(Model model ,@RequestParam("cne")String cne,@RequestParam("filiere")Long filiere,
-				@Valid InscriptionAdministrative admin,
-				BindingResult bindingResult){
-			if(bindingResult.hasErrors()) return "formAdmin";
-			
-			InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(cne);
-			enligne.setCne(cne);
-			admin.setInscriptionEnligne(enligne);
-			
-			Filiere f = filiereRepository.findById(filiere).get();
-			f.setId_filiere(filiere);
-			admin.setFiliere(f);
-			
-			inscriptionAdministrativeRepository.save(admin);
-			model.addAttribute("admin", admin);
-			model.addAttribute("enligne", enligne);
-			model.addAttribute("filiere", f);
-			
-			return "redirect:/adminsAll";
-        }
-        @GetMapping(path="/administrativeAll") 
+
+		model.addAttribute("mode", "new");
+
+		return "ConfirmationAdmin";
+	}
+
+	@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
+	public String saveAdmin(Model model ,@RequestParam("cne")String cne,@RequestParam("filiere")Long filiere,
+			@Valid InscriptionAdministrative admin,
+			BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "formAdmin";
+
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(cne);
+		enligne.setCne(cne);
+		admin.setInscriptionEnligne(enligne);
+
+		Filiere f = filiereRepository.findById(filiere).get();
+		f.setId_filiere(filiere);
+		admin.setFiliere(f);
+
+		inscriptionAdministrativeRepository.save(admin);
+		model.addAttribute("admin", admin);
+		model.addAttribute("enligne", enligne);
+		model.addAttribute("filiere", f);
+
+		return "redirect:/adminsAll";
+	}
+	@GetMapping(path="/administrativeAll") 
 	public String listAdministrativeAll(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
 			@RequestParam(name="size",defaultValue = "5")int size , 
@@ -88,7 +88,7 @@ public class AdminiController {
 	}
 
 
-	
+
 	@GetMapping(path="/admins") 
 	public String listAdmin(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
@@ -102,8 +102,8 @@ public class AdminiController {
 		model.addAttribute("size",size);
 		return "listeAdmin";
 	}
-	   
-	
+
+
 	//Affichage avec pagination :tous
 	@GetMapping(path="/adminsAll") 
 	public String listAdminAll(Model model ,

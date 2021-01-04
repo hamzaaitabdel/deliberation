@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,13 +33,18 @@ public class InscriptionPedagogique {
 	@JoinColumn(name = "cne")
 	Etudiant etudiant;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etape")
-	Etape etape;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
 	Filiere filiere;
+	
+
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_module")
+	Module module;
+	
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

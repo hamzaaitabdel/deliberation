@@ -24,7 +24,7 @@ public class Semestre {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_semestre;
 	private String libelle_semestre;
-	private boolean etats;
+	private boolean etats=false;
 	
 	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Module> modules;

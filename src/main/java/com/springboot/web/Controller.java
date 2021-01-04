@@ -153,9 +153,9 @@ public class Controller {
 		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
 		enligne.setValide_enligne(bar);
 		inscriptionEnligneRepository.save(enligne);
-		InscriptionAdministrative ia = new InscriptionAdministrative();
-		ia.setInscriptionEnligne(enligne);
-		inscriptionAdministrativeRepository.save(ia);
+		//InscriptionAdministrative ia = new InscriptionAdministrative();
+		//ia.setInscriptionEnligne(enligne);
+		//inscriptionAdministrativeRepository.save(ia);
 		model.addAttribute("bar", bar);
 		model.addAttribute("enligne",enligne);
 		return "redirect:/enlignesAll?bar="+bar;
@@ -167,7 +167,7 @@ public class Controller {
 		model.addAttribute("enligne", enligne);
 		return "ConfirmationEnligne";
 	}
-
+/*
 	//list administrativesAll
 	@GetMapping(path="/administrativesAll") 
 	public String administrativesAll(Model model ,
@@ -195,7 +195,7 @@ public class Controller {
 		model.addAttribute("pages",new int[pageadministratives.getTotalPages()]);
 		model.addAttribute("currentPage",page);
 		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);*/
+		model.addAttribute("size",size);
 		//not working :)
 		return "ListAdmin";
 	}
@@ -223,45 +223,6 @@ public class Controller {
 		
 
 
-	//Valider InscriptionAdmin : fill the etudiant table
-	@GetMapping(path="/validerAdministrative")
-	public String validerAdministrative(Model model,Long id ) {
-		InscriptionAdministrative admin = inscriptionAdministrativeRepository.findById(id).get();
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(admin.getInscriptionEnligne().getCne());
-		Etudiant e = new Etudiant();  
-		e.setNom_etud(enligne.getNom_fr());
-		e.setPrenom_etud(enligne.getPrenom_fr());
-		e.setNomAr_etud(enligne.getNom_ar());
-		e.setPrenomAr_etud(enligne.getPrenom_ar());
-		e.setAcademie(enligne.getAcademie());
-		//e.setAnnee_academique(enligne.);
-		e.setAnnee_de_bac(enligne.getAnnee_bac());
-		e.setCIN(enligne.getCin());
-		e.setDate_de_naissance(enligne.getDate_naissance());
-		e.setDate_premiere_inscription(admin.getDate_inscription_valide());
-		e.setEmail_etud(enligne.getEmail());
-		e.setEtat_physique(enligne.getEtat_physique());
-		e.setFiliere(admin.getFiliere());
-		e.setGroupe_socioprofessionnel(enligne.getGroupe_socioprofessionnel());
-		e.setLieu_de_naissance(enligne.getLieu_naissance_fr());
-		e.setLieu_de_naissanceAr(enligne.getLieu_naissance_ar());
-		e.setLycee_bac(enligne.getLycee_bac());
-		e.setMention_de_bac(enligne.getMention_bac());
-		e.setNationalite(enligne.getNationalite());
-		e.setPhoto(enligne.getPhoto());
-		e.setProvince(enligne.getProvince());
-		e.setRegion(enligne.getRegion());
-		//e.setResultat(enligne.getResultat());
-		e.setSerie_bac(enligne.getSerie_bac());
-		e.setSexe(enligne.getSexe());
-		e.setTel_etud(enligne.getTel());
-		e.setVille_bac(enligne.getVille_bac());
-		e.setCne(enligne.getCne());
-
-		etudiantRepository.save(e);
-		model.addAttribute("enligne",enligne);
-		return "redirect:/etudiants";
-	}
 
 	//list etudiantsAll
 	@GetMapping(path="/etudiantsAll") 
@@ -456,12 +417,11 @@ public class Controller {
 	 * model.addAttribute("mode", "edit"); return "ConfirmationAdmin";//Encore des
 	 * problemes ici , pas encore fini, il fait pas l'edition , il fait l'ajout }
 	 * 
-	 */
+	 
 		
 	//afichage des inscriptionr Enligne valide
 	
-<<<<<<< HEAD
-=======
+
 	@GetMapping(path="/admins") 
 	public String listAdmin(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
@@ -500,9 +460,9 @@ public class Controller {
 		return "redirect:/adminsAll";
 	}
 	
-
+*/
 	//3. Inscription Pedagogique
->>>>>>> 07d53ff897620300881443822371b6fbd1a04187
+
 	
 	@GetMapping(path="/formEtape")
 	public String formEtape(Model model) {
@@ -528,19 +488,21 @@ public class Controller {
 	EtapeRepository etapeRepository;
 	@Autowired
 	SemestreRepository semestreRepository;
+	
 	//Validation 
 	@RequestMapping(path="/saveEtape" , method = RequestMethod.POST)
 	public String saveEtape(Model model,@Valid Etape  etape,BindingResult bindingResult){
 		if(bindingResult.hasErrors()) return "formEtape";
+		
 		etapeRepository.save(etape);
 		model.addAttribute("etape", etape);
 		return "redirect:/etapes";
 	}	 
+	
 	@RequestMapping(path="/saveSemestre" , method = RequestMethod.POST) public
-	  String saveEtape(Model model,@Valid Semestre
+	  String saveSemestre(Model model,@Valid Semestre
 	  semestre,@RequestParam("id_etape")Long id ,BindingResult bindingResult){
 	  if(bindingResult.hasErrors()) return "formEtape";
-	  
 	  
 	  Etape etape = etapeRepository.findById(id).get(); 
 	  etape.setId_etape(id);

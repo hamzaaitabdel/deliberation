@@ -47,11 +47,11 @@
 													name="libelle_etape" class="form-control"
 													th:value="${etape.libelle_etape}" required="required">
 											</div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label>Ordre</label> <input type="text"
 													name="ordre" class="form-control"
 													th:value="${etape.ordre}" required="required">
-											</div>
+											</div> -->
 											<div class="form-group">
 												<label>HasDiplome</label> <input type="checkbox"
 													name="hasDiplome" class="form-control"
@@ -124,11 +124,11 @@
 													name="libelle_semestre" class="form-control"
 													th:value="${semestre.libelle_semestre}" required="required">
 											</div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label>Ordre</label> <input type="text"
 													name="ordre" class="form-control"
 													th:value="${semestre.ordre}" required="required">
-											</div>
+											</div>-->
 											<div class="form-group">
 												<label>ID Etape</label> <input type="text"
 													name="id_etape" class="form-control"
@@ -168,7 +168,7 @@
 														<td th:text="${p.id_semestre}"></td>
 														<td th:text="${p.libelle_semestre}"></td>
 
-														<td th:text="${p.Etape.id_etape}"></td>
+														<td th:text="${p.etape.id_etape}"></td>
 
 													</tr>
 
