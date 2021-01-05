@@ -445,10 +445,10 @@
                         
 						<td th:text="${p.cne}"></td>
 				   
-						<td th:text="${p.nom_fr}"></td>
-						<td th:text="${p.prenom_fr}"></td>
-						<td th:text="${p.mention_bac}"></td>
-						<td th:text="${p.valide_enligne}"></td>
+						<td th:text="${p.nomFr}"></td>
+						<td th:text="${p.prenomFr}"></td>
+						<td th:text="${p.mentionBac}"></td>
+						<td th:text="${p.valideEnligne}"></td>
 					
 							  <!-- 
                           <td>
@@ -456,8 +456,8 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfirmationEnligne(id=${p.cne})}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                            <a  th:href=@{ConfirmationEnligne(id=${p.id})}
+                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Valider Enligne"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteEnligne(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
