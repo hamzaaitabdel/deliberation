@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.entities.Etape;
-import com.springboot.entities.InscriptionEnligne;
 
 @Repository
 public interface EtapeRepository extends JpaRepository<Etape,Long> {
@@ -16,5 +15,7 @@ public interface EtapeRepository extends JpaRepository<Etape,Long> {
 	@Query("select e from Etape e where e.filiere.id_filiere= :x ")
 	public List<Etape> findById_filiereContains(@Param("x")Long id_filiere);
 	
+	@Query(value="select id_etape from Etape where libelle_etape = ?",nativeQuery=true)
+	public Long findId_etapeByLibelle_etape(String libelle);
 	
 }

@@ -1,6 +1,5 @@
 package com.springboot.web;
 
-
 import java.util.List;
 
 import java.io.ByteArrayInputStream;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 
 import javax.validation.Valid;
 
@@ -30,7 +28,6 @@ import com.springboot.entities.Module;
 import com.springboot.entities.Semestre;
 
 import com.springboot.service.ImportXLSX;
-
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -61,7 +58,6 @@ import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
 
-
 @org.springframework.stereotype.Controller
 public class Controller {
 
@@ -73,23 +69,6 @@ public class Controller {
 	EtudiantRepository etudiantRepository;
 	@Autowired
 	FiliereRepository filiereRepository;
-	
-	/*
-	 * @Autowired com.springboot.service.MailService mailService;
-	 * 
-	 * @GetMapping(path="/send") public String test(String recipient, String
-	 * objectif , String message ) { com.springboot.bean.Mail mail = new
-	 * com.springboot.bean.Mail(); mail.setMailFrom("ryfysafwane@gmail.com");
-	 * mail.setMailTo("ryfy1103.saf1999@gmail.com"); mail.setMailSubject("dfgfgh");
-	 * mail.setMailContent(" rghm");
-	 * 
-	 * mailService.sendEmail(mail);
-	 * 
-	 * return "email"; }
-	 */	
-	
-	
-	//1.Inscription Enligne
 
 
 	//Affichage avec pagination : chercher
@@ -180,9 +159,24 @@ public class Controller {
 		model.addAttribute("currentPage",page);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
+=======
+	// list administrativesAll
+	@GetMapping(path = "/administrativesAll")
+	public String administrativesAll(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		Page<InscriptionAdministrative> pageadministratives = inscriptionAdministrativeRepository
+				.findAll(PageRequest.of(page, size));
+		model.addAttribute("administratives", pageadministratives.getContent());
+		model.addAttribute("pages", new int[pageadministratives.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("size", size);
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 		return "ListAdmin";
 	}
 
+<<<<<<< HEAD
 	//list administratives
 	//not working
 	@GetMapping(path="/administratives") 
@@ -199,46 +193,49 @@ public class Controller {
 		//not working :)
 		return "ListAdmin";
 	}
+=======
+	// import etudiants
+	@PostMapping(path = "/importStudents")
+	public String importetudiants(Model model, @RequestParam("file") MultipartFile reapExcelDataFile) {
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 
-	//import etudiants
-		@PostMapping(path="/importetudiants") 
-		public String importetudiants(Model model,@RequestParam("file") MultipartFile reapExcelDataFile) {
-
-			ImportXLSX imp = new ImportXLSX();
-			List<Etudiant> le=null;
-			try {
-				le=imp.readXLSX(reapExcelDataFile.getBytes());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			etudiantRepository.saveAll(le);
-			
-			model.addAttribute("imports", le);
-			return "redirect:/etudiantsAll";
+		ImportXLSX imp = new ImportXLSX();
+		List<Etudiant> le = null;
+		try {
+			le = imp.readXLSX(reapExcelDataFile.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		etudiantRepository.saveAll(le);
 
+<<<<<<< HEAD
 		
 		
 		
 
 
+=======
+		model.addAttribute("imports", le);
+		return "redirect:/etudiantsAll";
+	}
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 
-	//list etudiantsAll
-	@GetMapping(path="/etudiantsAll") 
-	public String etudiantsAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+	// list etudiantsAll
+	@GetMapping(path = "/etudiantsAll")
+	public String etudiantsAll(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
 		Page<Etudiant> pageEtudiants = etudiantRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("etudiants",pageEtudiants.getContent());
-		model.addAttribute("pages",new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
+		model.addAttribute("etudiants", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("size", size);
 		return "ListEtudiant";
 	}
 
+<<<<<<< HEAD
 	//list etudiants
 		@GetMapping(path="/etudiants") 
 		public String etudiants(Model model ,
@@ -450,9 +447,37 @@ public class Controller {
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
 		return "listeAdmin";
+=======
+	// list etudiants
+	@GetMapping(path = "/etudiants")
+	public String etudiants(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		Page<Etudiant> pageEtudiants = etudiantRepository.findByNom_etudContains(keyword, PageRequest.of(page, size));
+		model.addAttribute("etudiants", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("size", size);
+		return "ListEtudiant";
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 	}
 
+	// filieres
+	@GetMapping(path = "/filiere")
+	public String filiere(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size,
+			@RequestParam(name = "keyword", defaultValue = "") String keyword) {
+		Page<Filiere> pagefiliere = filiereRepository.findAll(PageRequest.of(page, size));
+		model.addAttribute("filiere", pagefiliere.getContent());
+		model.addAttribute("pages", new int[pagefiliere.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("size", size);
+		return "ListFiliere";
+	}
 
+<<<<<<< HEAD
 	//Supprission
 	@GetMapping(path="/deleteAdmin")
 	public String deleteAdmin(Long id ) {

@@ -232,7 +232,11 @@
 													name="date_inscription" class="form-control"
 													th:value="${enligne.date_inscription}" required="required">
 											</div>
-
+	<div class="form-group">
+												<label>Email</label> <input type="email"
+													name="email" class="form-control"
+													th:value="${enligne.email}" required="required" placeholder="xyz@gmail.abc">
+											</div>
 									</div>
 								</div>
 
@@ -637,7 +641,7 @@
               <option value="Région de Dakhla-Oued Ed Dahab"> Région de Dakhla-Oued Ed Dahab </option>
               <option value="Autres"> Autres </option>
 												</select>
-
+</div>
 											
 											<div class="form-group">
 												<label>Etat Physique</label> <input type="text"
@@ -669,8 +673,7 @@
 											</div>
 											
 
-										
-										</div>
+									
 									</div>
 								</div>
 						</div>

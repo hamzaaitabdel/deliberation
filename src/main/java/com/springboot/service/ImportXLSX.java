@@ -10,11 +10,19 @@ import java.util.List;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.springboot.dao.EtudiantRepository;
+import com.springboot.dao.FiliereRepository;
 import com.springboot.entities.Etudiant;
+import com.springboot.entities.Filiere;
 
 public class ImportXLSX {
+	
+	@Autowired
+	FiliereRepository filiereRepository;
+	Long s ;
+	
 	public List<Etudiant> readXLSX(byte[] mybytes) {
 
 		List<Etudiant> listetd = new ArrayList<Etudiant>();
@@ -54,7 +62,7 @@ public class ImportXLSX {
 						break;
 
 					case 3:
-						e.setTel_etud(String.valueOf((int) Double.parseDouble(str)));
+						e.setTel_etud(str);
 						System.out.println("str:"+str);
 						break;
 					case 4:
@@ -70,9 +78,15 @@ public class ImportXLSX {
 						//e.setAnnee_academique(dat);
 
 						System.out.println("str:"+str);
+						e.setAnnee_academique(str);
+						
+						System.out.println("Annee:"+str+" k:"+k);
 						break;
 					case 6:
 						//if(str.contains("filiere")) e.setFiliere(filiere);
+						
+						//ayoub ,Filiere ?
+							
 						break;
 					case 7:
 						//if(str.contains("nom")) e.setNom_etud(str);;

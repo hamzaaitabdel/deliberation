@@ -103,6 +103,7 @@ public class DeliberationTest {
 						System.out.println("str:"+str);
 						dat.setYear((int) Double.parseDouble(str));
 						//e.setAnnee_academique(dat);
+						e.setAnnee_academique(str);
 
 						System.out.println("str:"+str);
 						break;

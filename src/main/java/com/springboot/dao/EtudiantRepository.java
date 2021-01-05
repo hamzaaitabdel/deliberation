@@ -1,5 +1,7 @@
 package com.springboot.dao;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.entities.Etudiant;
+import com.springboot.entities.Filiere;
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant,String> {
 
@@ -25,4 +28,9 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,String> {
 	@Modifying
 	@Query("update Etudiant s set s= :e where s.cne= :cne")
 	public void UpdateEtudiant(@Param("e")Etudiant e, @Param("cne")String cne);
+	
+	/*
+	 * @Query("select e from Etudiant e where e.Filiere.id_filiere =:x") public
+	 * List<Etudiant> findAllById_filiere(@Param("x")Long filiere);
+	 */
 }

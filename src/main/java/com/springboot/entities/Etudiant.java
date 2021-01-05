@@ -44,13 +44,13 @@ public class Etudiant {
 	
 	
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(
-        name = "NOTES",
-        joinColumns = { @JoinColumn(name = "cne") },
-        inverseJoinColumns = { @JoinColumn(name = "id_module") }
-    )
-    private List<Module> modules;
+	
+	  @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	  
+	  @JoinTable( name = "NOTES", joinColumns = { @JoinColumn(name = "cne") },
+	  inverseJoinColumns = { @JoinColumn(name = "id_module") } ) private
+	  List<Module> modules;
+	 
 	
 	
 	
@@ -61,8 +61,6 @@ public class Etudiant {
 	private Filiere filiere;
 	
 
-	//Long id_filiere;
-	
 	
 	
 	
@@ -84,5 +82,6 @@ public class Etudiant {
 //	
 
 
+	
 	
 }

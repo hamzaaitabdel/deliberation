@@ -33,7 +33,6 @@ public class InscriptionPedagogique {
 	@JoinColumn(name = "cne")
 	Etudiant etudiant;
 	
-
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
@@ -44,6 +43,10 @@ public class InscriptionPedagogique {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_module")
 	Module module;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_semestre")
+	Semestre semestre;
 	
 	
 	@Temporal(TemporalType.DATE)

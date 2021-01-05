@@ -32,6 +32,9 @@ public class Filiere {
 //	List<InscriptionPedagogique> inscriptionPedagogiques;
 //	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Etudiant> etudiants;
+	
+	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etape> etapes;
 	
 	

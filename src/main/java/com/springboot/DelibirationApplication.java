@@ -16,8 +16,7 @@ public class DelibirationApplication implements CommandLineRunner{
 	private FiliereRepository filiereRepository;
 	@Autowired
 	private InscriptionEnligneRepository inscriptionRepository;
-	@Autowired
-	private NoteRepository noteRepository;
+	
 	@Autowired
 	private EtudiantRepository etudiantRepository;
 	

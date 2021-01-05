@@ -264,26 +264,28 @@
 						<h4>Admin</h4>
 					</div>
 
-					<ul class="sidebar-menu">
-						<li class="menu-header">Inscriptions</li>
+										<ul class="sidebar-menu">
+						<li class="menu-header">Inscription</li>
 						<li class="nav-item dropdown active"><a href="#"
-							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Inscription</span></a>
+							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
 							<ul class="dropdown-menu">
-								<li class="active"><a class="nav-link"
-									th:href="@{enlignesAll}">Inscriptions en ligne</a></li>
-								<li><a class="nav-link" href="@{administratives}">Administratives</a></li>
+								<li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
+                  <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+                  <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
+                  <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
+						<li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+                  
 							</ul></li>
-							
-						<li class="menu-header">Etudiants</li>
-						<li class="nav-item dropdown"><a href="#"
-							class="nav-link has-dropdown" data-toggle="dropdown"><i
-								class="fas fa-columns"></i> <span>Etudiants</span></a>
-							<ul class="dropdown-menu">
-								<li><a class="nav-link" href="#">Liste Etudiants</a></li>
-								
-							</ul></li>
-						<li><a class="nav-link" href="blank.html"><i
-								class="far fa-square"></i> <span>Blank Page</span></a></li>
+						</li><li class="menu-header">Structure</li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" th:href="@{formEtape}">Etape , Semestre & Module</a></li>
+                  <li><a class="nav-link" th:href="@{formSemestre}">Inscription par Semestre</a></li>
+                  <li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
+                </ul>
+              </li>
+              
 						<li class="nav-item dropdown"><a href="#"
 							class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
 							<ul class="dropdown-menu">
@@ -465,11 +467,12 @@
 									<table class="table table-striped mb-0">
 										<thead>
 											<tr>
-												<th>Massar</th>
+												<th>Cne</th>
 												<th>Nom</th>
-												<th>Prénom</th>
+												<th>Prenom</th>
+												<th>Email</th>
 												
-												<th>Action</th>
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -478,18 +481,29 @@
 
 												<td th:text="${p.cne}"></td>
 
-												<td th:text="${p.Nom_etud}"></td>
-												<td th:text="${p.Prenom_etud}"></td>
+												<td th:text="${p.nom_etud}"></td>
+												<td th:text="${p.prenom_etud}"></td>
+												<td th:text="${p.email_etud}"></td>
 												
+<<<<<<< HEAD
 												
 												<td><a th:href="@{editEtudiant(cne=${p.cne})}"
+=======
+												<!-- 
+												<td><a th:href="@{modifetud}"
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
 														class="fas fa-pencil-alt"></i></a> 
+<<<<<<< HEAD
 														 <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteEtudiant(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> 
 												</td>
+=======
+														
+												</td> -->
+>>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 											</tr>
 
 

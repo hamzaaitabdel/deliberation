@@ -62,16 +62,14 @@
 														<label th:text="${p.libelle_etape}" th:value="${p.id_etape}"></label>
 													</option>
 												</select>
-
 											</div>
 											
-											<div class="form-group">
-												<label>Semestre</label><br> <select >
-													<option th:each="p:${semestres}">
+											<div class="form-group" >
+												<label>Semestre</label><br> <select name="sem">
+													<option th:each="p:${semestres}" >
 														<label th:text="${p.libelle_etape}" th:value="${p.id_etape}"></label>
 													</option>
 												</select>
-
 											</div>
 											
 											
@@ -124,7 +122,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</form>
