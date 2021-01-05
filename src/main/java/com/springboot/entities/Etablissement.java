@@ -1,4 +1,5 @@
 package com.springboot.entities;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -7,10 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,24 +17,19 @@ import lombok.ToString;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class Filiere {
+public class Etablissement {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etablissement")
-	private Etablissement etablissement;
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Filiere> filieres;
 	
-	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionAdministrative> inscriptionAdministratives;
 	
-	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<Etudiant> etudiants;
-	
-	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<Etape> etapes;
-	
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Professeur> professeurs;
 	
 }

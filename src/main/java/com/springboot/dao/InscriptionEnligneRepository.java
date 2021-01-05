@@ -13,16 +13,13 @@ import org.springframework.stereotype.Repository;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
 @Repository
-public interface InscriptionEnligneRepository extends JpaRepository<InscriptionEnligne,String> {
-	@Query("select e from InscriptionEnligne e where e.nom_fr like :x order by e.date_inscription")
-	public Page<InscriptionEnligne> findByNom_frContains(@Param("x")String mc,Pageable pageable);
+public interface InscriptionEnligneRepository extends JpaRepository<InscriptionEnligne,Long> {
+	@Query("select e from InscriptionEnligne e where e.nomFr like :x order by e.dateInscription")
+	public Page<InscriptionEnligne> findByNomContains(@Param("x")String mc,Pageable pageable);
 	
-	public InscriptionEnligne findByCne(String id);
-	
-	public void deleteByCne(String id);
 	
 	@Query(value="select * from inscription_enligne where valide_enligne=1",nativeQuery = true)
-	public Page<InscriptionEnligne> findByValide_enligne(Pageable pageable);
-
+	public Page<InscriptionEnligne> findByValideEnligne(Pageable pageable);
+	
 
 }

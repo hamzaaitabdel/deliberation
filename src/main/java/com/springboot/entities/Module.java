@@ -25,25 +25,17 @@ import lombok.ToString;
 public class Module {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_module;
-	private String libelle_module;
+	private Long id;
+	private String name;
 	
+	private double noteEliminatoire;
+	private double noteValidation;
+	private double coefficient;	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_semestre")
 	private Semestre semestre;
 	
-	
-	@ManyToMany(mappedBy = "modules")
-    private List<Etudiant> etudiants;
-	
-	
-	
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_note")
-//	private Note note;
-//	
-	private boolean module_valide;
-
+	@OneToMany(mappedBy = "module" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Element> elements;
 	
 }

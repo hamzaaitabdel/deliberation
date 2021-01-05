@@ -1,11 +1,11 @@
 package com.springboot.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,36 +17,30 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data @NoArgsConstructor @AllArgsConstructor
-
-
 @Entity
-public class Note {
+public class Element {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private double note;
-	private int year;
-	private String etats;
-	private String session;
-			
-	@Enumerated(EnumType.STRING)
-	private Examen examen;
+	Long id;
 	
-	public static enum Examen {
-		TP,CC,EXAM
-	}
+	private double coefficient;
+	private double noteEliminatoire;
+	private double noteValidation;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etudiant")
-	Etudiant etudiant;
+	@JoinColumn(name = "id_module")
+	private Module module;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_element")
-	Element element;
+	@JoinColumn(name = "id_professeur")
+	private Professeur professeur;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "annee_universitaire")
-	AnneeUniversitaire anneeUniversitaire;
 	
+	@OneToMany(mappedBy = "element" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
+	@OneToMany(mappedBy = "element" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Note> notes;
 }

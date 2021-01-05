@@ -1,5 +1,7 @@
 package com.springboot.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -16,14 +20,19 @@ import lombok.ToString;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class Admin {
+public class Professeur {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nom;
 	private String prenom;
-	private String email;
-	private String telephone;
-	private String password;
+	private String role;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_etablissement")
+	private Etablissement etablissement;
+	
+	@OneToMany(mappedBy = "professeur" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Element> elements;
 	
 }

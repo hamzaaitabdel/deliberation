@@ -22,19 +22,15 @@ import lombok.ToString;
 public class Semestre {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_semestre;
-	private String libelle_semestre;
+	private Long id;
+	private String name;
 	private boolean etats;
-	
-	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	private List<Module> modules;
-	
-	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	List<InscriptionPedagogique> inscriptionPedagogiques;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_etape")
 	private Etape etape;
 	
-	//private int ordre;
+	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+	private List<Module> modules;
+	
 }

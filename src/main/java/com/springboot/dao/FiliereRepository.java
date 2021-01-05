@@ -9,9 +9,13 @@ import com.springboot.entities.Filiere;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere,Long> {
 	
-	@Query("select f from Filiere f where f.id_filiere =: id_filiere")
-	public Filiere findById_filiere(@Param("id_filiere")Long id_filiere);
-	
-	@Query("select f.id_filiere from Filiere f where f.nom_filiere =: x")
-	public Long getId_filiere(@Param("x")String nom);
+//	@Query("select f from Filiere f where f.id_filiere =: id_filiere")
+//	public Filiere findById_filiere(@Param("id_filiere")Long id_filiere);
+//	
+//	@Query("select f.id_filiere from Filiere f where f.nom_filiere =: x")
+//	public Long getId_filiere(@Param("x")String nom);
+//	
+//	@Query(value="select id_filiere from Filiere where nom_filiere = ?",nativeQuery=true)
+//	public Long findId_filiereByNome_filiere(String nom);
+//	
 }

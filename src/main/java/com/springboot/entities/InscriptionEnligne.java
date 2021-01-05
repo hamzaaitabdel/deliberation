@@ -23,49 +23,50 @@ import lombok.ToString;
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class InscriptionEnligne {
 	
-	@Id
-	@Column(name = "CNE" , unique = true)
+	@Id @GeneratedValue
+	@Column(name = "IDIE")
+	private Long id;
+	
 	private String cne;
-	private String nom_fr;
-	private String prenom_fr;
-	private String nom_ar;
-	private String prenom_ar;
+	
+	private String nomFr;
+	private String prenomFr;
+	private String nomAr;
+	private String prenomAr;
 	private String sexe;
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date date_naissance;
-	private String lieu_naissance_fr; 
-	private String lieu_naissance_ar;
-	@Column(name = "CIN")
+	
+	private String lieuNaissanceFr; 
+	private String lieuNaissanceAr;
 	private String cin;
+	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date date_inscription;
+	private Date dateNaissance;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateInscription;
 	
-	
-	private String annee_bac;
-	private String serie_bac;
-	private String mention_bac;
-	private String lycee_bac;
-	private String ville_bac;
+	private String anneeBac;
+	private String serieBac;
+	private String mentionBac;
+	private String lyceeBac;
+	private String villeBac;
 	private String academie;
 	private String nationalite;
 	private String province;
 	private String region;
-	private String etat_physique;
+	private String etatPhysique;
 	
 	@Column(name = "GSP")
-	private String groupe_socioprofessionnel;
+	private String groupeSocioProfessionnel;
 	
-	private boolean valide_enligne;
+	@Lob
+	private Byte[] photo; 
+	
+	private boolean valideEnligne;
 	
 	@OneToOne(mappedBy = "inscriptionEnligne")
 	InscriptionAdministrative inscriptionAdministrative;
 	
-	//new
-	private String email;
-	
-	//@Lob
-	//private Byte[] photo; 
-		
 }

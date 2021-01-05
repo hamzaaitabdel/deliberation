@@ -9,22 +9,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Data @NoArgsConstructor @AllArgsConstructor
-@Entity
-public class Resultat {
+import lombok.ToString;
 
+@Entity
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
+public class AnneeUniversitaire {
+	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_resultat;
-	private double resltat_final;
+	private Long id;
+	private String annee;
 	
+	@OneToMany(mappedBy = "anneeUniversitaire" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionAdministrative> inscriptionAdministratives;
 	
+	@OneToMany(mappedBy = "anneeUniversitaire" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Note> notes;
 	
-	@OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL , mappedBy = "resultat")
-	private List<Etudiant> etudiants;
 	
 }
