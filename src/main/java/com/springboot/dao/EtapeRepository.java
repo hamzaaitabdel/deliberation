@@ -11,7 +11,7 @@ import com.springboot.entities.Etape;
 @Repository
 public interface EtapeRepository extends JpaRepository<Etape,Long> {
 	
-	@Query(value="select id_etape from Etape where libelle_etape = ?",nativeQuery=true)
-	public Long findId_etapeByLibelle_etape(String libelle);
-	
+//	@Query(value="select id_etape from Etape where libelle_etape = ?",nativeQuery=true)
+//	public Long findId_etapeByLibelle_etape(String libelle);
+//	
 }

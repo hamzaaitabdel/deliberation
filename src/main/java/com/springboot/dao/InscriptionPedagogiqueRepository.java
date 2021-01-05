@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.entities.Etudiant;
+import com.springboot.entities.InscriptionPedagogique;
 @Repository
-public interface InscriptionPedagogiqueRepository extends JpaRepository<Etudiant,String> {
+public interface InscriptionPedagogiqueRepository extends JpaRepository<InscriptionPedagogique,Long> {
 	
 }
