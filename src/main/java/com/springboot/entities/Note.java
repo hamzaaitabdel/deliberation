@@ -22,7 +22,7 @@ public class Note {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_note;
 	private double note;
-	
+	private int year;
 	private String etats;
 	private String session;
 		

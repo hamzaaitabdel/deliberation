@@ -44,4 +44,6 @@ public class Module {
 //	private Note note;
 //	
 	private boolean module_valide;
+
+	
 }
