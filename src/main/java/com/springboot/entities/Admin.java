@@ -19,10 +19,11 @@ import lombok.ToString;
 public class Admin {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_admin;
-	private String nom_admin;
-	private String email_admin;
-	private String tel_admin;
+	private Long id;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String telephone;
 	private String password;
 	
 }

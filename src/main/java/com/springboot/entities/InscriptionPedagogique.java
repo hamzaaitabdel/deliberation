@@ -26,32 +26,25 @@ public class InscriptionPedagogique {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDIP")
-	Long id_inscription_pedagogique;
+	Long id;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	Date dateInscriptionValide;	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cne")
+	@JoinColumn(name = "id_etudiant")
 	Etudiant etudiant;
 	
-	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_element")
+	Element element;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_filiere")
-	Filiere filiere;
+	@JoinColumn(name = "annee_universitaire")
+	AnneeUniversitaire anneeUniversitaire;
 	
 	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_semestre")
-	Semestre semestre;
-	
-	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date date_pres_inscription;
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date date_inscription_valide;
-	boolean inscription_valide;
 	
 
 }
