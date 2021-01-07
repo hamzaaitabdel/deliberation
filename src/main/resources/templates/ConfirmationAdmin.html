@@ -29,13 +29,13 @@
 	<div id="app">
 		<section class="section">
 			<div class="container mt-5">
-				<div class="row">
+				<!-- <div class="row"> -->
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
 						<div class="login-brand">Inscription Administrative</div>
-
+<!--
 						<div class="card card-primary">
 							<div class="row">
-								<div class="col-12 col-md-12 col-lg-5 p-0">
+								 <div class="col-12 col-md-12 col-lg-5 p-0">
 									<div class="card-header text-center">
 										<h4>Enregistrement effectue</h4>
 									</div>
@@ -48,27 +48,27 @@
 										</div>
 										<div class="form-group">
 											<label>Nom en Francais : </label> <strong><label
-												th:text="${enligne.nom_fr}"></label></strong>
+												th:text="${enligne.nomFr}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Prenom en Francais : </label> <strong><label
-												th:text="${enligne.prenom_fr}"></label></strong>
+												th:text="${enligne.prenomFr}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Date de Naissance : </label> <strong><label
-												th:text="${enligne.date_naissance}"></label></strong>
+												th:text="${enligne.dateNaissance}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Annee de Bac : </label> <strong><label
-												th:text="${enligne.annee_bac}"></label></strong>
+												th:text="${enligne.anneeBac}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Serie de Bac : </label> <strong><label
-												th:text="${enligne.serie_bac}"></label></strong>
+												th:text="${enligne.serieBac}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Mention : </label> <strong><label
-												th:text="${enligne.mention_bac}"></label></strong>
+												th:text="${enligne.mentionBac}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>CIN : </label> <strong><label
@@ -76,7 +76,7 @@
 										</div>
 										<div class="form-group">
 											<label>Lieu de Naissance en Francais : </label> <strong><label
-												th:text="${enligne.lieu_naissance_fr}"></label></strong>
+												th:text="${enligne.lieuNaissanceFr}"></label></strong>
 										</div>
 										<div class="form-group">
 											<label>Nationalite : </label> <strong><label
@@ -85,9 +85,9 @@
 									</div>
 
 
-								</div>
+								</div> -->
 
-								<div class="col-12 col-md-12 col-lg-5 p-0">
+								<!-- <div class="col-12 col-md-12 col-lg-5 p-0"> -->
 									<div class="card">
 										<div class="card-header text-center">
 											<div class="card-header text-center" th:if="${mode=='new'}">
@@ -98,34 +98,33 @@
 											</div>
 										</div>
 
-										<div class="card-header text-center">
-											<div class="card-header text-center" th:if="${mode=='new'}">
-												<h4>Formulaire de saisie</h4>
-											</div>
-											<div class="card-header text-center" th:if="${mode=='edit'}">
-												<h4>Formulaire de mise a jour</h4>
-											</div>
-										</div>
 
 										<div class="card-body">
 
 											<form th:action="@{saveAdmin}" method="post">
 												<div class="form-group">
-													<label>CNE</label> <input type="text" class="form-control"
-														name="id_enligne" th:value="${id_enligne}"
-														readonly="readonly">
+													<label>ID Enligne</label> <input type="text"
+														class="form-control" th:name="id_enligne"
+														th:value="${id}" >
 												</div>
 												<div class="form-group">
+													<label>CNE</label> <input type="text" class="form-control"
+														th:name="cne" th:value="${cne}"
+														readonly="readonly">
+												</div>
+<!--
+												 <div class="form-group">
 													<label>Filiere</label> <select
 														class="custom-select" id="inputGroupSelect08"
 														name="filiere">
 
-														<option th:each="p:${filiere}" th:value="${p.id}"
+														<option th:each="p:${filieres}" th:value="${p.name}"
 															th:text="${p.name}"></option>
 
 													</select>
 
 												</div>
+												<!--
 												<div class="form-group">
 													<label>Annee Universitaire</label> <select
 														class="custom-select" id="inputGroupSelect07"
@@ -137,14 +136,21 @@
 													</select>
 
 												</div>
-
-
+ -->
+												<div class="form-group">
+													<label>Filiere</label> <input type="text"
+														th:name="filiere" class="form-control"
+														>
+												</div>
+												<div class="form-group">
+													<label>Annee Universitaire</label> <input type="text"
+														th:name="annee" class="form-control"
+														>
+												</div>
 
 												<div class="form-group">
-													<label>Etablissement</label> <input
-														type="text" name="etablissement"
-														class="form-control"
-														th:value="Bachelor"
+													<label>Etablissement</label> <input type="text"
+														th:name="etablissement" class="form-control"
 														>
 												</div>
 
@@ -152,22 +158,21 @@
 
 												<div class="form-group">
 													<label>Date de validation d'inscription</label> <input
-														type="date" name="dateInscriptionValide"
+														type="date" th:name="dateInscriptionValide"
 														class="form-control"
-														th:value="${admin.dateInscriptionValide}"
-														required="required">
+														>
 												</div>
 
 
 												<div class="form-group">
 													<label>Adresse Personnel</label> <input type="text"
-														name="adressePersonnel" class="form-control"
-														th:value="${admin.adressePersonnel}" >
+														th:name="adressePersonnel" class="form-control"
+														>
 
 												</div>
 
 												<div class="form-group">
-													<label>Ville</label> <select name="ville"
+													<label>Ville</label> <select th:name="ville" 
 														class="form-control">
 
 														<option value=" AL HAJEB">AL HAJEB</option>
@@ -233,24 +238,23 @@
 												</div>
 
 												<div class="form-group">
-													<label>Telephone</label> <input type="tel"
-														name="tel" class="form-control"
-														th:value="${admin.telephone}" placeholder="06-22-22-22-22" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
-														required="required">
-
-												</div>
-												<div class="form-group">
-													<label>Email Etudiant</label> <input type="email"
-														name="email_etud" class="form-control"
-														th:value="${admin.emailEtud}" placeholder="xyz@gmail.abc"
+													<label>Telephone</label> <input type="tel" th:name="tel"
+														class="form-control" 
+														placeholder="06-22-22-22-22"
+														pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
 														>
 
 												</div>
 												<div class="form-group">
+													<label>Email Etudiant</label> <input type="email"
+														th:name="emailEtud" class="form-control"
+														placeholder="xyz@gmail.abc">
+
+												</div>
+												<div class="form-group">
 													<label>Email Parent</label> <input type="email"
-														name="emailParent" class="form-control"
-														th:value="${admin.email_parent}"
-														placeholder="xyz@gmail.abc" required="required">
+														th:name="emailParent" class="form-control"
+														placeholder="xyz@gmail.abc" >
 
 												</div>
 
@@ -276,7 +280,7 @@
 
 
 									</div>
-								</div>
+								<!-- </div> -->
 
 
 
@@ -291,9 +295,10 @@
 
 
 
-							</div>
+						<!-- 	</div> 
 						</div>
-					</div>
+						-->
+					<!-- </div> -->
 				</div>
 			</div>
 		</section>

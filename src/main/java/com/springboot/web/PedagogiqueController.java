@@ -181,21 +181,21 @@ public class PedagogiqueController {
 		return "ListFiliere";
 	}
 
-	// etudiants par filieres
-	@GetMapping(path="/etudiantsParFiliere") 
-	public String etudiantsParFiliere(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword,
-			Long id) {
-		Page<Etudiant> pageetudiants = etudiantRepository.findById_FiliereContains(id,PageRequest.of(page, size));
-		model.addAttribute("etudiants",pageetudiants.getContent());
-		model.addAttribute("pages",new int[pageetudiants.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "ListEtudiantParFiliere";
-	}
+//	// etudiants par filieres
+//	@GetMapping(path="/etudiantsParFiliere") 
+//	public String etudiantsParFiliere(Model model ,
+//			@RequestParam(name="page",defaultValue = "0")int page ,
+//			@RequestParam(name="size",defaultValue = "5")int size , 
+//			@RequestParam(name="keyword",defaultValue = "")String keyword,
+//			Long id) {
+//		Page<Etudiant> pageetudiants = etudiantRepository.findById_FiliereContains(id,PageRequest.of(page, size));
+//		model.addAttribute("etudiants",pageetudiants.getContent());
+//		model.addAttribute("pages",new int[pageetudiants.getTotalPages()]);
+//		model.addAttribute("currentPage",page);
+//		model.addAttribute("keyword",keyword);
+//		model.addAttribute("size",size);
+//		return "ListEtudiantParFiliere";
+//	}
 
 	//inscrire pedagogiquement
 	@GetMapping(path="/inscrirePedagogiquement") 

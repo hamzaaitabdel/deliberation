@@ -50,22 +50,22 @@
 
 											<div class="form-group">
 												<label>Nom</label> <input type="text" name="nom"
-													class="form-control" th:value="${etudiant.nom_etud}">
+													class="form-control" th:value="${etudiant.nom}">
 											</div>
 
 											<div class="form-group">
 												<label>Prénom</label> <input type="text" name="prenom"
-													class="form-control" th:value="${etudiant.prenom_etud}">
+													class="form-control" th:value="${etudiant.prenom}">
 											</div>
 
 											<div class="form-group">
 												<label>E-mail</label> <input type="email" name="email"
-													class="form-control" th:value="${etudiant.email_etud}">
+													class="form-control" th:value="${etudiant.email}">
 											</div>
 
 											<div class="form-group">
 												<label>Téléphone</label> <input type="text" name="tel"
-													class="form-control" th:value="${etudiant.tel_etud}">
+													class="form-control" th:value="${etudiant.telephone}">
 											</div>
 
 											<div class="form-group">
@@ -86,10 +86,10 @@
 
 															<td><div class="radio">
 																	<label><input type="radio" id='filiere'
-																		name="filiere" th:value="${p.id_filiere}"></label>
+																		name="filiere" th:value="${p.id}"></label>
 																</div></td>
-															<td th:text="${p.id_filiere}"></td>
-															<td th:text="${p.nom_filiere}"></td>
+															<td th:text="${p.id}"></td>
+															<td th:text="${p.nom}"></td>
 
 														</tr>
 

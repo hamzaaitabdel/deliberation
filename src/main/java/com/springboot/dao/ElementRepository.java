@@ -8,4 +8,5 @@ import com.springboot.entities.Element;
 @Repository
 public interface ElementRepository extends JpaRepository<Element, Long> {
 	
+	public Long findIdByName(String element);
 }

@@ -24,7 +24,7 @@ public class Element {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
-	
+	private String name;
 	private double coefficient;
 	private double noteEliminatoire;
 	private double noteValidation;

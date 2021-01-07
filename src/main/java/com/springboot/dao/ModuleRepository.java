@@ -18,4 +18,5 @@ public interface ModuleRepository extends JpaRepository<Module,Long> {
 
 	@Query("select m from Module m where m.semestre.etape.filiere.id= :x")
 	public List<Module> findById_filiereContains(@Param("x")Long id_filiere);
+//	public Long findIdByName(String module);
 }
