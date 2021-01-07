@@ -38,7 +38,7 @@ public interface InscriptionAdministrativeRepository extends JpaRepository<Inscr
 //	@Query("select e from InscriptionAdministrative e where e.cne like :x ")
 //    public Page<InscriptionAdministrative> findByCneContains(@Param("x")String keyword, Pageable of);
 //	
-	@Query("select e from InscriptionAdministrative e where e.nom like :x ")
+	@Query("select e from InscriptionAdministrative e where e.nom like :x")
 	public Page<InscriptionAdministrative> findByNomContains(@Param("x")String keyword, Pageable of);
 	
 	
