@@ -30,9 +30,19 @@
 		<section class="section">
 			<div class="container mt-5">
 				<div class="row">
-
-					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">Insertion Etape</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+						<div class="login-brand">Insertion Module</div>
 
 						<div class="card card-primary">
 							<div class="row">
@@ -41,75 +51,93 @@
 										<h4>Formulaire de saisie</h4>
 									</div>
 									<div class="card-body">
-										<form th:action="@{saveEtape}" method="post">
+										<form th:action="@{saveModule}" method="post">
 
 											<div class="form-group">
-												<label>Etape</label> <input type="text" name="name"
-													class="form-control" th:value="${etape.name}"
-													required="required">
+												<label>Module</label> <input type="text"
+													name="name" class="form-control"
+													th:value="${module.name}" required="required">
 											</div>
 											<div class="form-group">
-												<label>Filiere</label> <select name="filiere"
-													th:value="${filiere}" class="form-control">
-													<option value="1">BGI</option>
-													<option value="2">BGB</option>
-													<option value="3">BCA</option>
-
-												</select>
+												<label>ID Semestre</label> <input type="text"
+													name="semestre" class="form-control"
+													th:value="${semestre}" required="required">
+											</div>
+																						<div class="form-group">
+												<label>Coefficient</label> <input type="text"
+													name="coeffecient" class="form-control"
+													th:value="module.coefficient" required="required">
+											</div>
+											
+											<div class="form-group">
+												<label>Note Validation</label> <input type="text"
+													name="noteValidation" class="form-control"
+													th:value="module.noteValidation" required="required">
 											</div>
 											<div class="form-group">
-												<label>HasDiplome</label> <input type="checkbox"
-													name="diplome" class="form-control"
-													th:checked="${etape.diplome}">
+												<label>Note Eliminatoire</label> <input type="text"
+													name="noteEliminatoire" class="form-control"
+													th:value="module.noteElement" required="required">
 											</div>
-											<div class="form-group text-right">
-												<button type="submit"
-													class="btn btn-round btn-lg btn-primary">Send Form</button>
-											</div>
-										</form>
+											
+											
+												<div class="form-group text-right">
+										<button type="submit" class="btn btn-round btn-lg btn-primary">Send
+											Form</button>
+									</div>
+								</form>		
 									</div>
 								</div>
-
 								<div class="col-12 col-md-6 col-lg-6">
 									<div class="card">
 										<div class="card-header">
-											<h4>Liste des Etapes</h4>
-											<div class="card-header-action"></div>
+											<h4>Liste des Modules</h4>
+											<div class="card-header-action">
+                    
+                  					</div>
 										</div>
 										<div class="card-body">
 
-											<div class="section-title mt-0">Light</div>
-											<table class="table table-striped">
+											<!-- <div class="section-title">Dark</div>
+                    						<table class="table table-striped table-dark">
+                    						 -->
+                    						<div class="section-title mt-0">Light</div> 
+                    						<table class="table table-striped">
+											
 												<thead>
 													<tr>
 														
-														<th scope="col">Etape</th>
-
-
-														<th scope="col">Diplome</th>
-														<th scope="col">ID Filiere</th>
-
+														<th scope="col">Module</th>
+														<th scope="col">Semestre</th>
+														<th scope="col">Coefficient</th>
+														<th scope="col">Note Validation</th>
+														<th scope="col">Note Eliminatoire</th>
+														
 														<th scope="col">Action</th>
 
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="p:${etapes}">
+													<tr th:each="p:${modules}">
 
-														
+					
 														<td th:text="${p.name}"></td>
 
-														<td th:text="${p.diplome}"></td>
-														<td th:text="${p.Filiere.id}"></td>
-														<td><a class="btn btn-danger btn-action"
+														<td th:text="${p.Semestre.id}"></td>
+														<td th:text="${p.coefficient}"></td>
+														<td th:text="${p.noteValidation}"></td>
+														<td th:text="${p.noteEliminatoire}"></td>
+																												<td th:text="${p.name}"></td>
+																												<td th:text="${p.name}"></td>
+														
+												<td><a class="btn btn-danger btn-action"
 															data-toggle="tooltip" title="Delete"
 															onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-															th:href=@{deleteEtape(id=${p.id},,page=${currentPage},size=${size})}><i
+															th:href=@{deleteModule(id=${p.id},,page=${currentPage},size=${size})}><i
 																class="fas fa-trash"></i></a> <a
 															class="btn btn-danger btn-action" data-toggle="tooltip"
-															title="Edit" th:href=@{editEtape(id=${p.id})}><i
+															title="Edit" th:href=@{editModule(id=${p.id})}><i
 																class="fas fa-alt"></i></a></td>
-
 													</tr>
 
 												</tbody>
@@ -117,24 +145,22 @@
 											<ul class="nav nav-pills">
 												<li th:each="page,status:${pages}"><a
 													th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-													th:href="@{etapes(page=${status.index},size=${size})}"
+													th:href="@{modules(page=${status.index},size=${size})}"
 													th:text="${status.index}"></a>
 											</ul>
 										</div>
 									</div>
-								</div>
+
 							</div>
 						</div>
-
 					</div>
 
-
-
-
-
-
 				</div>
+				
+				
+				
 			</div>
+	</div>
 	</div>
 	</div>
 	</section>

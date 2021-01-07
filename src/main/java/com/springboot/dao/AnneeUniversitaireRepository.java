@@ -9,4 +9,6 @@ import com.springboot.entities.Element;
 @Repository
 public interface AnneeUniversitaireRepository extends JpaRepository<AnneeUniversitaire, Long> {
 	
+	Long findByAnnee(String annee);
+	
 }

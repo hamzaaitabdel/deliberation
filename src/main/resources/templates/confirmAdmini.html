@@ -248,16 +248,16 @@
             <h4>Admin</h4>
           </div>
           
-          <ul class="sidebar-menu">
+           <ul class="sidebar-menu">
               <li class="menu-header">Inscription</li>
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enilgne</a></li>
+                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
                   <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
-               <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
-               <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
+                  <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
                   
                 </ul>
               </li>
@@ -417,7 +417,7 @@
                 <div class="card-header">
                   <h4>Latest Inscriptions</h4>
                   <div class="card-header-action">
-                    <a th:href="@{enlignesAll}" class="btn btn-primary">View All</a>
+                    <a th:href="@{administrativeAll}" class="btn btn-primary">View All</a>
                   </div>
                 </div>
                 <div class="card-body p-0">
@@ -446,10 +446,10 @@
                         
 						<td th:text="${p.cne}"></td>
 				   
-						<td th:text="${p.nom_fr}"></td>
-						<td th:text="${p.prenom_fr}"></td>
-						<td th:text="${p.mention_bac}"></td>
-						<td th:text="${p.valide_enligne}"></td>
+						<td th:text="${p.nomFr}"></td>
+						<td th:text="${p.prenomFr}"></td>
+						<td th:text="${p.mentionBac}"></td>
+						<td th:text="${p.valideEnligne}"></td>
 					
 							  <!-- 
                           <td>
@@ -457,8 +457,8 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfermationAdmin(id=${p.cne})}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                            <a  th:href=@{ConfirmationAdmin(id_enligne=${p.id},cne=${p.cne})}
+                            class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Inscription Administrative"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteEnligne(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->

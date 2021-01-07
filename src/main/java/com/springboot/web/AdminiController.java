@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.springboot.dao.AnneeUniversitaireRepository;
+import com.springboot.dao.EtablissementRepository;
 import com.springboot.dao.EtudiantRepository;
 import com.springboot.dao.FiliereRepository;
 import com.springboot.dao.InscriptionAdministrativeRepository;
@@ -60,70 +61,82 @@ public class AdminiController {
 	//2.Inscription Administrative
 
 	
-	@GetMapping(path="/ConfermationAdmin")
-	public String ConfermationAdmin(Model model , 
-			@RequestParam(name = "id_enligne" , defaultValue = "")Long id_enligne, 
-			@RequestParam(name = "id_filiere" , defaultValue = "")String id_filiere,
-			@RequestParam(name = "annee" , defaultValue = "")String annee,
-			@RequestParam(name = "etablissement" , defaultValue = "")String etablissement
+	@GetMapping(path="/ConfirmationAdmin")
+	public String ConfirmationAdmin(Model model , Long id_enligne,
+			String cne 
+
 			) {
 		InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id_enligne);
 		model.addAttribute("enligne", enligne);
 		InscriptionAdministrative admin = new InscriptionAdministrative();
 		model.addAttribute("admin", admin);
-		id_enligne = inscriptionEnligneRepository.findById(id_enligne).get().getId();
-		List<Filiere> f = filiereRepository.findAll();
-		List<AnneeUniversitaire> u = anneeUniversitaireRepository.findAll();
+		id_enligne = inscriptionEnligneRepository.findById(	id_enligne).get().getId();
 		
-		model.addAttribute("filiere", f);
-		model.addAttribute("enligne", id_enligne);
-		model.addAttribute("annees", u);
-		model.addAttribute("etablissement", etablissement);
+		model.addAttribute("id", id_enligne);
+		cne = inscriptionEnligneRepository.findById(id_enligne).get().getCne();
+		model.addAttribute("cne", cne);
 		
 
 		model.addAttribute("mode", "new");
 
 		return "ConfirmationAdmin";
 	}
-//
-//	@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
-//	public String saveAdmin(Model model ,@RequestParam("cne")String cne,@RequestParam("filiere")Long filiere,
-//			@Valid InscriptionAdministrative admin,
-//			BindingResult bindingResult){
-//		if(bindingResult.hasErrors()) return "formAdmin";
-//
-//		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(cne);
-//		enligne.setCne(cne);
-//		admin.setInscriptionEnligne(enligne);
-//
-//		Filiere f = filiereRepository.findById(filiere).get();
-//		f.setId(filiere);
-//		admin.setFiliere(f);
-//
-//		inscriptionAdministrativeRepository.save(admin);
-//
-//
-//		model.addAttribute("admin", admin);
-//		model.addAttribute("enligne", enligne);
-//		model.addAttribute("filiere", f);
-//
-//		return "redirect:/adminsAll";
-//	}
-	@GetMapping(path="/administrativeAll") 
-	public String listAdministrativeAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword){
-		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValideEnligne(PageRequest.of(page, size));
+	
+	@Autowired
+	EtablissementRepository etablissementRepository;
+	
+	@PostMapping(path="/saveAdmin")
+	public String saveAdmin(Model model ,
+			@RequestParam("cne")String cne,
+			@RequestParam("filiere")String filiere,
+			@RequestParam("id_enligne")Long id_enligne,
+			@RequestParam("annee")String annee,
+			@RequestParam("etablissement")String etabli,
+			
+			@Valid InscriptionAdministrative admin,
+			BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "ConfirmationAdmin";
 
-		model.addAttribute("enligne",pageEnlignes.getContent());
-		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "confirmAdmini";
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(id_enligne).get();
+		
+		enligne.setId(id_enligne);
+		admin.setInscriptionEnligne(enligne);
+		model.addAttribute("id_enligne", id_enligne);
+		
+		cne = inscriptionEnligneRepository.findById(id_enligne).get().getCne();
+		admin.setCne(cne);
+		model.addAttribute("cne", cne);
+		
+		Long id_filiere = filiereRepository.findIdByName(filiere);
+		
+		Filiere f = filiereRepository.findById(id_filiere).get();
+		f.setId(id_filiere);
+		admin.setFiliere(f);
+		model.addAttribute("filiere", f);
+
+		Long id_annee = anneeUniversitaireRepository.findByAnnee(annee);
+		AnneeUniversitaire a = anneeUniversitaireRepository.findById(id_annee).get();
+		a.setId(id_annee);
+		admin.setAnneeUniversitaire(a);
+		model.addAttribute("annee", a);
+		
+		Long id_etabli = etablissementRepository.findIdByName(etabli);
+		Etablissement e = etablissementRepository.findById(id_etabli).get();
+		e.setId(id_etabli);
+		admin.setEtablissement(e);
+		model.addAttribute("etablissement", e);
+		
+		
+
+		model.addAttribute("admin", admin);
+		
+		inscriptionAdministrativeRepository.save(admin);
+
+
+
+		return "redirect:/adminsAll";
 	}
-
+	
 
 
 	@GetMapping(path="/admins") 

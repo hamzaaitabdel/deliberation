@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.springboot.entities.Module;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module,Long> {
-
+	
+	public Long findIdByName(String module);
 }

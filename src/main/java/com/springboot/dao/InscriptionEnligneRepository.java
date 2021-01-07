@@ -20,6 +20,11 @@ public interface InscriptionEnligneRepository extends JpaRepository<InscriptionE
 	
 	@Query(value="select * from inscription_enligne where valide_enligne=1",nativeQuery = true)
 	public Page<InscriptionEnligne> findByValideEnligne(Pageable pageable);
-	
 
+	@Query(value="select e.cne from inscription_enligne e where e.idie = ?",nativeQuery=true)
+	public String findCneById(Long id);
+
+
+	public String findByCne(String cne);
+	
 }
