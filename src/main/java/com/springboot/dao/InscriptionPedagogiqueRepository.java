@@ -15,15 +15,13 @@ public interface InscriptionPedagogiqueRepository extends JpaRepository<Inscript
 	
 	@Transactional
 	@Modifying
-	@Query("update InscriptionPedagogique s set s.module= :x where s.id_inscription_pedagogique = :id")
+	@Query("update InscriptionPedagogique s set s.module= :x where s.id = :id")
 	public void UpdateId_module(@Param("x")Module m, @Param("id")Long id);
 	
 	@Transactional
 	@Modifying
-	@Query("delete from InscriptionPedagogique s where s.id_inscription_pedagogique = :id")
+	@Query("delete from InscriptionPedagogique s where s.id = :id")
 	public void DeleteIDIP(@Param("id")Long id);
-	
-	
 	
 	
 }

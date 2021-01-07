@@ -31,57 +31,16 @@ import com.springboot.entities.InscriptionEnligne;
 
 @Repository
 public interface InscriptionAdministrativeRepository extends JpaRepository<InscriptionAdministrative,Long> {
-
-	/*@Query(value="SELECT * FROM InscriptionAdministative",nativeQuery=true)
-	public Page<InscriptionAdministrative> selectAll(Pageable pa);
-	*/
-	/*
-	@Query("select e from InscriptionAdministrative e where e.cne like :x ")
-    public Page<InscriptionAdministrative> findByCneContains(@Param("x")String keyword, Pageable of);
-*/	
-	@Query("select e from InscriptionAdministrative e where e.annee_academique like :x ")
-	public Page<InscriptionAdministrative> findByAnnee_academiqueContains(@Param("x")String keyword, Pageable of);
-	/*
-	 * @Modifying
-	 * 
-	 * @Transactional
-	 * 
-	 * @Query("UPDATE InscriptionAdministrative c SET c.annee_academique = :annee_academique  c.date_inscription_valide = :date_inscription_valide "
-	 * 
-	 * + "c.adresse_personnel = :adresse_personnel" + "c.ville = :ville" +
-	 * "c.telephone = :telephone" + "c.email_etud = :email_etud" +
-	 * "c.email_parent = :email_parent" + "c.cne = :cne" +
-	 * "c.id_filiere = :id_filiere" +
-	 * "WHERE c.id_inscription_administrative = :id_inscription_administrative"
-	 * 
-	 * ) public InscriptionAdministrative update(
-	 * 
-	 * @Param("id_inscription_administrative") Long id,
-	 * 
-	 * @Param("date_inscription_valide") String date_inscription_valide,
-	 * 
-	 * @Param("annee_academique") String annee_academique,
-	 * 
-	 * @Param("adresse_personnel") String adresse_personnel,
-	 * 
-	 * @Param("ville") String ville,
-	 * 
-	 * @Param("telephone") String telephone,
-	 * 
-	 * @Param("email_etud") String email_etud,
-	 * 
-	 * @Param("email_parent") String email_parent,
-	 * 
-	 * @Param("cne") InscriptionEnligne inscriptionEnligne,
-	 * 
-	 * @Param("id_filiere") Filiere filiere
-	 * 
-	 * );
-	 * 
-	 * 
-	 */	
+//	@Query(value="SELECT * FROM InscriptionAdministative",nativeQuery=true)
+//	public Page<InscriptionAdministrative> selectAll(Pageable pa);
+//	
 	
-	/*@Query("select e from InscriptionAdministrative e where e.id=? ")
-	public InscriptionAdministrative findById(String id);
-	*/
+//	@Query("select e from InscriptionAdministrative e where e.cne like :x ")
+//    public Page<InscriptionAdministrative> findByCneContains(@Param("x")String keyword, Pageable of);
+//	
+	@Query("select e from InscriptionAdministrative e where e.nom like :x ")
+	public Page<InscriptionAdministrative> findByNomContains(@Param("x")String keyword, Pageable of);
+	
+	
+
 }

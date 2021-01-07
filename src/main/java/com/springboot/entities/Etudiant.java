@@ -32,56 +32,20 @@ import lombok.ToString;
 public class Etudiant {
 
 	@Id
-	@Column(name = "CNE")
 	private String cne;
 	
-	private String annee_academique;
-
-	private String prenom_etud;
-	private String nom_etud;
-	private String tel_etud;
-	private String email_etud;
+	private String prenom;
+	private String nom;
+	private String telephone;
+	private String email;
 	
-	
-	
-	
-	  @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	  
-	  @JoinTable( name = "NOTES", joinColumns = { @JoinColumn(name = "cne") },
-	  inverseJoinColumns = { @JoinColumn(name = "id_module") } ) private
-	  List<Module> modules;
-	 
-	
-	
-	
-	
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
 	private Filiere filiere;
 	
-
+	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
 	
-	
-	
-//	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	List<InscriptionPedagogique> inscriptionPedagogiques;
-//	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_resultat")
-	private Resultat resultat;
-
-
-	//li kan xi attribut khaso ytzad indiquiweh?
-	
-//	@Temporal(TemporalType.DATE)
-//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	private Date date_de_naissance;
-//	private String lieu_de_naissance;	
-//	private String CIN;
-//	
-
-
-	
-	
+	@OneToMany(mappedBy = "etudiant" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Note> notes;
 }

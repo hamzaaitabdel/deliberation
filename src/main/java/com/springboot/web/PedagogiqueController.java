@@ -146,16 +146,16 @@ public class PedagogiqueController {
 		
 		Etudiant e=etudiantRepository.findById(cne).get();
 		e.setCne(cne);
-		e.setNom_etud(nom);
-		e.setPrenom_etud(prenom);
-		e.setEmail_etud(email);
-		e.setTel_etud(tel);
+		e.setNom(nom);
+		e.setPrenom(prenom);
+		e.setEmail(email);
+		//e.setTel_etud(tel);
 		e.setFiliere(filiereRepository.findById_filiere(Long.parseLong(filiere)));
-		
+		/*
 		InscriptionEnligne il = inscriptionEnligneRepository.findById(cne).get();
 		il.setCne(cne);
-		il.setNom_fr(nom);
-		il.setPrenom_fr(prenom);
+		il.setNomFr(nom);
+		il.setPrenomFr(prenom);
 		//il.setTel(tel);
 		//there is a tel duplicate in insc en ligne and admin
 		/* the id of insc admin should be the cne 
@@ -208,9 +208,9 @@ public class PedagogiqueController {
 		 * or fetch all the modules that belong to a specific filiere
 		 * i'm pretty sure it's way better
 		 *  */
-		List<Etape> et= etapeRepository.findById_filiereContains(e.getFiliere().getId_filiere());
-		List<Semestre> s = semestreRepository.findById_filiereContains(e.getFiliere().getId_filiere());
-		List<Module> lm=moduleRepository.findById_filiereContains(e.getFiliere().getId_filiere());
+		List<Etape> et= etapeRepository.findById_filiereContains(e.getFiliere().getId());
+		List<Semestre> s = semestreRepository.findById_filiereContains(e.getFiliere().getId());
+		List<Module> lm=moduleRepository.findById_filiereContains(e.getFiliere().getId());
 
 		model.addAttribute("etudiant", e);
 		model.addAttribute("modules", lm);
@@ -230,7 +230,7 @@ public class PedagogiqueController {
 			@RequestParam(name="mod")String mod) {
 
 		Etudiant e = etudiantRepository.findById(cne).get();
-		Filiere f = filiereRepository.findById_filiere(e.getFiliere().getId_filiere());
+		Filiere f = filiereRepository.findById_filiere(e.getFiliere().getId());
 		String idmod="";
 		System.out.println("mod: "+mod);
 		for(int i=0;i<mod.length();i++) {
@@ -246,7 +246,6 @@ public class PedagogiqueController {
 		System.out.println("idmod: "+idmod);
 		Module m = moduleRepository.findById(Long.parseLong(idmod)).get();
 		InscriptionPedagogique ip = new InscriptionPedagogique();
-		ip.setFiliere(f);
 		ip.setEtudiant(e);
 		ip.setModule(m);
 
@@ -274,10 +273,10 @@ public class PedagogiqueController {
 	@GetMapping(path="/editPedago") 
 	public String editPedago(Model model, Long id) {
 		InscriptionPedagogique ip = inscriptionPedagogiqueRepository.findById(id).get();
-		List<Module> lm=moduleRepository.findById_filiereContains(ip.getFiliere().getId_filiere());
+		//List<Module> lm=moduleRepository.findById_filiereContains(ip.getFiliere().getId_filiere());
 
 		model.addAttribute("ip", ip);
-		model.addAttribute("modules", lm);
+		//model.addAttribute("modules", lm);
 
 
 		return "editPedago";

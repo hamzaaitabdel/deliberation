@@ -1,6 +1,7 @@
 package com.springboot.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,44 +13,34 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data @NoArgsConstructor @AllArgsConstructor
 @Entity
-public class InscriptionPedagogique {
+public class Element {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "IDIP")
 	Long id;
 	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date dateInscriptionValide;	
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etudiant")
-	Etudiant etudiant;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_element")
-	Element element;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "annee_universitaire")
-	AnneeUniversitaire anneeUniversitaire;
-	
-
+	private double coefficient;
+	private double noteEliminatoire;
+	private double noteValidation;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_module")
-	Module module;
+	private Module module;
 	
-
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_professeur")
+	private Professeur professeur;
+	
+	
+	@OneToMany(mappedBy = "element" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionPedagogique> inscriptionPedagogiques;
+	
+	@OneToMany(mappedBy = "element" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Note> notes;
 }

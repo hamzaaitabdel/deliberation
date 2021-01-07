@@ -53,20 +53,20 @@ public class ImportXLSX {
 						System.out.println("massstr:"+str+" k:"+k);
 						break;
 					case 1:
-						e.setNom_etud(str);;
+						e.setNom(str);;
 						System.out.println("str:"+str);
 						break;
 					case 2:
-						e.setPrenom_etud(str);
+						e.setPrenom(str);
 						System.out.println("str:"+str);
 						break;
 
 					case 3:
-						e.setTel_etud(str);
+						//e.setTel_etud(str);
 						System.out.println("str:"+str);
 						break;
 					case 4:
-						e.setEmail_etud(str);
+						//e.setEmail_etud(str);
 						System.out.println("str:"+str);
 						break;
 					case 5:
@@ -78,7 +78,7 @@ public class ImportXLSX {
 						//e.setAnnee_academique(dat);
 
 						System.out.println("str:"+str);
-						e.setAnnee_academique(str);
+						//e.setAnnee_academique(str);
 						
 						System.out.println("Annee:"+str+" k:"+k);
 						break;

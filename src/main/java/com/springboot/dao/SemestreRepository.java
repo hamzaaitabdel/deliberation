@@ -11,9 +11,13 @@ import com.springboot.entities.Semestre;
 @Repository
 public interface SemestreRepository extends JpaRepository<Semestre,Long> {
 	
-	@Query("select d from Semestre d where d.etape.filiere.id_filiere like :x ")
+	@Query("select d from Semestre d where d.etape.filiere.id like :x ")
 	public List<Semestre> findById_filiereContains(@Param("x")Long id_filiere);
 	@Query(value="select id_semestre from Semestre where libelle_semestre = ?",nativeQuery=true)
 	public Long findId_moduleByLibelle_semestre(String libelle);
 	
+//	
+//	@Query(value="select id_semestre from Semestre where libelle_semestre = ?",nativeQuery=true)
+//	public Long findId_moduleByLibelle_semestre(String libelle);
+//	
 }

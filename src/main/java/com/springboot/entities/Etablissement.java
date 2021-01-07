@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -19,20 +17,19 @@ import lombok.ToString;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class Semestre {
+public class Etablissement {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_semestre;
-	private String libelle_semestre;
 	private Long id;
 	private String name;
-	private boolean etats;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_etape")
-	private Etape etape;
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Filiere> filieres;
 	
-	@OneToMany(mappedBy = "semestre" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-	private List<Module> modules;
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<InscriptionAdministrative> inscriptionAdministratives;
+	
+	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	List<Professeur> professeurs;
 	
 }

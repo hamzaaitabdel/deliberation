@@ -80,20 +80,20 @@ public class DeliberationTest {
 						System.out.println("massstr:"+str+" k:"+k);
 						break;
 					case 1:
-						e.setNom_etud(str);;
+						e.setNom(str);;
 						System.out.println("str:"+str);
 						break;
 					case 2:
-						e.setPrenom_etud(str);
+						e.setPrenom(str);
 						System.out.println("str:"+str);
 						break;
 
 					case 3:
-						e.setTel_etud(String.valueOf((int) Double.parseDouble(str)));
+						//e.setTel_etud(String.valueOf((int) Double.parseDouble(str)));
 						System.out.println("str:"+str);
 						break;
 					case 4:
-						e.setEmail_etud(str);
+						e.setEmail(str);
 						System.out.println("str:"+str);
 						break;
 					case 5:
@@ -103,7 +103,7 @@ public class DeliberationTest {
 						System.out.println("str:"+str);
 						dat.setYear((int) Double.parseDouble(str));
 						//e.setAnnee_academique(dat);
-						e.setAnnee_academique(str);
+					//e.setAnnee_academique(str);
 
 						System.out.println("str:"+str);
 						break;
@@ -189,7 +189,7 @@ public class DeliberationTest {
 			//er.save(e);
 		}  
 
-		System.out.println("nom: "+listetd.get(1).getNom_etud());
+	/*	System.out.println("nom: "+listetd.get(1).getNom_etud());
 		System.out.println("prenom: "+listetd.get(1).getPrenom_etud());
 		System.out.println("teletud: "+listetd.get(1).getTel_etud());
 		System.out.println("mail: "+listetd.get(1).getEmail_etud());

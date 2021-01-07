@@ -26,22 +26,15 @@ import lombok.ToString;
 public class Etape {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_etape;
-//	@Temporal(TemporalType.DATE)
-//	@DateTimeFormat(pattern = "yyyy-MM-dd")
-//	private Date annee_universitaire;
-	private String libelle_etape;
-	
+	private Long id;
+	private String name;
+	private boolean diplome;
 	
 	@OneToMany(mappedBy = "etape" , fetch = FetchType.LAZY , cascade = CascadeType.ALL)
 	private List<Semestre> semestres;
-	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_filiere")
 	private Filiere filiere;
 	
-	
-	private boolean hasDiplome;
-	//private int ordre;
 }

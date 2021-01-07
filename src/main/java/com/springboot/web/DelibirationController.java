@@ -36,7 +36,7 @@ public class DelibirationController {
 
 	public final String REPOSITORY="C:/Users/hamza/OneDrive/Bureau/testb.pdf";
     @Autowired
-    NoteRepository noteRepository;
+  /*  NoteRepository noteRepository;
 
     @GetMapping("/exportNotes")
     public String exportNotes(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
@@ -48,7 +48,7 @@ public class DelibirationController {
         File f = new File(REPOSITORY);
         createPdf(f,notes.getContent());
         return "/index-0";
-    }
+    }*/
 
     public static void createPdf(File file,List<Note> notes) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  

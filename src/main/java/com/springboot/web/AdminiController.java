@@ -39,14 +39,14 @@ public class AdminiController {
 	FiliereRepository filiereRepository;
 	
 	@GetMapping(path="/ConfermationAdmin")
-	public String ConfermationAdmin(Model model , String id 
+	public String ConfermationAdmin(Model model , Long id 
 			//@RequestParam(name = "id_filiere" , defaultValue = "1")Long id_filiere
 			) {
 		InscriptionEnligne enligne = inscriptionEnligneRepository.getOne(id);
 		model.addAttribute("enligne", enligne);
 		InscriptionAdministrative admin = new InscriptionAdministrative();
 		model.addAttribute("admin", admin);
-		id = inscriptionEnligneRepository.findByCne(id).getCne();
+		id = inscriptionEnligneRepository.findById(id).get().getId();
 		//Filiere filiere = filiereRepository.getOne(id_filiere);
 		//filiere.getNom_filiere();
 		//model.addAttribute("filiere", filiere);
@@ -86,95 +86,18 @@ public class AdminiController {
 
 
 
-	//1.Inscription Enligne
-
-
-	//Affichage avec pagination : chercher
-	@GetMapping(path="/enlignes") 
-	public String listEnligne(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByNom_frContains(keyword,PageRequest.of(page, size));
-		model.addAttribute("enlignes",pageEnlignes.getContent());
-		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-
-		return "listeEnligne";
-	}
-
-	//Affichage avec pagination :tous
-	@GetMapping(path="/enlignesAll") 
-	public String listEnligneAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("enlignes",pageEnlignes.getContent());
-		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "listeEnligne";
-	}
-
-	//Insertion
-	@RequestMapping(path="/enligne")
-	public String inscriptionEnligne(Model model) {
-		model.addAttribute("enligne", new InscriptionEnligne());
-		model.addAttribute("mode", "new");
-		return "formEnligne";
-	}
-	//Supprission
-	@GetMapping(path="/deleteEnligne")
-	public String deleteEnligne(String id ) {
-		inscriptionEnligneRepository.deleteByCne(id);
-		return "redirect:/enlignesAll";
-	}
-	//Validation 
-	@RequestMapping(path="/saveEnligne" , method = RequestMethod.POST)
-	public String saveEnligne(Model model,@Valid InscriptionEnligne inscriptionEnligne,BindingResult bindingResult){
-		if(bindingResult.hasErrors()) return "formEnligne";
-		inscriptionEnligneRepository.save(inscriptionEnligne);
-		model.addAttribute("enligne", inscriptionEnligne);
-		return "EnregistrementEnligne";
-	}	 
-
-	//Valider InscriptionEnligne : mis valide_enligne=true
-	@GetMapping(path="/validerEnligne")
-	public String validerEnligne(Model model,String id ,
-			@RequestParam(value="bar", required = true , defaultValue = "true")
-	boolean bar) {
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
-		enligne.setValide_enligne(bar);
-		inscriptionEnligneRepository.save(enligne);
-		model.addAttribute("bar", bar);
-		model.addAttribute("enligne",enligne);
-		return "redirect:/enlignesAll?bar="+bar;
-	}
-	//Les enregistrements
-	@GetMapping(path="/ConfirmationEnligne")
-	public String ConfirmationEnligne(Model model,String id) {
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(id);
-		model.addAttribute("enligne", enligne);
-		return "ConfirmationEnligne";
-	}
-
-
 	@RequestMapping(path="/saveAdmin" , method = RequestMethod.POST)
-	public String saveAdmin(Model model ,@RequestParam("cne")String cne,@RequestParam("filiere")Long filiere,
+	public String saveAdmin(Model model ,@RequestParam("cne")Long cne,@RequestParam("filiere")Long filiere,
 			@Valid InscriptionAdministrative admin,
 			BindingResult bindingResult){
 		if(bindingResult.hasErrors()) return "formAdmin";
 
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(cne);
-		enligne.setCne(cne);
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(cne).get();
+		enligne.setId(cne);
 		admin.setInscriptionEnligne(enligne);
 
 		Filiere f = filiereRepository.findById(filiere).get();
-		f.setId_filiere(filiere);
+		f.setId(filiere);
 		admin.setFiliere(f);
 
 		inscriptionAdministrativeRepository.save(admin);
@@ -208,7 +131,7 @@ public class AdminiController {
 			@RequestParam(name="page",defaultValue = "0")int page ,
 			@RequestParam(name="size",defaultValue = "5")int size , 
 			@RequestParam(name="keyword",defaultValue = "")String keyword){
-		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValide_enligne(PageRequest.of(page, size));
+		Page<InscriptionEnligne> pageEnlignes = inscriptionEnligneRepository.findByValideEnligne(PageRequest.of(page, size));
 
 		model.addAttribute("enligne",pageEnlignes.getContent());
 		model.addAttribute("pages",new int[pageEnlignes.getTotalPages()]);
@@ -225,10 +148,11 @@ public class AdminiController {
 			@RequestParam(name="page",defaultValue = "0")int page ,
 			@RequestParam(name="size",defaultValue = "5")int size , 
 			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		/*
 		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findByAnnee_academiqueContains(keyword, PageRequest.of(page, size));
 		model.addAttribute("admins",pageAdmins.getContent());
 		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
-		model.addAttribute("currentPage",page);
+	*/	model.addAttribute("currentPage",page);
 		model.addAttribute("keyword",keyword);
 		model.addAttribute("size",size);
 		return "listeAdmin";
@@ -254,20 +178,20 @@ public class AdminiController {
 	@GetMapping(path="/validAdmin")
 	public String validAdmin(Model model,Long id ) {
 		InscriptionAdministrative admin = inscriptionAdministrativeRepository.findById(id).get();
-		InscriptionEnligne enligne = inscriptionEnligneRepository.findByCne(admin.getInscriptionEnligne().getCne());
+		InscriptionEnligne enligne = inscriptionEnligneRepository.findById(admin.getInscriptionEnligne().getId()).get();
 		Etudiant e = new Etudiant();  
-		e.setNom_etud(enligne.getNom_fr());
-		e.setPrenom_etud(enligne.getPrenom_fr());
+		e.setNom(enligne.getNomFr());
+		e.setPrenom(enligne.getPrenomFr());
 
-		e.setAnnee_academique(admin.getAnnee_academique());
+		//e.setAnnee_academique(admin.getId());
 
-		e.setEmail_etud(enligne.getEmail());
+		//e.setEmail_etud(enligne.getEmail());
 
 		e.setFiliere(admin.getFiliere());
 
 		//e.setResultat(enligne.getResultat());
 
-		e.setTel_etud(admin.getTelephone());
+		//e.setTel(admin.getTelephone());
 
 		e.setCne(enligne.getCne());
 
@@ -327,7 +251,7 @@ public class AdminiController {
 		if(bindingResult.hasErrors()) return "formEtape";
 
 		Filiere f = filiereRepository.findById(filiere).get();
-		f.setId_filiere(filiere);
+		f.setId(filiere);
 		etape.setFiliere(f);
 
 		etapeRepository.save(etape);
@@ -341,10 +265,10 @@ public class AdminiController {
 			semestre,@RequestParam("id_etape")String id ,BindingResult bindingResult){
 		if(bindingResult.hasErrors()) return "formEtape";
 		
-		Long id_etape = etapeRepository.findId_etapeByLibelle_etape(id);
-		Etape etape = etapeRepository.findById(id_etape).get(); 
-		etape.setId_etape(id_etape);
-		semestre.setEtape(etape);
+		//Long id_etape = etapeRepository.findId_etapeByLibelle_etape(id);
+		//Etape etape = etapeRepository.findById(id_etape).get(); 
+		//etape.setId(id_etape);
+		//semestre.setEtape(etape);
 
 		semestreRepository.save(semestre); 
 		model.addAttribute("semestre", semestre);
