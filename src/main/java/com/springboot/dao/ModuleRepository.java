@@ -14,11 +14,11 @@ import com.springboot.entities.*;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module,Long> {
     
-    @Query(value = "select m from Module m where m.libelle_module = :libelle")
-    public Module getByLibellemodule(@Param("libelle")String libelle_module);
-    @Query(value = "select m from Module m where m.id_module = :id")
-    public Module findByid(@Param("id")Long id);
+    // @Query(value = "select m from Module m where m.libelle_module = :libelle")
+    // public Module getByLibellemodule(@Param("libelle")String libelle_module);
+    // @Query(value = "select m from Module m where m.id_module = :id")
+    // public Module findByid(@Param("id")Long id);
     
-    @Query(value="select m from Module m where m.semestre = :sem")
-    public Page<Module>getModuleBySemestre(@Param("sem")Semestre s,Pageable p);
+    // @Query(value="select m from Module m where m.semestre = :sem")
+    // public Page<Module>getModuleBySemestre(@Param("sem")Semestre s,Pageable p);
 }

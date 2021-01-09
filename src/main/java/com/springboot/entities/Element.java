@@ -14,10 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+
+@Getter
+@Setter
 @Data @NoArgsConstructor @AllArgsConstructor
 @Entity
 public class Element {
@@ -28,7 +29,7 @@ public class Element {
 	private double coefficient;
 	private double noteEliminatoire;
 	private double noteValidation;
-	
+	private String nom;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_module")
 	private Module module;
