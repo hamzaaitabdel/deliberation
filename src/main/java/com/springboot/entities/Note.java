@@ -27,7 +27,7 @@ public class Note {
 	private Long id;
 	private double note;
 	private double coefficient;
-	private int year;
+	
 	private String etats;
 	private String session;
 			

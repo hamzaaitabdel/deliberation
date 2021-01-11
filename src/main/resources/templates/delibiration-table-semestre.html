@@ -309,38 +309,38 @@ xmlns:th="http://www.thymeleaf.org">
                             </div>
                           </th>
                             <th>CNE</th>
-                            <th>Module</th>
+                            <th>Semestre</th>
                             <th>Note</th>
                             <th>Details</th>
                         </tr>
-                        <tr th:each ="m:${modules1}">
+                        <tr th:each ="m:${list}">
                           <td class="p-0 text-center">
                             <div class="custom-checkbox custom-control">
                               <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
                               <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
                             </div>
                           </td>
-                          <td th:text="${m.key.etudiant.cne}"></td>
-                          <td th:text="${m.key.module.name}">
+                          <td th:text="${m.etudiant.cne}"></td>
+                          <td th:text="${m.semestre.name}">
                             <!-- <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
                               <div class="progress-bar bg-success" data-width="100"></div>
                             </div> -->
                           </td>
                           
                           <td >
-                            <th:block th:if="${m.key.note ge 10}">
+                            <th:block th:if="${m.note ge 10}">
                                   
-                                  <div class="badge badge-success" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-success" th:text="${m.note}"></div>
                                 
                             </th:block>
-                            <th:block th:if="${m.key.note le 8}">
+                            <th:block th:if="${m.note le 8}">
                                   
-                                  <div class="badge badge-danger" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-danger" th:text="${m.note}"></div>
                                 
                             </th:block>
-                            <th:block th:if="${m.key.note lt 10} AND ${m.key.note gt 8}">
+                            <th:block th:if="${m.note lt 10} AND ${m.note gt 8}">
                                   
-                                  <div class="badge badge-warning" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-warning" th:text="${m.note}"></div>
                                 
                             </th:block>
                           </td>
@@ -349,13 +349,13 @@ xmlns:th="http://www.thymeleaf.org">
                               <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Details
                               </button>
-                              <div class="dropdown-menu dropleft">
+                              <!--HERE ILA BGHIT Z3MA <div class="dropdown-menu dropleft">
                                 <a class="dropdown-item">List des element:</a>
                                 <div th:each="dElem:${m.value}">
                                   <a th:text="${dElem.afficher()}" class="dropdown-item" href="#"></a>
                                 </div>
                                 
-                              </div>
+                              </div> -->
                             </div>
                           </td>
                         </tr>

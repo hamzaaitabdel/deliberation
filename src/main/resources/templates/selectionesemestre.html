@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns:th="http://www.thymeleaf.org">
->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Components &rsaquo; Table &mdash; Stisla</title>
+  <title>Layout &rsaquo; Default &mdash; Stisla</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -252,21 +250,150 @@ xmlns:th="http://www.thymeleaf.org">
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="index-0.html">Home</a></li>
-                  
+                  <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
+                  <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
                 </ul>
               </li>
               <li class="menu-header">Starter</li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> 
-                  <span>Delibiration Semestre</span></a>
+              <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" th:href="@{selectEtablissement}">Notes par Semestre</a></li>
-                  <li><a class="nav-link" href="layout-transparent.html">Note Par Module</a></li>
+                  <li class="active"><a class="nav-link" href="layout-default.html">Default Layout</a></li>
+                  <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
+                  <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
               </li>
               <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
-               
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
+                  <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
+                  <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
+                  <li><a class="nav-link" href="bootstrap-buttons.html">Buttons</a></li>
+                  <li><a class="nav-link" href="bootstrap-card.html">Card</a></li>
+                  <li><a class="nav-link" href="bootstrap-carousel.html">Carousel</a></li>
+                  <li><a class="nav-link" href="bootstrap-collapse.html">Collapse</a></li>
+                  <li><a class="nav-link" href="bootstrap-dropdown.html">Dropdown</a></li>
+                  <li><a class="nav-link" href="bootstrap-form.html">Form</a></li>
+                  <li><a class="nav-link" href="bootstrap-list-group.html">List Group</a></li>
+                  <li><a class="nav-link" href="bootstrap-media-object.html">Media Object</a></li>
+                  <li><a class="nav-link" href="bootstrap-modal.html">Modal</a></li>
+                  <li><a class="nav-link" href="bootstrap-nav.html">Nav</a></li>
+                  <li><a class="nav-link" href="bootstrap-navbar.html">Navbar</a></li>
+                  <li><a class="nav-link" href="bootstrap-pagination.html">Pagination</a></li>
+                  <li><a class="nav-link" href="bootstrap-popover.html">Popover</a></li>
+                  <li><a class="nav-link" href="bootstrap-progress.html">Progress</a></li>
+                  <li><a class="nav-link" href="bootstrap-table.html">Table</a></li>
+                  <li><a class="nav-link" href="bootstrap-tooltip.html">Tooltip</a></li>
+                  <li><a class="nav-link" href="bootstrap-typography.html">Typography</a></li>
+                </ul>
+              </li>
+              <li class="menu-header">Stisla</li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Components</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="components-article.html">Article</a></li>
+                  <li><a class="nav-link beep beep-sidebar" href="components-avatar.html">Avatar</a></li>
+                  <li><a class="nav-link" href="components-chat-box.html">Chat Box</a></li>
+                  <li><a class="nav-link beep beep-sidebar" href="components-empty-state.html">Empty State</a></li>
+                  <li><a class="nav-link" href="components-gallery.html">Gallery</a></li>
+                  <li><a class="nav-link beep beep-sidebar" href="components-hero.html">Hero</a></li>
+                  <li><a class="nav-link" href="components-multiple-upload.html">Multiple Upload</a></li>
+                  <li><a class="nav-link beep beep-sidebar" href="components-pricing.html">Pricing</a></li>
+                  <li><a class="nav-link" href="components-statistic.html">Statistic</a></li>
+                  <li><a class="nav-link" href="components-tab.html">Tab</a></li>
+                  <li><a class="nav-link" href="components-table.html">Table</a></li>
+                  <li><a class="nav-link" href="components-user.html">User</a></li>
+                  <li><a class="nav-link beep beep-sidebar" href="components-wizard.html">Wizard</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Forms</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="forms-advanced-form.html">Advanced Form</a></li>
+                  <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
+                  <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google Maps</span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="gmaps-advanced-route.html">Advanced Route</a></li>
+                  <li><a href="gmaps-draggable-marker.html">Draggable Marker</a></li>
+                  <li><a href="gmaps-geocoding.html">Geocoding</a></li>
+                  <li><a href="gmaps-geolocation.html">Geolocation</a></li>
+                  <li><a href="gmaps-marker.html">Marker</a></li>
+                  <li><a href="gmaps-multiple-marker.html">Multiple Marker</a></li>
+                  <li><a href="gmaps-route.html">Route</a></li>
+                  <li><a href="gmaps-simple.html">Simple</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i> <span>Modules</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="modules-calendar.html">Calendar</a></li>
+                  <li><a class="nav-link" href="modules-chartjs.html">ChartJS</a></li>
+                  <li><a class="nav-link" href="modules-datatables.html">DataTables</a></li>
+                  <li><a class="nav-link" href="modules-flag.html">Flag</a></li>
+                  <li><a class="nav-link" href="modules-font-awesome.html">Font Awesome</a></li>
+                  <li><a class="nav-link" href="modules-ion-icons.html">Ion Icons</a></li>
+                  <li><a class="nav-link" href="modules-owl-carousel.html">Owl Carousel</a></li>
+                  <li><a class="nav-link" href="modules-sparkline.html">Sparkline</a></li>
+                  <li><a class="nav-link" href="modules-sweet-alert.html">Sweet Alert</a></li>
+                  <li><a class="nav-link" href="modules-toastr.html">Toastr</a></li>
+                  <li><a class="nav-link" href="modules-vector-map.html">Vector Map</a></li>
+                  <li><a class="nav-link" href="modules-weather-icon.html">Weather Icon</a></li>
+                </ul>
+              </li>
+              <li class="menu-header">Pages</li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Auth</span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="auth-forgot-password.html">Forgot Password</a></li>
+                  <li><a href="auth-login.html">Login</a></li>
+                  <li><a class="beep beep-sidebar" href="auth-login-2.html">Login 2</a></li>
+                  <li><a href="auth-register.html">Register</a></li>
+                  <li><a href="auth-reset-password.html">Reset Password</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-exclamation"></i> <span>Errors</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="errors-503.html">503</a></li>
+                  <li><a class="nav-link" href="errors-403.html">403</a></li>
+                  <li><a class="nav-link" href="errors-404.html">404</a></li>
+                  <li><a class="nav-link" href="errors-500.html">500</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-bicycle"></i> <span>Features</span></a>
+                <ul class="dropdown-menu">
+                  <li><a class="nav-link" href="features-activities.html">Activities</a></li>
+                  <li><a class="nav-link" href="features-post-create.html">Post Create</a></li>
+                  <li><a class="nav-link" href="features-posts.html">Posts</a></li>
+                  <li><a class="nav-link" href="features-profile.html">Profile</a></li>
+                  <li><a class="nav-link" href="features-settings.html">Settings</a></li>
+                  <li><a class="nav-link" href="features-setting-detail.html">Setting Detail</a></li>
+                  <li><a class="nav-link" href="features-tickets.html">Tickets</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Utilities</span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="utilities-contact.html">Contact</a></li>
+                  <li><a class="nav-link" href="utilities-invoice.html">Invoice</a></li>
+                  <li><a href="utilities-subscribe.html">Subscribe</a></li>
+                </ul>
+              </li>
+              <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
+            </ul>
+
+            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Documentation
+              </a>
+            </div>
         </aside>
       </div>
 
@@ -274,106 +401,50 @@ xmlns:th="http://www.thymeleaf.org">
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Table</h1>
+            <h1>Default Layout</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a th:text="${title}"href="#"></a></div>
-              <div class="breadcrumb-item">Table</div>
+              <div class="breadcrumb-item"><a href="#">Layout</a></div>
+              <div class="breadcrumb-item">Default Layout</div>
             </div>
           </div>
 
           <div class="section-body">
-            <h2 class="section-title">Delibiration</h2>
-            <p th:text="${title}" class="section-lead">Example of some Bootstrap table components.</p>
+            <h2 class="section-title">This is Example Page</h2>
+            <p class="section-lead">This page is just an example for you to create your own page.</p>
+            <div class="card">
+              <div class="card-header">
+                <h4>importation des notes:</h4>
+              </div>
+              <div class="card-body">
+                    <div class="form-group">
+                      <label>Session</label>
+                      <select class="form-control selectric">
+                        <option>Ordinaire</option>
+                        <option>Rattrapage </option>
+                      </select>
+                    </div>
+                    
+              </div>
+              <div class="card-body">
+                
+                <p>selectioner Etape</p>
+                    <div class="form-group">
+                      <label>Etape</label>
+                      <select name="Etape" class="form-control selectric">
+                        <span th:if= "${Semestres!=null}">
+                          <option th:each="S : ${Semestres}" th:value="${S.getId_semestre()}" th:text="${S.libelle_semestre()}"></option>
+                      </select>
+                    </span>
+                    </div>
+                    <a href="/Module" type="submite" class="btn btn-dark">suivant</a>
+              </div>
 
-        
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4>table des Note des etudiant</h4>
-                    <div class="card-header-form">
-                      <a th:href="@{__${#httpServletRequest.requestURI}__?print=true}" class="btn btn-icon icon-left btn-primary">
-                        <i class="fa fa-print"></i> 
-                        Imprimer</a>
-                    </div>
-                  </div>
-                  <div class="card-body p-0">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <tr>
-                          <th>
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                              <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
-                            </div>
-                          </th>
-                            <th>CNE</th>
-                            <th>Module</th>
-                            <th>Note</th>
-                            <th>Details</th>
-                        </tr>
-                        <tr th:each ="m:${modules1}">
-                          <td class="p-0 text-center">
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
-                              <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
-                            </div>
-                          </td>
-                          <td th:text="${m.key.etudiant.cne}"></td>
-                          <td th:text="${m.key.module.name}">
-                            <!-- <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                              <div class="progress-bar bg-success" data-width="100"></div>
-                            </div> -->
-                          </td>
-                          
-                          <td >
-                            <th:block th:if="${m.key.note ge 10}">
-                                  
-                                  <div class="badge badge-success" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                            <th:block th:if="${m.key.note le 8}">
-                                  
-                                  <div class="badge badge-danger" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                            <th:block th:if="${m.key.note lt 10} AND ${m.key.note gt 8}">
-                                  
-                                  <div class="badge badge-warning" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                          </td>
-                          <td>
-                            <div class="btn-group dropleft">
-                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Details
-                              </button>
-                              <div class="dropdown-menu dropleft">
-                                <a class="dropdown-item">List des element:</a>
-                                <div th:each="dElem:${m.value}">
-                                  <a th:text="${dElem.afficher()}" class="dropdown-item" href="#"></a>
-                                </div>
-                                
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        
-                          <td class="p-0 text-center">
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-3">
-                              <label for="checkbox-3" class="custom-control-label">&nbsp;</label>
-                            </div>
-                          </td>
-                          
-                      </table>
-                    </div>
-                  </div>
-                </div>
+
+              <div class="card-footer bg-whitesmoke">
+                This is card footer
               </div>
             </div>
-            
           </div>
         </section>
       </div>
@@ -397,13 +468,11 @@ xmlns:th="http://www.thymeleaf.org">
   <script src="../assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
-  <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 
   <!-- Template JS File -->
   <script src="../assets/js/scripts.js"></script>
   <script src="../assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="../assets/js/page/components-table.js"></script>
 </body>
 </html>

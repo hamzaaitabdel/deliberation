@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+import com.springboot.entities.Etablissement;
 import com.springboot.entities.Filiere;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere,Long> {
@@ -15,7 +18,7 @@ public interface FiliereRepository extends JpaRepository<Filiere,Long> {
 //	@Query("select f.id_filiere from Filiere f where f.nom_filiere =: x")
 //	public Long getId_filiere(@Param("x")String nom);
 //	
-//	@Query(value="select id_filiere from Filiere where nom_filiere = ?",nativeQuery=true)
-//	public Long findId_filiereByNome_filiere(String nom);
+	@Query(value="select f from Filiere f where f.etablissement=:etablissement")
+	public List<Filiere> findByEtablissement(@Param("etablissement")Etablissement etablissement);
 //	
 }

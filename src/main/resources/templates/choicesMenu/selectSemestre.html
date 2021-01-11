@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns:th="http://www.thymeleaf.org">
->
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Components &rsaquo; Table &mdash; Stisla</title>
+  <title>Components &rsaquo; Wizard &mdash; Stisla</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -177,7 +175,7 @@ xmlns:th="http://www.thymeleaf.org">
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-icon bg-info text-white">
-                    <i class="far fa-user"></i>
+                    <i class="far fa-building"></i>
                   </div>
                   <div class="dropdown-item-desc">
                     <b>You</b> and <b>Dedik Sugiharto</b> are now friends
@@ -223,7 +221,7 @@ xmlns:th="http://www.thymeleaf.org">
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
+                <i class="far fa-building"></i> Profile
               </a>
               <a href="features-activities.html" class="dropdown-item has-icon">
                 <i class="fas fa-bolt"></i> Activities
@@ -253,7 +251,6 @@ xmlns:th="http://www.thymeleaf.org">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="index-0.html">Home</a></li>
-                  
                 </ul>
               </li>
               <li class="menu-header">Starter</li>
@@ -261,12 +258,17 @@ xmlns:th="http://www.thymeleaf.org">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> 
                   <span>Delibiration Semestre</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" th:href="@{selectEtablissement}">Notes par Semestre</a></li>
+                  <li><a class="nav-link" href="layout-default.html">Notes par Semestre</a></li>
                   <li><a class="nav-link" href="layout-transparent.html">Note Par Module</a></li>
                 </ul>
               </li>
-              <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
-               
+              
+
+            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Documentation
+              </a>
+            </div>
         </aside>
       </div>
 
@@ -274,106 +276,93 @@ xmlns:th="http://www.thymeleaf.org">
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Table</h1>
+            <h1>Wizard</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a th:text="${title}"href="#"></a></div>
-              <div class="breadcrumb-item">Table</div>
+              <div class="breadcrumb-item"><a href="#">Components</a></div>
+              <div class="breadcrumb-item">Wizard</div>
             </div>
           </div>
 
           <div class="section-body">
-            <h2 class="section-title">Delibiration</h2>
-            <p th:text="${title}" class="section-lead">Example of some Bootstrap table components.</p>
+            <h2 class="section-title">Wizard</h2>
+            <p class="section-lead">The wizard is a component to simplify a process with a step-by-step method.</p>
 
-        
+            
             <div class="row">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4>table des Note des etudiant</h4>
-                    <div class="card-header-form">
-                      <a th:href="@{__${#httpServletRequest.requestURI}__?print=true}" class="btn btn-icon icon-left btn-primary">
-                        <i class="fa fa-print"></i> 
-                        Imprimer</a>
-                    </div>
+                    <h4>Menu du Delibiration</h4>
                   </div>
-                  <div class="card-body p-0">
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <tr>
-                          <th>
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-                              <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                  <div class="card-body">
+                    <div class="row mt-4">
+                      <div class="col-12 col-lg-8 offset-lg-2">
+                        <div class="wizard-steps">
+                          <div class="wizard-step ">
+                            <div class="wizard-step-icon">
+                              <i class="far fa-building"></i>
                             </div>
-                          </th>
-                            <th>CNE</th>
-                            <th>Module</th>
-                            <th>Note</th>
-                            <th>Details</th>
-                        </tr>
-                        <tr th:each ="m:${modules1}">
-                          <td class="p-0 text-center">
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
-                              <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
+                            <div class="wizard-step-label">
+                              choix d'etablissement 
                             </div>
-                          </td>
-                          <td th:text="${m.key.etudiant.cne}"></td>
-                          <td th:text="${m.key.module.name}">
-                            <!-- <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
-                              <div class="progress-bar bg-success" data-width="100"></div>
-                            </div> -->
-                          </td>
-                          
-                          <td >
-                            <th:block th:if="${m.key.note ge 10}">
-                                  
-                                  <div class="badge badge-success" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                            <th:block th:if="${m.key.note le 8}">
-                                  
-                                  <div class="badge badge-danger" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                            <th:block th:if="${m.key.note lt 10} AND ${m.key.note gt 8}">
-                                  
-                                  <div class="badge badge-warning" th:text="${m.key.note}"></div>
-                                
-                            </th:block>
-                          </td>
-                          <td>
-                            <div class="btn-group dropleft">
-                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Details
-                              </button>
-                              <div class="dropdown-menu dropleft">
-                                <a class="dropdown-item">List des element:</a>
-                                <div th:each="dElem:${m.value}">
-                                  <a th:text="${dElem.afficher()}" class="dropdown-item" href="#"></a>
-                                </div>
-                                
-                              </div>
+                          </div>
+                          <div class="wizard-step ">
+                            <div class="wizard-step-icon">
+                              <i class="fas fa-list-ul"></i>
                             </div>
-                          </td>
-                        </tr>
-                        
-                          <td class="p-0 text-center">
-                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-3">
-                              <label for="checkbox-3" class="custom-control-label">&nbsp;</label>
+                            <div class="wizard-step-label">
+                              Choix de la filiere
                             </div>
-                          </td>
-                          
-                      </table>
+                          </div>
+                          <div class="wizard-step ">
+                            <div class="wizard-step-icon">
+                              <i class="far fa-calendar"></i>
+                            </div>
+                            <div class="wizard-step-label">
+                              choix d'etaps 
+                            </div>
+                          </div>
+                          <div class="wizard-step wizard-step-active">
+                            <div class="wizard-step-icon">
+                              <i class="fas fa-server"></i>
+                            </div>
+                            <div class="wizard-step-label">
+                              Choix du semestre
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+
+                    <form th:action="@{/redirectDelibiration}" method="POST" class="wizard-content mt-2">
+                      <div class="wizard-pane">
+                        <div class="form-group row align-items-center">
+                            <label class="col-md-4 text-md-right text-left">Select</label>
+                            <div class="col-lg-4 col-md-6">
+                              <select name="semestre" th:each="l:${list}"class="form-control">
+                                <option th:value="${l.id}" th:text="${l.name}"></option>
+                              </select>
+                            </select>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4"></div>
+                         
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-4"></div>
+                          <div class="col-lg-4 col-md-6 text-right">
+                            <button class="btn btn-primary">Delibiration</button>  
+                          </div>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
-            
           </div>
         </section>
       </div>
@@ -397,13 +386,11 @@ xmlns:th="http://www.thymeleaf.org">
   <script src="../assets/js/stisla.js"></script>
 
   <!-- JS Libraies -->
-  <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
 
   <!-- Template JS File -->
   <script src="../assets/js/scripts.js"></script>
   <script src="../assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
-  <script src="../assets/js/page/components-table.js"></script>
 </body>
 </html>
