@@ -17,8 +17,8 @@ public interface FiliereRepository extends JpaRepository<Filiere,Long> {
 	public List<Filiere> getAll();
 	
 	
-	@Query("select f from Filiere f where f.id =: id_filiere")
-	public Filiere findById_filiere(@Param("id_filiere")Long id_filiere);
+	@Query("select f from Filiere f where f.id =: id")
+	public Filiere findById_filiere(@Param("id")Long id);
 	
 	@Query("select f.id from Filiere f where f.name =: x")
 	public Long getId_filiere(@Param("x")String nom);

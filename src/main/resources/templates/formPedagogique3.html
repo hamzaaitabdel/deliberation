@@ -32,7 +32,7 @@
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
 						<div class="login-brand">Inscription Pédagogique</div>
-						<form th:action="@{confirmEditPedago}" method="post">
+						<form th:action="@{inscrirePedagogiquement4}" method="post">
 							<div class="card card-primary">
 								<div class="row">
 
@@ -44,56 +44,68 @@
 										<div class="card-body">
 
 											<div class="form-group">
-												<label>ID</label> <input type="text" name="id"
-													class="form-control" th:value="${ip.id}"
-													readonly="readonly">
-											</div>
-											
-											<div class="form-group">
 												<label>CNE</label> <input type="text" name="cne"
-													class="form-control" th:value="${ip.etudiant.cne}"
+													class="form-control" th:value="${etudiant.cne}"
 													readonly="readonly">
 											</div>
 
 											<div class="form-group">
 												<label>Filiere</label> <input type="text" name="nom_filiere"
 													class="form-control"
-													th:value="${ip.element.module.semestre.etape.filiere.name}"
+													th:value="${etudiant.filiere.name}"
 													readonly="readonly">
 											</div>
 
 											<div class="form-group">
-												<label>Année Universitaire</label><br> 
-												<select name="annee"  class="form-control">
-													<option th:each="p:${annees}"  >
-														<label th:text="${p.id}+'| '+${p.annee}" ></label>
+												<label>Etape</label><br> <input type="text" name="etape"
+													class="form-control"
+													th:value="${etape}"
+													readonly="readonly">
+											</div>
+											
+											<div class="form-group" >
+												<label>Semestre</label><br> <input type="text" name="semestre"
+													class="form-control"
+													th:value="${semestre.name}"
+													readonly="readonly">
+											</div>
+											
+											
+
+											<div class="form-group">
+												<label>Module</label><br> 
+												<select name="module"  class="form-control">
+													<option th:each="p:${modules}"  >
+														<label th:text="${p.id}+'| '+${p.name}" ></label>
 													</option>
 												</select>
+
 											</div>
 
-											 <div class="form-group">
-												<label>Element</label>
+
+											<!-- <div class="form-group">
+												<label>Module</label>
 
 												<table class="table table-striped mb-0">
 													<thead>
 														<tr>
 															<th>Selected</th>
 															<th>ID</th>
-															<th>Libellé Element</th>
+															<th>Libellé Module</th>
 
 														</tr>
 													</thead>
 													<tbody>
 
-														<tr th:each="p:${elements}">
+														<tr th:each="p:${modules}">
 
-															<td><div class="checkbox">
-																	<label><input type="radio" id='element'
-																		th:name="element" th:value="${p.id}"></label>
+															<td><div class="radio">
+																	<label><input type="radio" id='module'
+																		name="module" th:value="${p.id_module}"></label>
 																</div></td>
-															<td th:text="${p.id}"></td>
+															<td th:text="${p.id_module}"></td>
 
-															<td th:text="${p.name}"></td>
+															<td th:text="${p.libelle_module}"></td>
 
 														</tr>
 
@@ -101,14 +113,13 @@
 													</tbody>
 												</table>
 
-											</div> 
+											</div> -->
 											<div class="form-group text-right">
 												<button type="submit"
-													class="btn btn-round btn-lg btn-primary">Send Form</button>
+													class="btn btn-round btn-lg btn-primary">Suivant</button>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</form>

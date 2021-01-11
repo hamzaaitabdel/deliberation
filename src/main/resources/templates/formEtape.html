@@ -48,13 +48,11 @@
 													class="form-control" th:value="${etape.name}"
 													required="required">
 											</div>
-<<<<<<< HEAD
 											<!-- <div class="form-group">
 												<label>Ordre</label> <input type="text"
 													name="ordre" class="form-control"
 													th:value="${etape.ordre}" required="required">
 											</div> -->
-=======
 											<div class="form-group">
 												<label>Filiere</label> <select name="filiere"
 													th:value="${filiere}" class="form-control">
@@ -64,7 +62,6 @@
 
 												</select>
 											</div>
->>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 											<div class="form-group">
 												<label>HasDiplome</label> <input type="checkbox"
 													name="diplome" class="form-control"
@@ -130,7 +127,6 @@
 											</ul>
 										</div>
 									</div>
-<<<<<<< HEAD
 							</div>
 						</div>
 					</div>
@@ -156,15 +152,12 @@
 													name="libelle_semestre" class="form-control"
 													th:value="${semestre.libelle_semestre}" required="required">
 											</div>
-<<<<<<< HEAD
 											<!-- <div class="form-group">
 												<label>Ordre</label> <input type="text"
 													name="ordre" class="form-control"
 													th:value="${semestre.ordre}" required="required">
 											</div>-->
-=======
 											
->>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 											<div class="form-group">
 												<label>ID Etape</label> <input type="text"
 													name="id_etape" class="form-control"
@@ -177,10 +170,7 @@
 									</div>
 								</form>		
 									</div>
-=======
->>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 								</div>
-<<<<<<< HEAD
 								<div class="col-12 col-md-6 col-lg-6">
 									<div class="card">
 										<div class="card-header">
@@ -205,20 +195,17 @@
 												<tbody>
 													<tr th:each="p:${semestres}">
 
-														<td th:text="${p.id_semestre}"></td>
+														<td th:text="${p.id}"></td>
 														<td th:text="${p.libelle_semestre}"></td>
 
-<<<<<<< HEAD
-														<td th:text="${p.etape.id_etape}"></td>
+														<td th:text="${p.etape.id}"></td>
 
-=======
-														<td th:text="${p.Etape.id_etape}"></td>
+														<td th:text="${p.Etape.id}"></td>
 <td>
 														<a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteSemestre(id=${p.id_semestre})}><i class="fas fa-trash"></i></a>
 														</td>
->>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 													</tr>
 
 												</tbody>
@@ -226,8 +213,6 @@
 										</div>
 									</div>
 
-=======
->>>>>>> branch 'Binome2' of https://github.com/hamzaaitabdel/deliberation
 							</div>
 						</div>
 

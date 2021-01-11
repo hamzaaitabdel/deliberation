@@ -479,25 +479,25 @@
 
 											<tr th:each="p:${filiere}">
 
-												<td th:text="${p.id_filiere}"></td>
+												<td th:text="${p.id}"></td>
 
-												<td th:text="${p.nom_filiere}"></td>
+												<td th:text="${p.name}"></td>
 
 
 												<td><a
-													th:href=@{etudiantsParFiliere(id=${p.id_filiere})}
+													th:href=@{etudiantsParFiliere(id=${p.id})}
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
 														class="fas fa-pencil-alt"></i></a></td>
 
 												<td><a
-													th:href=@{editFiliere(id=${p.id_filiere})}
+													th:href=@{editFiliere(id=${p.id})}
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
 														class="fas fa-pencil-alt"></i></a>
 
 												<a
-													th:href=@{deleteFiliere(id=${p.id_filiere})}
+													th:href=@{deleteFiliere(id=${p.id})}
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Delete"><i
 														class="fas fa-pencil-alt"></i></a></td>

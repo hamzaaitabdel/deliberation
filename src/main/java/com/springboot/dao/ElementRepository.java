@@ -1,6 +1,10 @@
 package com.springboot.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.springboot.entities.Element;
@@ -9,4 +13,7 @@ import com.springboot.entities.Element;
 public interface ElementRepository extends JpaRepository<Element, Long> {
 	
 	public Long findIdByName(String element);
+
+	@Query("select d from Element d where d.module.id= :x")
+	public List<Element> findById_moduleContains(@Param("x")Long parseLong);
 }

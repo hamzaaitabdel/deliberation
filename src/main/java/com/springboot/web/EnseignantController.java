@@ -368,38 +368,38 @@ public class EnseignantController {
 	 * model.addAttribute("size",size); return "listeSemestre"; }
 	 */
 
-	//Affichage avec pagination :tous
-	@GetMapping(path = "/etudiantsParFiliere")
-	public String etudiantsParFiliere(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size,
-			@RequestParam(name = "filiere", defaultValue = "") String filiere) {
-		Page<Etudiant> pageEtudiants = etudiantRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("etudiants", pageEtudiants.getContent());
-		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("filiere", filiere);
-		model.addAttribute("size", size);
-		return "listeSemestre";
-	}
+//	//Affichage avec pagination :tous
+//	@GetMapping(path = "/etudiantsParFiliere")
+//	public String etudiantsParFiliere(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+//			@RequestParam(name = "size", defaultValue = "5") int size,
+//			@RequestParam(name = "filiere", defaultValue = "") String filiere) {
+//		Page<Etudiant> pageEtudiants = etudiantRepository.findAll(PageRequest.of(page, size));
+//		model.addAttribute("etudiants", pageEtudiants.getContent());
+//		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+//		model.addAttribute("currentPage", page);
+//		model.addAttribute("filiere", filiere);
+//		model.addAttribute("size", size);
+//		return "listeSemestre";
+//	}
 
 	@Autowired
 	InscriptionPedagogiqueRepository pedagogiqueRepository;
 
-	@GetMapping(path="/ajouterParSemestre")
-	public String ajouterParSemestre(Model model 
-			//@RequestParam(name = "cne" , defaultValue = "")String cne 
-			//@RequestParam(name = "filiere" , defaultValue = "")String filiere
-			) {
-
-		InscriptionPedagogique admin = new InscriptionPedagogique();
-		model.addAttribute("admin", admin);
-//		Etudiant e = etudiantRepository.getOne(cne);
-//		e.setCne(cne);
-//		model.addAttribute("cne", cne);
-		model.addAttribute("mode", "new");
-
-		return "ConfirmationSemestre";
-	}
+//	@GetMapping(path="/ajouterParSemestre")
+//	public String ajouterParSemestre(Model model 
+//			//@RequestParam(name = "cne" , defaultValue = "")String cne 
+//			//@RequestParam(name = "filiere" , defaultValue = "")String filiere
+//			) {
+//
+//		InscriptionPedagogique admin = new InscriptionPedagogique();
+//		model.addAttribute("admin", admin);
+////		Etudiant e = etudiantRepository.getOne(cne);
+////		e.setCne(cne);
+////		model.addAttribute("cne", cne);
+//		model.addAttribute("mode", "new");
+//
+//		return "ConfirmationSemestre";
+//	}
 	/*
 	 * @RequestMapping(path="/saveAjoutSemestre" , method = RequestMethod.POST)
 	 * public String saveAjoutSemestre(Model model ,

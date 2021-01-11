@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.springboot.entities.AnneeUniversitaire;
+import com.springboot.entities.Element;
 import com.springboot.entities.Etudiant;
 import com.springboot.entities.InscriptionPedagogique;
 import com.springboot.entities.Module;
@@ -15,13 +17,12 @@ public interface InscriptionPedagogiqueRepository extends JpaRepository<Inscript
 	
 	@Transactional
 	@Modifying
-	@Query("update InscriptionPedagogique s set s.module= :x where s.id = :id")
-	public void UpdateId_module(@Param("x")Module m, @Param("id")Long id);
+	@Query("update InscriptionPedagogique s set s.element= :x , s.anneeUniversitaire= :y where s.id = :id")
+	public void UpdateId_element(@Param("x")Element m, @Param("y")AnneeUniversitaire a, @Param("id")Long id);
 	
 	@Transactional
 	@Modifying
 	@Query("delete from InscriptionPedagogique s where s.id = :id")
 	public void DeleteIDIP(@Param("id")Long id);
-	
-	
+
 }

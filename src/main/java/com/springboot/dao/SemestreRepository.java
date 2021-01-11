@@ -16,6 +16,9 @@ public interface SemestreRepository extends JpaRepository<Semestre,Long> {
 	@Query(value="select id_semestre from Semestre where libelle_semestre = ?",nativeQuery=true)
 	public Long findId_moduleByLibelle_semestre(String libelle);
 	
+	@Query("select d from Semestre d where d.etape.id like :x ")
+	public List<Semestre> findById_etapeContains(@Param("x")Long idetape);
+	
 //	
 //	@Query(value="select id_semestre from Semestre where libelle_semestre = ?",nativeQuery=true)
 //	public Long findId_moduleByLibelle_semestre(String libelle);

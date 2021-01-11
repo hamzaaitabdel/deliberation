@@ -22,8 +22,6 @@ import lombok.ToString;
 public class Semestre {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_semestre;
-	private String libelle_semestre;
 	private Long id;
 	private String name;
 	private boolean etats;

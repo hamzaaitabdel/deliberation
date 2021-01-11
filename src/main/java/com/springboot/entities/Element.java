@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Element {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 	private String name;
 	private double coefficient;
 	private double noteEliminatoire;

@@ -414,7 +414,7 @@
                 <div class="card-header">
                   <h4>Latest Inscriptions</h4>
                   <div class="card-header-action">
-                    <a th:href="@{pedagogiqueAll}" class="btn btn-primary">View All</a>
+                    <a th:href="@{listePedago}" class="btn btn-primary">View All</a>
                   </div>
                 </div>
                 <div class="card-body p-0">
@@ -434,6 +434,7 @@
     					<th>Prenom</th>
     					<th>Semestre</th>
     					<th>Module</th>
+    					<th>Element</th>
     				    <th>Edit</th>
     				    <th>Delete</th>
                         </tr>
@@ -442,23 +443,25 @@
                 
                         <tr th:each="p:${pedagogiques}">
                         
-                        	<td th:text="${p.id_inscription_pedagogique}"></td>
+                        	<td th:text="${p.id}"></td>
                         	<td th:text="${p.etudiant.cne}"></td>
-							<td th:text="${p.etudiant.nom_etud}"></td>
-							<td th:text="${p.etudiant.prenom_etud}"></td>
-							<td th:text="${p.module.semestre.libelle_semestre}"></td>
-							<td th:text="${p.module.libelle_module}"></td>
+							<td th:text="${p.etudiant.nom}"></td>
+							<td th:text="${p.etudiant.prenom}"></td>
+							<td th:text="${p.element.module.semestre.name}"></td>
+							<td th:text="${p.element.module.name}"></td>
+							<td th:text="${p.element.name}"></td>
+							
 							
 							
                           <td>
-                             <a  th:href=@{editPedago(id=${p.id_inscription_pedagogique})}
+                             <a  th:href=@{editPedago(id=${p.id})}
                             class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i>
                             </a> 
                             </td>
                             <td>
                             <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deletePedago(id=${p.id_inscription_pedagogique})}><i class="fas fa-trash"></i>
+                            th:href=@{deletePedago(id=${p.id})}><i class="fas fa-trash"></i>
                             </a> 
                           </td>
                           
@@ -470,7 +473,7 @@
                     <ul class="nav nav-pills">
 				<li  th:each="page,status:${pages}">
 					<a th:class="${status.index==currentPage?'btn btn-warning':'btn'}" 
-					th:href="@{pedagogiqueAll(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:href="@{listePedago(page=${status.index},keyword=${keyword},size=${size})}" 
 					th:text="${status.index}"></a>
 				</ul>
                   </div>
