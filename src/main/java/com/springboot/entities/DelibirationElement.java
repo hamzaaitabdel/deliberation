@@ -32,7 +32,7 @@ public class DelibirationElement {
     
     private double note;
     public String afficher(){
-        return this.element.getNom()+":"+this.note;
+        return this.element.getName()+":"+this.note;
     }
     
 }

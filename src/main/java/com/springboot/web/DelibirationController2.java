@@ -170,16 +170,10 @@ public class DelibirationController2 {
                 System.out.println("coeff ? "+coeff);
                
             }
-            
-            
             double moyenneElem=(s+(max*coeff))/(coeffs+coeff);
             
-           
-
-
             System.out.println("moyenne element est : "+ moyenneElem);
 
-           
             if(moyenneElem<Z){
                 System.out.println("nonvalidé ? "+ Z);
             n.setEtats("nonvalidé");
@@ -247,14 +241,7 @@ public class DelibirationController2 {
         double note = Double.parseDouble(noteS);
         n.setNote(note);
         noteRep.save(n);
-        
-       
-          
-
-        
-       
-    
-        return "";
+        return "";//home
     }
 
     @RequestMapping(path="/modifiercomplet",method = RequestMethod.GET)
@@ -278,8 +265,9 @@ public class DelibirationController2 {
         Professeur p=Prof_rep.getOne(idProf);
         List<Element>list=p.getElements();
         List<Note> notes=noteRep.getNoteByElement(Elem_rep.getOne(id));
+        System.out.println("size="+notes.size());
         model.addAttribute("notes",notes);
-        model.addAttribute("elements", list);
+        model.addAttribute("list", list);
         return "ListModules";
     }
 

@@ -69,7 +69,7 @@ public class PdfGenerators {
             file =new File(REPOSITORY+"/delibiration_"+semestre.toUpperCase()+".pdf");
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(file));
             Document doc = new Document(pdfDoc);
-            Table table = new Table(5);
+            Table table = new Table(4);
             table.setWidth(500);
             table.setMargin(23);
             doc.add(new Image(ImageDataFactory.create("https://i.ibb.co/8gbMHmP/external-content-duckduckgo.png")));
