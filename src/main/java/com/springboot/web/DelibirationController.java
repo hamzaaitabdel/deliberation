@@ -29,6 +29,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.springboot.dao.AnneResultRepository;
 import com.springboot.dao.DelibirationModuleRepository;
 import com.springboot.dao.ElementRepository;
 import com.springboot.dao.EtablissementRepository;
@@ -42,6 +43,7 @@ import com.springboot.dao.ModuleRepository;
 import com.springboot.dao.NoteRepository;
 import com.springboot.dao.SemestreRepository;
 import com.springboot.dao.SemestreResultRepository;
+import com.springboot.entities.AnneeResult;
 import com.springboot.entities.DelibirationElement;
 import com.springboot.entities.DelibirationModule;
 import com.springboot.entities.Element;
@@ -93,6 +95,8 @@ public class DelibirationController {
    FiliereRepository filiereRepository;
    @Autowired
    EtapeRepository etapeRepository;
+   @Autowired
+   AnneResultRepository anneResultRepository;
 
    @GetMapping("/selectEtablissement")
    public String selectEtab(Model model){
@@ -234,9 +238,9 @@ public class DelibirationController {
         @RequestParam(name="year",defaultValue="2020/2021") String year,
         @RequestParam(name="semestre",defaultValue="1") Long sem,
         @RequestParam(name="save",defaultValue="0") boolean save,
+        @RequestParam(name="session",defaultValue="ordinaire") String session,
         @RequestParam(name = "filiere", defaultValue = "1") int filiere,
         @RequestParam(name="print" ,defaultValue = "false") boolean print) throws MalformedURLException {
-
             try{
                 //List<List<Element>> elements =new ArrayList<List<Element>>();
                 List<DelibirationModule>delibirationModule=new ArrayList<DelibirationModule>();
@@ -265,7 +269,7 @@ public class DelibirationController {
                         DelibirationElement de = new DelibirationElement();
                         for(Element elem:elements){
                             
-                            List<Note>notes =noteRepository.findByCneAndElement(etudiantRepository.getOne(cne), elem);
+                            List<Note>notes =noteRepository.findByCneAndElementAndSession(etudiantRepository.getOne(cne), elem,session);
                             ArrayList<Double> exams=new ArrayList<Double>();
                             exams.clear();
                             double coeff=0;
@@ -419,4 +423,66 @@ public class DelibirationController {
        return "errors-500";
    }
    
+   @GetMapping("/delibirationAnnuelle")
+   public String delibirationAnnuelle(Model model,
+   @RequestParam(name = "idEtape",defaultValue = "1")Long idEtape,
+   @RequestParam(name="print",defaultValue = "false")boolean print,
+   @RequestParam(name="save",defaultValue = "false")boolean save) throws MalformedURLException {
+    Etape etape =etapeRepository.getOne(idEtape);
+    System.out.println(etape.getName());
+    List<Semestre> semestres=semestreRepository.findByEtape(etape);
+    for(Semestre s:semestres)System.out.println("semestres_>>"+s.getName());
+    List<SemestreResult> delibirationSemestres=new ArrayList<SemestreResult>();
+    List<AnneeResult> delibirationAnnee=new ArrayList<AnneeResult>();
+    ArrayList<String>cnes= new ArrayList<String>();
+    
+    if(semestres.size()>2)System.err.println("[error]:there is more than 2 semestres for this \"Etaps\"");
+    for(Semestre s:semestres){
+        List<SemestreResult> sr=semestreResultRepository.findBySemestre(s);
+        delibirationSemestres.addAll(sr);
+       System.out.println("for1>>");
+    }
+    System.out.println("delibirationSize="+delibirationSemestres.size());
+    for(SemestreResult sr:delibirationSemestres){
+        if(!cnes.contains(sr.getEtudiant().getCne()))cnes.add(sr.getEtudiant().getCne());
+    }
+    //deleberate
+    for(String cne:cnes){
+        double moyenne=0;
+        double sum=0;
+        int i=1;
+        Etudiant etudiant=etudiantRepository.getOne(cne);
+        List<SemestreResult> temp=semestreResultRepository.findByEtudiant(etudiant);
+        for(SemestreResult sr:temp){
+            sum+=sr.getNote();
+            System.out.println("pour le semestre >"+sr.getSemestre().getName()+",note est>"+sr.getNote());
+            i++;
+        } 
+        if(i==2){
+            moyenne=sum/i;
+        }
+        else if(i<2){
+            System.out.println("[error]: donnees des semestre insufisantes!!!");
+        }
+        else{
+            System.out.println("[error]: plus que 2 semestre on ete trouve pour cette etape!!!");
+        }
+        System.out.println("delin ann size-->"+delibirationSemestres.size());
+        moyenne=sum/i;
+        moyenne=Double.parseDouble(String.format("%.2f", moyenne));
+        AnneeResult ar =new AnneeResult(1l,etape,etudiant,moyenne);
+        delibirationAnnee.add(ar);
+        if(save){
+            anneResultRepository.save(ar);
+        }
+        if(print){
+            File f= PdfGenerators.createPdfAnnee(delibirationAnnee,etape.getName());
+            System.out.println("[PDF] file created and saved at: "+f.getAbsolutePath());
+        }
+        
+    }
+    model.addAttribute("list", delibirationAnnee);
+    System.out.println(delibirationAnnee.size());
+    return"delibiration-table-annee";
+   }
 }

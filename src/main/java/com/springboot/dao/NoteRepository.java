@@ -27,6 +27,10 @@ public interface NoteRepository extends JpaRepository<Note,Long>{
 
     @Query(value = "select n from Note n where n.etudiant =:etudiant")
     public List<Note> findByCne(@Param("etudiant")Etudiant etudiant);
+
+    @Query(value = "select n from Note n where n.etudiant =:etudiant and n.element =:element and session=:session")
+    public List<Note> findByCneAndElementAndSession(@Param("etudiant")Etudiant etudiant,
+    @Param("element")Element element,@Param("session")String session);
     
     // @Query(value = "select n from Note n where n.cne =:cne and year=:year")
     // public Page<Note> findByCneAndYear(@Param("cne")String cne,@Param("year")int year,Pageable pageable);

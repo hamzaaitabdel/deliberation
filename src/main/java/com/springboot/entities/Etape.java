@@ -21,8 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
-
+@Data @NoArgsConstructor @AllArgsConstructor
 public class Etape {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
