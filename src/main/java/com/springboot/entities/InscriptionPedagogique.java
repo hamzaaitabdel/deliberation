@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,25 +31,25 @@ public class InscriptionPedagogique {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "IDIP")
-	Long id;
+	private Long id;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date dateInscriptionValide;	
+	private Date dateInscriptionValide;	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_etudiant")
-	Etudiant etudiant;
+	private Etudiant etudiant;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_element")
-	Element element;
+	private Element element;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "annee_universitaire")
-	AnneeUniversitaire anneeUniversitaire;
+	private AnneeUniversitaire anneeUniversitaire;
 	
-	
+
 	
 
 }

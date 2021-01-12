@@ -32,48 +32,51 @@
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
 						<div class="login-brand">Inscription EnLigne</div>
-<form th:action="@{saveEnligne}" method="post">
-						<div class="card card-primary">
-							<div class="row">
-							
-								<div class="col-20 col-md-20 col-lg-5 p-0">
-									<div class="card-header text-center">
-										<h4>Formulaire de saisie</h4>
-									</div>
-									
-									<div class="card-body">
-										
+						<form th:action="@{saveEnligne}" method="post">
+							<div class="card card-primary">
+								<div class="row">
+
+									<div class="col-20 col-md-20 col-lg-5 p-0">
+										<div class="card-header text-center">
+											<h4>Formulaire de saisie</h4>
+										</div>
+
+										<div class="card-body">
+
 											<div class="form-group">
 												<label>CNE</label> <input type="text" name="cne"
-													class="form-control" th:value="${enligne.cne}" required="required">
+													class="form-control" th:value="${enligne.cne}"
+													required="required">
 											</div>
 
 											<div class="form-group">
-												<label>NomFr</label> <input type="text" name="nom_fr"
-													class="form-control" th:value="${enligne.nom_fr}" required="required">
+												<label>NomFr</label> <input type="text" name="nomFr"
+													class="form-control" th:value="${enligne.nomFr}"
+													required="required">
 											</div>
 
 
 											<div class="form-group">
-												<label>NomAr</label> <input type="text" name="nom_ar"
-													class="form-control" th:value="${enligne.nom_ar}" required="required">
+												<label>NomAr</label> <input type="text" name="nomAr"
+													class="form-control" th:value="${enligne.nomAr}"
+													required="required">
 
 											</div>
 											<div class="form-group">
-												<label>PrenomFr</label> <input type="text" name="prenom_fr"
-													class="form-control" th:value="${enligne.prenom_fr}" required="required">
+												<label>PrenomFr</label> <input type="text" name="prenomFr"
+													class="form-control" th:value="${enligne.prenomFr}"
+													required="required">
 
 											</div>
 
 											<div class="form-group">
-												<label>PrenomAr</label> <input type="text" name="prenom_ar"
-													class="form-control" th:value="${enligne.prenom_ar}" required="required">
+												<label>PrenomAr</label> <input type="text" name="prenomAr"
+													class="form-control" th:value="${enligne.prenomAr}"
+													required="required">
 
 											</div>
-					<div class="form-group">
-												<label>Sexe</label> 
-												<select name="sexe"
-													class="form-control">
+											<div class="form-group">
+												<label>Sexe</label> <select name="sexe" class="form-control">
 													<option>Male</option>
 													<option>Femelle</option>
 
@@ -81,619 +84,704 @@
 											</div>
 											<div class="form-group">
 												<label>Date de Naissance</label> <input type="date"
-													name="date_naissance" class="form-control"
-													th:value="${enligne.date_naissance}" required="required"> <span
-													th:errors=${enligne.date_naissance} class="text-danger"></span>
+													name="dateNaissance" class="form-control"
+													th:value="${enligne.dateNaissance}" required="required">
+												<span th:errors=${enligne.dateNaissance}
+													class="text-danger"></span>
 											</div>
-										
-										
+
+
 											<div class="form-group">
-												<label>Lieu Naissance En Francais</label> 
-												<select name="lieu_naissance_fr"
-													class="form-control">
-													
-										<option value=" AL HAJEB"> AL HAJEB </option>
-              <option value=" AGADIR "> AGADIR </option>
-              <option value="AL HOCEIMA "> AL HOCEIMA </option>
-              <option value="ASSA "> ASSA </option>
-              <option value="ZAG "> ZAG </option>
-              <option value="AZILAL "> AZILAL </option>
-              <option value="BENI MELLAL"> BENI MELLAL </option>
-              <option value=" BENSLIMANE "> BENSLIMANE </option>
-              <option value="BOUJDOUR"> BOUJDOUR </option>
-              <option value=" BOULEMANE "> BOULEMANE </option>
-              <option value="BERRECHID "> BERRECHID </option>
-              <option value="CASABLANCA "> CASABLANCA </option>
-              <option value="CHEFCHAOUEN "> CHEFCHAOUEN </option>
-              <option value="CHTOUKA "> CHTOUKA </option>
-              <option value="AIT BAHA "> AIT BAHA </option>
-              <option value="CHICHAOUA"> CHICHAOUA </option>
-              <option value=" EL JADIDA"> EL JADIDA </option>
-              <option value=" EL KELAA DES SRAGHNAS"> EL KELAA DES SRAGHNAS </option>
-              <option value=" ERRACHIDIA "> ERRACHIDIA </option>
-              <option value="ESSAOUIRA"> ESSAOUIRA </option>
-              <option value=" ES SEMARA"> ES SEMARA </option>
-              <option value=" FES "> FES </option>
-              <option value="FIGUIG"> FIGUIG </option>
-              <option value=" GUELMIM"> GUELMIM </option>
-              <option value=" IFRANE"> IFRANE </option>
-              <option value=" KENITRA"> KENITRA </option>
-              <option value=" KHEMISSET"> KHEMISSET </option>
-              <option value=" KHENIFRA "> KHENIFRA </option>
-              <option value="KHOURIBGA "> KHOURIBGA </option>
-              <option value="LAAYOUNE"> LAAYOUNE </option>
-              <option value=" LARACHE "> LARACHE </option>
-              <option value="MOHAMMEDIA "> MOHAMMEDIA </option>
-              <option value="MARRAKECH "> MARRAKECH </option>
-              <option value="MEKNES "> MEKNES </option>
-              <option value="NADOR"> NADOR </option>
-              <option value=" OUARZAZATE"> OUARZAZATE </option>
-              <option value=" OUJDA "> OUJDA </option>
-              <option value="OUED EDDAHAB "> OUED EDDAHAB </option>
-              <option value="RABAT "> RABAT </option>
-              <option value="SALE "> SALE </option>
-              <option value="SKHIRAT"> SKHIRAT </option>
-              <option value=" TEMARA "> TEMARA </option>
-              <option value="SEFROU"> SEFROU </option>
-              <option value=" SAFI"> SAFI </option>
-              <option value=" SETTAT"> SETTAT </option>
-              <option value=" SIDI KACEM "> SIDI KACEM </option>
-              <option value="TANGER "> TANGER </option>
-              <option value="TAN TAN"> TAN TAN </option>
-              <option value=" TAOUNAT "> TAOUNAT </option>
-              <option value="TAROUDANNT"> TAROUDANNT </option>
-              <option value=" TATA"> TATA </option>
-              <option value=" TAZA"> TAZA </option>
-              <option value=" TETOUAN "> TETOUAN </option>
-              <option value="TIZNIT"> TIZNIT </option>
+												<label>Lieu Naissance En Francais</label> <select
+													name="lieuNaissanceFr" class="form-control">
 
-               <option value="AUTRES"> AUTRES </option>
-															
+													<option value=" AL HAJEB">AL HAJEB</option>
+													<option value=" AGADIR ">AGADIR</option>
+													<option value="AL HOCEIMA ">AL HOCEIMA</option>
+													<option value="ASSA ">ASSA</option>
+													<option value="ZAG ">ZAG</option>
+													<option value="AZILAL ">AZILAL</option>
+													<option value="BENI MELLAL">BENI MELLAL</option>
+													<option value=" BENSLIMANE ">BENSLIMANE</option>
+													<option value="BOUJDOUR">BOUJDOUR</option>
+													<option value=" BOULEMANE ">BOULEMANE</option>
+													<option value="BERRECHID ">BERRECHID</option>
+													<option value="CASABLANCA ">CASABLANCA</option>
+													<option value="CHEFCHAOUEN ">CHEFCHAOUEN</option>
+													<option value="CHTOUKA ">CHTOUKA</option>
+													<option value="AIT BAHA ">AIT BAHA</option>
+													<option value="CHICHAOUA">CHICHAOUA</option>
+													<option value=" EL JADIDA">EL JADIDA</option>
+													<option value=" EL KELAA DES SRAGHNAS">EL KELAA
+														DES SRAGHNAS</option>
+													<option value=" ERRACHIDIA ">ERRACHIDIA</option>
+													<option value="ESSAOUIRA">ESSAOUIRA</option>
+													<option value=" ES SEMARA">ES SEMARA</option>
+													<option value=" FES ">FES</option>
+													<option value="FIGUIG">FIGUIG</option>
+													<option value=" GUELMIM">GUELMIM</option>
+													<option value=" IFRANE">IFRANE</option>
+													<option value=" KENITRA">KENITRA</option>
+													<option value=" KHEMISSET">KHEMISSET</option>
+													<option value=" KHENIFRA ">KHENIFRA</option>
+													<option value="KHOURIBGA ">KHOURIBGA</option>
+													<option value="LAAYOUNE">LAAYOUNE</option>
+													<option value=" LARACHE ">LARACHE</option>
+													<option value="MOHAMMEDIA ">MOHAMMEDIA</option>
+													<option value="MARRAKECH ">MARRAKECH</option>
+													<option value="MEKNES ">MEKNES</option>
+													<option value="NADOR">NADOR</option>
+													<option value=" OUARZAZATE">OUARZAZATE</option>
+													<option value=" OUJDA ">OUJDA</option>
+													<option value="OUED EDDAHAB ">OUED EDDAHAB</option>
+													<option value="RABAT ">RABAT</option>
+													<option value="SALE ">SALE</option>
+													<option value="SKHIRAT">SKHIRAT</option>
+													<option value=" TEMARA ">TEMARA</option>
+													<option value="SEFROU">SEFROU</option>
+													<option value=" SAFI">SAFI</option>
+													<option value=" SETTAT">SETTAT</option>
+													<option value=" SIDI KACEM ">SIDI KACEM</option>
+													<option value="TANGER ">TANGER</option>
+													<option value="TAN TAN">TAN TAN</option>
+													<option value=" TAOUNAT ">TAOUNAT</option>
+													<option value="TAROUDANNT">TAROUDANNT</option>
+													<option value=" TATA">TATA</option>
+													<option value=" TAZA">TAZA</option>
+													<option value=" TETOUAN ">TETOUAN</option>
+													<option value="TIZNIT">TIZNIT</option>
 
-												</select>
-											</div>
-										
-										
-																<div class="form-group">
-												<label>Lieu Naissance En Arabe</label> 
-												<select name="lieu_naissance_ar"
-													class="form-control">
-													
-										<option value=" AL HAJEB"> AL HAJEB </option>
-              <option value=" AGADIR "> AGADIR </option>
-              <option value="AL HOCEIMA "> AL HOCEIMA </option>
-              <option value="ASSA "> ASSA </option>
-              <option value="ZAG "> ZAG </option>
-              <option value="AZILAL "> AZILAL </option>
-              <option value="BENI MELLAL"> BENI MELLAL </option>
-              <option value=" BENSLIMANE "> BENSLIMANE </option>
-              <option value="BOUJDOUR"> BOUJDOUR </option>
-              <option value=" BOULEMANE "> BOULEMANE </option>
-              <option value="BERRECHID "> BERRECHID </option>
-              <option value="CASABLANCA "> CASABLANCA </option>
-              <option value="CHEFCHAOUEN "> CHEFCHAOUEN </option>
-              <option value="CHTOUKA "> CHTOUKA </option>
-              <option value="AIT BAHA "> AIT BAHA </option>
-              <option value="CHICHAOUA"> CHICHAOUA </option>
-              <option value=" EL JADIDA"> EL JADIDA </option>
-              <option value=" EL KELAA DES SRAGHNAS"> EL KELAA DES SRAGHNAS </option>
-              <option value=" ERRACHIDIA "> ERRACHIDIA </option>
-              <option value="ESSAOUIRA"> ESSAOUIRA </option>
-              <option value=" ES SEMARA"> ES SEMARA </option>
-              <option value=" FES "> FES </option>
-              <option value="FIGUIG"> FIGUIG </option>
-              <option value=" GUELMIM"> GUELMIM </option>
-              <option value=" IFRANE"> IFRANE </option>
-              <option value=" KENITRA"> KENITRA </option>
-              <option value=" KHEMISSET"> KHEMISSET </option>
-              <option value=" KHENIFRA "> KHENIFRA </option>
-              <option value="KHOURIBGA "> KHOURIBGA </option>
-              <option value="LAAYOUNE"> LAAYOUNE </option>
-              <option value=" LARACHE "> LARACHE </option>
-              <option value="MOHAMMEDIA "> MOHAMMEDIA </option>
-              <option value="MARRAKECH "> MARRAKECH </option>
-              <option value="MEKNES "> MEKNES </option>
-              <option value="NADOR"> NADOR </option>
-              <option value=" OUARZAZATE"> OUARZAZATE </option>
-              <option value=" OUJDA "> OUJDA </option>
-              <option value="OUED EDDAHAB "> OUED EDDAHAB </option>
-              <option value="RABAT "> RABAT </option>
-              <option value="SALE "> SALE </option>
-              <option value="SKHIRAT"> SKHIRAT </option>
-              <option value=" TEMARA "> TEMARA </option>
-              <option value="SEFROU"> SEFROU </option>
-              <option value=" SAFI"> SAFI </option>
-              <option value=" SETTAT"> SETTAT </option>
-              <option value=" SIDI KACEM "> SIDI KACEM </option>
-              <option value="TANGER "> TANGER </option>
-              <option value="TAN TAN"> TAN TAN </option>
-              <option value=" TAOUNAT "> TAOUNAT </option>
-              <option value="TAROUDANNT"> TAROUDANNT </option>
-              <option value=" TATA"> TATA </option>
-              <option value=" TAZA"> TAZA </option>
-              <option value=" TETOUAN "> TETOUAN </option>
-              <option value="TIZNIT"> TIZNIT </option>
+													<option value="AUTRES">AUTRES</option>
 
-               <option value="AUTRES"> AUTRES </option>
-															
 
 												</select>
 											</div>
-																
-						
+
+
+											<div class="form-group">
+												<label>Lieu Naissance En Arabe</label> <select
+													name="lieuNaissanceAr" class="form-control">
+
+													<option value=" AL HAJEB">AL HAJEB</option>
+													<option value=" AGADIR ">AGADIR</option>
+													<option value="AL HOCEIMA ">AL HOCEIMA</option>
+													<option value="ASSA ">ASSA</option>
+													<option value="ZAG ">ZAG</option>
+													<option value="AZILAL ">AZILAL</option>
+													<option value="BENI MELLAL">BENI MELLAL</option>
+													<option value=" BENSLIMANE ">BENSLIMANE</option>
+													<option value="BOUJDOUR">BOUJDOUR</option>
+													<option value=" BOULEMANE ">BOULEMANE</option>
+													<option value="BERRECHID ">BERRECHID</option>
+													<option value="CASABLANCA ">CASABLANCA</option>
+													<option value="CHEFCHAOUEN ">CHEFCHAOUEN</option>
+													<option value="CHTOUKA ">CHTOUKA</option>
+													<option value="AIT BAHA ">AIT BAHA</option>
+													<option value="CHICHAOUA">CHICHAOUA</option>
+													<option value=" EL JADIDA">EL JADIDA</option>
+													<option value=" EL KELAA DES SRAGHNAS">EL KELAA
+														DES SRAGHNAS</option>
+													<option value=" ERRACHIDIA ">ERRACHIDIA</option>
+													<option value="ESSAOUIRA">ESSAOUIRA</option>
+													<option value=" ES SEMARA">ES SEMARA</option>
+													<option value=" FES ">FES</option>
+													<option value="FIGUIG">FIGUIG</option>
+													<option value=" GUELMIM">GUELMIM</option>
+													<option value=" IFRANE">IFRANE</option>
+													<option value=" KENITRA">KENITRA</option>
+													<option value=" KHEMISSET">KHEMISSET</option>
+													<option value=" KHENIFRA ">KHENIFRA</option>
+													<option value="KHOURIBGA ">KHOURIBGA</option>
+													<option value="LAAYOUNE">LAAYOUNE</option>
+													<option value=" LARACHE ">LARACHE</option>
+													<option value="MOHAMMEDIA ">MOHAMMEDIA</option>
+													<option value="MARRAKECH ">MARRAKECH</option>
+													<option value="MEKNES ">MEKNES</option>
+													<option value="NADOR">NADOR</option>
+													<option value=" OUARZAZATE">OUARZAZATE</option>
+													<option value=" OUJDA ">OUJDA</option>
+													<option value="OUED EDDAHAB ">OUED EDDAHAB</option>
+													<option value="RABAT ">RABAT</option>
+													<option value="SALE ">SALE</option>
+													<option value="SKHIRAT">SKHIRAT</option>
+													<option value=" TEMARA ">TEMARA</option>
+													<option value="SEFROU">SEFROU</option>
+													<option value=" SAFI">SAFI</option>
+													<option value=" SETTAT">SETTAT</option>
+													<option value=" SIDI KACEM ">SIDI KACEM</option>
+													<option value="TANGER ">TANGER</option>
+													<option value="TAN TAN">TAN TAN</option>
+													<option value=" TAOUNAT ">TAOUNAT</option>
+													<option value="TAROUDANNT">TAROUDANNT</option>
+													<option value=" TATA">TATA</option>
+													<option value=" TAZA">TAZA</option>
+													<option value=" TETOUAN ">TETOUAN</option>
+													<option value="TIZNIT">TIZNIT</option>
+
+													<option value="AUTRES">AUTRES</option>
+
+
+												</select>
+											</div>
+
+
 
 											<div class="form-group">
 												<label>CIN</label> <input type="text" name="cin"
-													class="form-control" th:value="${enligne.cin}" required="required"> <span
-													th:errors=${enligne.cin} class="text-danger"></span>
+													class="form-control" th:value="${enligne.cin}"
+													required="required"> <span th:errors=${enligne.cin}
+													class="text-danger"></span>
 											</div>
 											<div class="form-group">
 												<label>Date Inscription</label> <input type="date"
-													name="date_inscription" class="form-control"
-													th:value="${enligne.date_inscription}" required="required">
+													name="dateInscription" class="form-control"
+													th:value="${enligne.dateInscription}" required="required">
 											</div>
-	<div class="form-group">
-												<label>Email</label> <input type="email"
-													name="email" class="form-control"
-													th:value="${enligne.email}" required="required" placeholder="xyz@gmail.abc">
+											
+											<div class="form-group">
+												<label>Photo</label> <input type="file" name="photo"
+													class="form-control" th:value="${enligne.photo}"
+													>
 											</div>
-									</div>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
-
-								<div class="col-12 col-md-12 col-lg-5 p-0">
-									<div class="card">
-										<div class="card-header text-center">
-											<p></p>
 										</div>
-										<div class="card-body">
-											<div class="form-group">
-												<label>Annee de Bac</label> 
-												<select name="annee_bac" 
-													class="form-control">
-			
-            <option value="2016"> 2016 </option>
-            <option value="2017"> 2017 </option>
-            <option value="2018"> 2018 </option>
-            <option value="2019"> 2019 </option>
-            <option value="2020"> 2020 </option>
-            <option value="2021"> 2021 </option>
-            <option value="2022"> 2022 </option>
-            <option value="2023"> 2023 </option>
-            <option value="2024"> 2024 </option>
-            
-            									</select>
-											</div>
-											
-											                                             
-            
-                                             
-											
-											<div class="form-group">
-												<label>Serie de Bac</label> 
-												<select name="serie_bac" th:value="${enligne.serie_bac}"
-													class="form-control">
-													<option>SVT</option>
-													<option>SPC</option>
-													<option>SMA</option>
-													<option>SC</option>
-													<option>STE</option>
-													<option>STM</option>
-												</select>
-											</div>
-												
-											<div class="form-group">
-												<label>Mention de Bac</label> 
-												<select name="mention_bac"
-													class="form-control">
-													<option>Assez bien</option>
-													<option>Bien</option>
-													<option>Tres bien</option>
-													<option>Excellent</option>
-
-												</select>
-											</div>
-											<div class="form-group">
-												<label>Lycee de Bac</label> <input type="text"
-													name="lycee_bac" class="form-control"
-													th:value="${enligne.lycee_bac}" required="required">
-											</div>
-																						<div class="form-group">
-												<label>Ville Bac</label> 
-												<select name="ville_bac"
-													class="form-control">
-													
-										<option value=" AL HAJEB"> AL HAJEB </option>
-              <option value=" AGADIR "> AGADIR </option>
-              <option value="AL HOCEIMA "> AL HOCEIMA </option>
-              <option value="ASSA "> ASSA </option>
-              <option value="ZAG "> ZAG </option>
-              <option value="AZILAL "> AZILAL </option>
-              <option value="BENI MELLAL"> BENI MELLAL </option>
-              <option value=" BENSLIMANE "> BENSLIMANE </option>
-              <option value="BOUJDOUR"> BOUJDOUR </option>
-              <option value=" BOULEMANE "> BOULEMANE </option>
-              <option value="BERRECHID "> BERRECHID </option>
-              <option value="CASABLANCA "> CASABLANCA </option>
-              <option value="CHEFCHAOUEN "> CHEFCHAOUEN </option>
-              <option value="CHTOUKA "> CHTOUKA </option>
-              <option value="AIT BAHA "> AIT BAHA </option>
-              <option value="CHICHAOUA"> CHICHAOUA </option>
-              <option value=" EL JADIDA"> EL JADIDA </option>
-              <option value=" EL KELAA DES SRAGHNAS"> EL KELAA DES SRAGHNAS </option>
-              <option value=" ERRACHIDIA "> ERRACHIDIA </option>
-              <option value="ESSAOUIRA"> ESSAOUIRA </option>
-              <option value=" ES SEMARA"> ES SEMARA </option>
-              <option value=" FES "> FES </option>
-              <option value="FIGUIG"> FIGUIG </option>
-              <option value=" GUELMIM"> GUELMIM </option>
-              <option value=" IFRANE"> IFRANE </option>
-              <option value=" KENITRA"> KENITRA </option>
-              <option value=" KHEMISSET"> KHEMISSET </option>
-              <option value=" KHENIFRA "> KHENIFRA </option>
-              <option value="KHOURIBGA "> KHOURIBGA </option>
-              <option value="LAAYOUNE"> LAAYOUNE </option>
-              <option value=" LARACHE "> LARACHE </option>
-              <option value="MOHAMMEDIA "> MOHAMMEDIA </option>
-              <option value="MARRAKECH "> MARRAKECH </option>
-              <option value="MEKNES "> MEKNES </option>
-              <option value="NADOR"> NADOR </option>
-              <option value=" OUARZAZATE"> OUARZAZATE </option>
-              <option value=" OUJDA "> OUJDA </option>
-              <option value="OUED EDDAHAB "> OUED EDDAHAB </option>
-              <option value="RABAT "> RABAT </option>
-              <option value="SALE "> SALE </option>
-              <option value="SKHIRAT"> SKHIRAT </option>
-              <option value=" TEMARA "> TEMARA </option>
-              <option value="SEFROU"> SEFROU </option>
-              <option value=" SAFI"> SAFI </option>
-              <option value=" SETTAT"> SETTAT </option>
-              <option value=" SIDI KACEM "> SIDI KACEM </option>
-              <option value="TANGER "> TANGER </option>
-              <option value="TAN TAN"> TAN TAN </option>
-              <option value=" TAOUNAT "> TAOUNAT </option>
-              <option value="TAROUDANNT"> TAROUDANNT </option>
-              <option value=" TATA"> TATA </option>
-              <option value=" TAZA"> TAZA </option>
-              <option value=" TETOUAN "> TETOUAN </option>
-              <option value="TIZNIT"> TIZNIT </option>
-
-               <option value="AUTRES"> AUTRES </option>
-															
-
-												</select>
-											</div>
-										
-												<div class="form-group">
-												<label>Academie</label> 
-												<select name="academie"
-													class="form-control">
-													                                     <option value="Dakhla-Oued Ed-Dahab"> Dakhla-Oued Ed-Dahab </option>
-              <option value="Laâyoune-Sakia El Hamra"> Laâyoune-Sakia El Hamra </option>
-              <option value="Guelmim-Oued Noun"> Guelmim-Oued Noun </option>
-              <option value="Souss-Massa"> Souss-Massa </option>
-              <option value="Marrakech-Safi"> Marrakech-Safi </option>
-              <option value=" L’oriental"> L’oriental </option>
-              <option value="Casablanca-Settat"> Casablanca-Settat </option>
-              <option value="Rabat-Salé-Kénitra"> Rabat-Salé-Kénitra </option>
-              <option value=" Béni Mellal-Khénifra"> Béni Mellal-Khénifra </option>
-              <option value="Drâa Tafilalt"> Drâa Tafilalt </option>
-              <option value="Fès-Meknès"> Fès-Meknès </option>
-              <option value="Tanger - Tetouan - Alhouceima"> Tanger - Tetouan - Alhouceima </option>
-            
-												</select>
-											</div>
-											
-											<div class="form-group">
-												<label>Nationalite</label> 
-												<select name="nationalite"
-													class="form-control">
-                                                <option value="Afghan   "> Afghan </option>
-              <option value="Albanais"> Albanais </option>
-              <option value="Algérien   "> Algérien </option>
-              <option value="Allemand"> Allemand </option>
-              <option value="Américain"> Américain </option>
-              <option value="Angolais   "> Angolais </option>
-              <option value="Argentin   "> Argentin </option>
-              <option value="Arménien   "> Arménien </option>
-              <option value="Arubais    "> Arubais </option>
-              <option value="Australien"> Australien </option>
-              <option value="Autrichien "> Autrichien </option>
-              <option value="Azerbaïdjanais "> Azerbaïdjanais </option>
-              <option value="Bahaméen   "> Bahaméen </option>
-              <option value="Bangladais "> Bangladais </option>
-              <option value="Belge"> Belge </option>
-              <option value="Benin"> Benin </option>
-              <option value="Biélorusse "> Biélorusse </option>
-              <option value="Birmain    "> Birmain </option>
-              <option value="Bolivien   "> Bolivien </option>
-              <option value="Bosniaque"> Bosniaque </option>
-              <option value="Botswanais "> Botswanais </option>
-              <option value="Bouthan    "> Bouthan </option>
-              <option value="Brésilien  "> Brésilien </option>
-              <option value="Britannique    "> Britannique </option>
-              <option value="Bulgare"> Bulgare </option>
-              <option value="Burkinabè  "> Burkinabè </option>
-              <option value="Cambodgien "> Cambodgien </option>
-              <option value="Camerounais    "> Camerounais </option>
-              <option value="Canadien   "> Canadien </option>
-              <option value="Chilien"> Chilien </option>
-              <option value="Chinois    "> Chinois </option>
-              <option value="Chypriote"> Chypriote </option>
-              <option value="Colombien  "> Colombien </option>
-              <option value="Congolais  "> Congolais </option>
-              <option value="Costaricain"> Costaricain </option>
-              <option value="Croate "> Croate </option>
-              <option value="Cubain "> Cubain </option>
-              <option value="Danois "> Danois </option>
-              <option value="Dominicain "> Dominicain </option>
-              <option value="Ecossais"> Ecossais </option>
-              <option value="Egyptien   "> Egyptien </option>
-              <option value="Emirati    "> Emirati </option>
-              <option value="Equatorien "> Equatorien </option>
-              <option value="Espagnol   "> Espagnol </option>
-              <option value="Estonien"> Estonien </option>
-              <option value="Ethiopien  "> Ethiopien </option>
-              <option value="Européen   "> Européen </option>
-              <option value="Finlandais "> Finlandais </option>
-              <option value="Français   "> Français </option>
-              <option value="Gabonais"> Gabonais </option>
-              <option value="Georgien   "> Georgien </option>
-              <option value="Ghanéen    "> Ghanéen </option>
-              <option value="Grec   "> Grec </option>
-              <option value="Guatemala  "> Guatemala </option>
-              <option value="Guinéen"> Guinéen </option>
-              <option value="Haïtien    "> Haïtien </option>
-              <option value="Hollandais "> Hollandais </option>
-              <option value="Hong-Kong  "> Hong-Kong </option>
-              <option value="Hongrois   "> Hongrois </option>
-              <option value="Indien"> Indien </option>
-              <option value="Indonésien "> Indonésien </option>
-              <option value="Irakien    "> Irakien </option>
-              <option value="Iranien    "> Iranien </option>
-              <option value="Irlandais  "> Irlandais </option>
-              <option value="Islandais"> Islandais </option>
-              <option value="Israélien  "> Israélien </option>
-              <option value="Italien    "> Italien </option>
-              <option value="Ivoirien   "> Ivoirien </option>
-              <option value="Jamaïcain"> Jamaïcain </option>
-              <option value="Japonais"> Japonais </option>
-              <option value="Jordanien"> Jordanien </option>
-              <option value="Kazakh "> Kazakh </option>
-              <option value="Kenyan "> Kenyan </option>
-              <option value="Kirghiz    "> Kirghiz </option>
-              <option value="Kosovar"> Kosovar </option>
-              <option value="Koweïtien  "> Koweïtien </option>
-              <option value="Kurde  "> Kurde </option>
-              <option value="Laotien    "> Laotien </option>
-              <option value="Letton"> Letton </option>
-              <option value="Libanais"> Libanais </option>
-              <option value="Libyen "> Libyen </option>
-              <option value="Liechtenstein  "> Liechtenstein </option>
-              <option value="Lituanien  "> Lituanien </option>
-              <option value="Luxembourgeois "> Luxembourgeois </option>
-              <option value="Macédonien"> Macédonien </option>
-              <option value="Madagascar "> Madagascar </option>
-              <option value="Malaisien  "> Malaisien </option>
-              <option value="Malien"> Malien </option>
-              <option value="Maltais    "> Maltais </option>
-              <option value="Marocain"> Marocain </option>
-              <option value="Mauritanien    "> Mauritanien </option>
-              <option value="Mauritien  "> Mauritien </option>
-              <option value="Mexicain   "> Mexicain </option>
-              <option value="Monégasque "> Monégasque </option>
-              <option value="Mongol"> Mongol </option>
-              <option value="Mozambique "> Mozambique </option>
-              <option value="Namibien   "> Namibien </option>
-              <option value="Néo-Zélandais  "> Néo-Zélandais </option>
-              <option value="Népalais   "> Népalais </option>
-              <option value="Nigérien"> Nigérien </option>
-              <option value="Nord Coréen    "> Nord Coréen </option>
-              <option value="Norvégien  "> Norvégien </option>
-              <option value="Pakistanais    "> Pakistanais </option>
-              <option value="Palestinien    "> Palestinien </option>
-              <option value="Panaméen"> Panaméen </option>
-              <option value="Paraguayen "> Paraguayen </option>
-              <option value="Péruvien   "> Péruvien </option>
-              <option value="Philippiens    "> Philippiens </option>
-              <option value="Polonais"> Polonais </option>
-              <option value="Portoricain"> Portoricain </option>
-              
-              <option value="Portugais  "> Portugais </option>
-              <option value="Qatar  "> Qatar </option>
-              <option value="Roumain"> Roumain </option>
-              <option value="Russe  "> Russe </option>
-              <option value="Rwandais"> Rwandais </option>
-              <option value="Saoudien   "> Saoudien </option>
-              <option value="Sénégalais "> Sénégalais </option>
-              <option value="Serbe  "> Serbe </option>
-              <option value="Serbo-Croate   "> Serbo-Croate </option>
-              <option value="Singapour"> Singapour </option>
-              <option value="Slovaque   "> Slovaque </option>
-              <option value="Soudanais  "> Soudanais </option>
-              <option value="Soviétique "> Soviétique </option>
-              <option value="Sri-Lankais    "> Sri-Lankais </option>
-              <option value="Sud-Africain"> Sud-Africain </option>
-              <option value="Sud-Coréen "> Sud-Coréen </option>
-              <option value="Suédois    "> Suédois </option>
-              <option value="Suisse "> Suisse </option>
-              <option value="Syrien "> Syrien </option>
-              <option value="Tadjik"> Tadjik </option>
-              <option value="Taïwanais  "> Taïwanais </option>
-              <option value="Tanzanien  "> Tanzanien </option>
-              <option value="Tchadien   "> Tchadien </option>
-              <option value="Tchèque    "> Tchèque </option>
-              <option value="Thaïlandais"> Thaïlandais </option>
-              <option value="Tunisien   "> Tunisien </option>
-              <option value="Turc   "> Turc </option>
-              <option value="Ukranien   "> Ukranien </option>
-              <option value="Uruguayen  "> Uruguayen </option>
-              <option value="Vénézuélien"> Vénézuélien </option>
-              <option value="Vietnamien "> Vietnamien </option>
-              <option value="Yéménite   "> Yéménite </option>
-              <option value="Yougoslave "> Yougoslave </option>
-              <option value="Zimbabwéen"> Zimbabwéen </option>
-              <option value="Autres"> Autres </option>
-            
-												</select>
-											</div>
-
-																					
-											
-																						
-											
-											
-											
-												<div class="form-group">
-												<label>Province</label> 
-												<select name="province"
-													class="form-control">
-							 <option value="Province de Tétouan"> Province de Tétouan </option>
-              <option value="Province de Fahs-Anjra"> Province de Fahs-Anjra </option>
-              <option value="Province de Larache"> Province de Larache </option>
-              <option value="Province d&#x27;Al Hoceïma"> Province Al Hoceïma </option>
-              <option value="Province de Chefchaouen"> Province de Chefchaouen </option>
-              <option value="Province d&#x27;Ouezzane"> Province Ouezzane </option>
-              <option value="Province de Nador"> Province de Nador </option>
-              <option value="Province de Driouch"> Province de Driouch </option>
-              <option value="Province de Jerada"> Province de Jerada </option>
-              <option value="Province de Berkane"> Province de Berkane </option>
-              <option value="Province de Taourirt"> Province de Taourirt </option>
-              <option value="Province de Guercif"> Province de Guercif </option>
-              <option value="Province de Figuig"> Province de Figuig </option>
-              <option value="Province d’El Hajeb"> Province d’El Hajeb </option>
-              <option value="Province d’Ifrane"> Province d’Ifrane </option>
-              <option value="Province de Moulay Yaâcoub"> Province de Moulay Yaâcoub </option>
-              <option value="Province de Séfrou"> Province de Séfrou </option>
-              <option value="Province de Boulemane"> Province de Boulemane </option>
-              <option value="Province de Taounate"> Province de Taounate </option>
-              <option value="Province de Taza"> Province de Taza </option>
-              <option value="Province de Kénitra"> Province de Kénitra </option>
-              <option value="Province de Khémisset"> Province de Khémisset </option>
-              <option value="Province de Sidi Kacem"> Province de Sidi Kacem </option>
-              <option value="Province de Sidi Slimane"> Province de Sidi Slimane </option>
-              <option value="Province de Béni-Mellal"> Province de Béni-Mellal </option>
-              <option value="Province d&#x27;Azilal"> Province Azilal </option>
-              <option value="Province de Fquih Ben Salah"> Province de Fquih Ben Salah </option>
-              <option value="Province de Khénifra"> Province de Khénifra </option>
-              <option value="Province de Khouribga"> Province de Khouribga </option>
-              <option value="Province d&#x27;El Jadida"> Province El Jadida </option>
-              <option value="Province de Nouaceur"> Province de Nouaceur </option>
-              <option value="Province de Médiouna"> Province de Médiouna </option>
-              <option value="Province de Benslimane"> Province de Benslimane </option>
-              <option value="Province de Berrechid"> Province de Berrechid </option>
-              <option value="Province de Settat"> Province de Settat </option>
-              <option value="Province de Sidi Bennour"> Province de Sidi Bennour </option>
-              <option value="Province de Chichaoua"> Province de Chichaoua </option>
-              <option value="Province d&#x27;Al Haouz"> Province Al Haouz </option>
-              <option value="Province d&#x27;El Kelaâ des Sraghna"> Province El Kelaâ des Sraghna </option>
-              <option value="Province d&#x27;Essaouira"> Province Essaouira </option>
-              <option value="Province de Rehamna"> Province de Rehamna </option>
-              <option value="Province de Safi"> Province de Safi </option>
-              <option value="Province de Youssoufia"> Province de Youssoufia </option>
-              <option value="Province d&#x27;Errachidia"> Province Errachidia </option>
-              <option value="Province de Ouarzazate"> Province de Ouarzazate </option>
-              <option value="Province de Midelt"> Province de Midelt </option>
-              <option value="Province de Tinghir"> Province de Tinghir </option>
-              <option value="Province de Zagora"> Province de Zagora </option>
-              <option value="Province de Chtouka-Aït Baha"> Province de Chtouka-Aït Baha </option>
-              <option value="Province de Taroudant"> Province de Taroudant </option>
-              <option value="Province de Tiznit"> Province de Tiznit </option>
-              <option value="Province de Tata"> Province de Tata </option>
-              <option value="Province de Guelmim"> Province de Guelmim </option>
-              <option value="Province d&#x27;Assa-Zag"> Province Assa-Zag </option>
-              <option value="Province de Tan-Tan"> Province de Tan-Tan </option>
-              <option value="Province de Sidi Ifni"> Province de Sidi Ifni </option>
-              <option value="Province de Laâyoune"> Province de Laâyoune </option>
-              <option value="Province de Boujdour"> Province de Boujdour </option>
-              <option value="Province de Tarfaya"> Province de Tarfaya </option>
-              <option value="Province d&#x27;Es-Semara"> Province Es-Semara </option>
-              <option value="Province d&#x27;Oued Ed Dahab"> Province Oued Ed Dahab </option>
-              <option value="Province d&#x27;Aousserd"> Province Aousserd </option>
-              <option value="Autres"> Autres </option>
-												</select>
-											</div>
-											
-												<div class="form-group">
-												<label>Region</label> 
-												<select name="region"
-													class="form-control">
-								   <option value="Région de Tanger-Tétouan-Al Hoceïma"> Région de Tanger-Tétouan-Al Hoceïma </option>
-              <option value="Région de Fès-Meknès"> Région de Fès-Meknès </option>
-              <option value="Région de Rabat-Salé-Kénitra"> Région de Rabat-Salé-Kénitra </option>
-              <option value="Région de Béni Mellal-Khénifra"> Région de Béni Mellal-Khénifra </option>
-              <option value="Région de Casablanca-Settat"> Région de Casablanca-Settat </option>
-              <option value="Région de Marrakech-Safi"> Région de Marrakech-Safi </option>
-              <option value="Région de Drâa-Tafilalet"> Région de Drâa-Tafilalet </option>
-              <option value="Région de Souss-Massa"> Région de Souss-Massa </option>
-              <option value="Région de Guelmim-Oued Noun"> Région de Guelmim-Oued Noun </option>
-              <option value="Région de Laâyoune-Sakia El Hamra"> Région de Laâyoune-Sakia El Hamra </option>
-              <option value="Région de Dakhla-Oued Ed Dahab"> Région de Dakhla-Oued Ed Dahab </option>
-              <option value="Autres"> Autres </option>
-												</select>
-</div>
-											
-											<div class="form-group">
-												<label>Etat Physique</label> <input type="text"
-													name="etat_physique" class="form-control"
-													th:value="${enligne.etat_physique}" required="required">
-											</div>
-											<div class="form-group">
-												<label>Group Socioprofessionel</label> 
-												<select name="groupe_socioprofessionnel"
-													class="form-control">
-													
-										<option value="Agriculteurs exploitants"> Agriculteurs exploitants </option>
-              <option value="Artisans, commerçants et chefs d’entreprise"> Artisans, commerçants et chefs d’entreprise </option>
-              <option value="Cadres et professions intellectuelles supérieures"> Cadres et professions intellectuelles supérieures </option>
-              <option value="Professions intermédiaires"> Professions intermédiaires </option>
-              <option value="Employés"> Employés </option>
-              <option value="Ouvriers"> Ouvriers </option>
-              <option value="Retraités"> Retraités </option>
-              <option value="Autres personnes sans activité professionnelle"> Autres personnes sans activité professionnelle </option>
-              <option value="Autres"> Autres </option>
-													
-												</select>
-											</div>
-
-											<div class="form-group text-right">
-												<button type="submit"
-													class="btn btn-round btn-lg btn-primary">Send Form
-												</button>
-											</div>
-											
-
-									
 									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+									<div class="col-12 col-md-12 col-lg-5 p-0">
+										<div class="card">
+											<div class="card-header text-center">
+												<p></p>
+											</div>
+											<div class="card-body">
+												<div class="form-group">
+													<label>Annee de Bac</label> <select name="anneeBac"
+														class="form-control">
+
+														<option value="2016">2016</option>
+														<option value="2017">2017</option>
+														<option value="2018">2018</option>
+														<option value="2019">2019</option>
+														<option value="2020">2020</option>
+														<option value="2021">2021</option>
+														<option value="2022">2022</option>
+														<option value="2023">2023</option>
+														<option value="2024">2024</option>
+
+													</select>
+												</div>
+
+
+
+
+
+												<div class="form-group">
+													<label>Serie de Bac</label> <select name="serieBac"
+														th:value="${enligne.serieBac}" class="form-control">
+														<option>SVT</option>
+														<option>SPC</option>
+														<option>SMA</option>
+														<option>SC</option>
+														<option>STE</option>
+														<option>STM</option>
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Mention de Bac</label> <select name="mentionBac"
+														class="form-control">
+														<option>Assez bien</option>
+														<option>Bien</option>
+														<option>Tres bien</option>
+														<option>Excellent</option>
+
+													</select>
+												</div>
+												<div class="form-group">
+													<label>Lycee de Bac</label> <input type="text"
+														name="lyceeBac" class="form-control"
+														th:value="${enligne.lyceeBac}" required="required">
+												</div>
+												<div class="form-group">
+													<label>Ville Bac</label> <select name="villeBac"
+														class="form-control">
+
+														<option value=" AL HAJEB">AL HAJEB</option>
+														<option value=" AGADIR ">AGADIR</option>
+														<option value="AL HOCEIMA ">AL HOCEIMA</option>
+														<option value="ASSA ">ASSA</option>
+														<option value="ZAG ">ZAG</option>
+														<option value="AZILAL ">AZILAL</option>
+														<option value="BENI MELLAL">BENI MELLAL</option>
+														<option value=" BENSLIMANE ">BENSLIMANE</option>
+														<option value="BOUJDOUR">BOUJDOUR</option>
+														<option value=" BOULEMANE ">BOULEMANE</option>
+														<option value="BERRECHID ">BERRECHID</option>
+														<option value="CASABLANCA ">CASABLANCA</option>
+														<option value="CHEFCHAOUEN ">CHEFCHAOUEN</option>
+														<option value="CHTOUKA ">CHTOUKA</option>
+														<option value="AIT BAHA ">AIT BAHA</option>
+														<option value="CHICHAOUA">CHICHAOUA</option>
+														<option value=" EL JADIDA">EL JADIDA</option>
+														<option value=" EL KELAA DES SRAGHNAS">EL KELAA
+															DES SRAGHNAS</option>
+														<option value=" ERRACHIDIA ">ERRACHIDIA</option>
+														<option value="ESSAOUIRA">ESSAOUIRA</option>
+														<option value=" ES SEMARA">ES SEMARA</option>
+														<option value=" FES ">FES</option>
+														<option value="FIGUIG">FIGUIG</option>
+														<option value=" GUELMIM">GUELMIM</option>
+														<option value=" IFRANE">IFRANE</option>
+														<option value=" KENITRA">KENITRA</option>
+														<option value=" KHEMISSET">KHEMISSET</option>
+														<option value=" KHENIFRA ">KHENIFRA</option>
+														<option value="KHOURIBGA ">KHOURIBGA</option>
+														<option value="LAAYOUNE">LAAYOUNE</option>
+														<option value=" LARACHE ">LARACHE</option>
+														<option value="MOHAMMEDIA ">MOHAMMEDIA</option>
+														<option value="MARRAKECH ">MARRAKECH</option>
+														<option value="MEKNES ">MEKNES</option>
+														<option value="NADOR">NADOR</option>
+														<option value=" OUARZAZATE">OUARZAZATE</option>
+														<option value=" OUJDA ">OUJDA</option>
+														<option value="OUED EDDAHAB ">OUED EDDAHAB</option>
+														<option value="RABAT ">RABAT</option>
+														<option value="SALE ">SALE</option>
+														<option value="SKHIRAT">SKHIRAT</option>
+														<option value=" TEMARA ">TEMARA</option>
+														<option value="SEFROU">SEFROU</option>
+														<option value=" SAFI">SAFI</option>
+														<option value=" SETTAT">SETTAT</option>
+														<option value=" SIDI KACEM ">SIDI KACEM</option>
+														<option value="TANGER ">TANGER</option>
+														<option value="TAN TAN">TAN TAN</option>
+														<option value=" TAOUNAT ">TAOUNAT</option>
+														<option value="TAROUDANNT">TAROUDANNT</option>
+														<option value=" TATA">TATA</option>
+														<option value=" TAZA">TAZA</option>
+														<option value=" TETOUAN ">TETOUAN</option>
+														<option value="TIZNIT">TIZNIT</option>
+
+														<option value="AUTRES">AUTRES</option>
+
+
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Academie</label> <select name="academie"
+														class="form-control">
+														<option value="Dakhla-Oued Ed-Dahab">Dakhla-Oued
+															Ed-Dahab</option>
+														<option value="Laâyoune-Sakia El Hamra">
+															Laâyoune-Sakia El Hamra</option>
+														<option value="Guelmim-Oued Noun">Guelmim-Oued
+															Noun</option>
+														<option value="Souss-Massa">Souss-Massa</option>
+														<option value="Marrakech-Safi">Marrakech-Safi</option>
+														<option value=" L’oriental">L’oriental</option>
+														<option value="Casablanca-Settat">
+															Casablanca-Settat</option>
+														<option value="Rabat-Salé-Kénitra">
+															Rabat-Salé-Kénitra</option>
+														<option value=" Béni Mellal-Khénifra">Béni
+															Mellal-Khénifra</option>
+														<option value="Drâa Tafilalt">Drâa Tafilalt</option>
+														<option value="Fès-Meknès">Fès-Meknès</option>
+														<option value="Tanger - Tetouan - Alhouceima">
+															Tanger - Tetouan - Alhouceima</option>
+
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Nationalite</label> <select name="nationalite"
+														class="form-control">
+														<option value="Afghan   ">Afghan</option>
+														<option value="Albanais">Albanais</option>
+														<option value="Algérien   ">Algérien</option>
+														<option value="Allemand">Allemand</option>
+														<option value="Américain">Américain</option>
+														<option value="Angolais   ">Angolais</option>
+														<option value="Argentin   ">Argentin</option>
+														<option value="Arménien   ">Arménien</option>
+														<option value="Arubais    ">Arubais</option>
+														<option value="Australien">Australien</option>
+														<option value="Autrichien ">Autrichien</option>
+														<option value="Azerbaïdjanais ">Azerbaïdjanais</option>
+														<option value="Bahaméen   ">Bahaméen</option>
+														<option value="Bangladais ">Bangladais</option>
+														<option value="Belge">Belge</option>
+														<option value="Benin">Benin</option>
+														<option value="Biélorusse ">Biélorusse</option>
+														<option value="Birmain    ">Birmain</option>
+														<option value="Bolivien   ">Bolivien</option>
+														<option value="Bosniaque">Bosniaque</option>
+														<option value="Botswanais ">Botswanais</option>
+														<option value="Bouthan    ">Bouthan</option>
+														<option value="Brésilien  ">Brésilien</option>
+														<option value="Britannique    ">Britannique</option>
+														<option value="Bulgare">Bulgare</option>
+														<option value="Burkinabè  ">Burkinabè</option>
+														<option value="Cambodgien ">Cambodgien</option>
+														<option value="Camerounais    ">Camerounais</option>
+														<option value="Canadien   ">Canadien</option>
+														<option value="Chilien">Chilien</option>
+														<option value="Chinois    ">Chinois</option>
+														<option value="Chypriote">Chypriote</option>
+														<option value="Colombien  ">Colombien</option>
+														<option value="Congolais  ">Congolais</option>
+														<option value="Costaricain">Costaricain</option>
+														<option value="Croate ">Croate</option>
+														<option value="Cubain ">Cubain</option>
+														<option value="Danois ">Danois</option>
+														<option value="Dominicain ">Dominicain</option>
+														<option value="Ecossais">Ecossais</option>
+														<option value="Egyptien   ">Egyptien</option>
+														<option value="Emirati    ">Emirati</option>
+														<option value="Equatorien ">Equatorien</option>
+														<option value="Espagnol   ">Espagnol</option>
+														<option value="Estonien">Estonien</option>
+														<option value="Ethiopien  ">Ethiopien</option>
+														<option value="Européen   ">Européen</option>
+														<option value="Finlandais ">Finlandais</option>
+														<option value="Français   ">Français</option>
+														<option value="Gabonais">Gabonais</option>
+														<option value="Georgien   ">Georgien</option>
+														<option value="Ghanéen    ">Ghanéen</option>
+														<option value="Grec   ">Grec</option>
+														<option value="Guatemala  ">Guatemala</option>
+														<option value="Guinéen">Guinéen</option>
+														<option value="Haïtien    ">Haïtien</option>
+														<option value="Hollandais ">Hollandais</option>
+														<option value="Hong-Kong  ">Hong-Kong</option>
+														<option value="Hongrois   ">Hongrois</option>
+														<option value="Indien">Indien</option>
+														<option value="Indonésien ">Indonésien</option>
+														<option value="Irakien    ">Irakien</option>
+														<option value="Iranien    ">Iranien</option>
+														<option value="Irlandais  ">Irlandais</option>
+														<option value="Islandais">Islandais</option>
+														<option value="Israélien  ">Israélien</option>
+														<option value="Italien    ">Italien</option>
+														<option value="Ivoirien   ">Ivoirien</option>
+														<option value="Jamaïcain">Jamaïcain</option>
+														<option value="Japonais">Japonais</option>
+														<option value="Jordanien">Jordanien</option>
+														<option value="Kazakh ">Kazakh</option>
+														<option value="Kenyan ">Kenyan</option>
+														<option value="Kirghiz    ">Kirghiz</option>
+														<option value="Kosovar">Kosovar</option>
+														<option value="Koweïtien  ">Koweïtien</option>
+														<option value="Kurde  ">Kurde</option>
+														<option value="Laotien    ">Laotien</option>
+														<option value="Letton">Letton</option>
+														<option value="Libanais">Libanais</option>
+														<option value="Libyen ">Libyen</option>
+														<option value="Liechtenstein  ">Liechtenstein</option>
+														<option value="Lituanien  ">Lituanien</option>
+														<option value="Luxembourgeois ">Luxembourgeois</option>
+														<option value="Macédonien">Macédonien</option>
+														<option value="Madagascar ">Madagascar</option>
+														<option value="Malaisien  ">Malaisien</option>
+														<option value="Malien">Malien</option>
+														<option value="Maltais    ">Maltais</option>
+														<option value="Marocain">Marocain</option>
+														<option value="Mauritanien    ">Mauritanien</option>
+														<option value="Mauritien  ">Mauritien</option>
+														<option value="Mexicain   ">Mexicain</option>
+														<option value="Monégasque ">Monégasque</option>
+														<option value="Mongol">Mongol</option>
+														<option value="Mozambique ">Mozambique</option>
+														<option value="Namibien   ">Namibien</option>
+														<option value="Néo-Zélandais  ">Néo-Zélandais</option>
+														<option value="Népalais   ">Népalais</option>
+														<option value="Nigérien">Nigérien</option>
+														<option value="Nord Coréen    ">Nord Coréen</option>
+														<option value="Norvégien  ">Norvégien</option>
+														<option value="Pakistanais    ">Pakistanais</option>
+														<option value="Palestinien    ">Palestinien</option>
+														<option value="Panaméen">Panaméen</option>
+														<option value="Paraguayen ">Paraguayen</option>
+														<option value="Péruvien   ">Péruvien</option>
+														<option value="Philippiens    ">Philippiens</option>
+														<option value="Polonais">Polonais</option>
+														<option value="Portoricain">Portoricain</option>
+
+														<option value="Portugais  ">Portugais</option>
+														<option value="Qatar  ">Qatar</option>
+														<option value="Roumain">Roumain</option>
+														<option value="Russe  ">Russe</option>
+														<option value="Rwandais">Rwandais</option>
+														<option value="Saoudien   ">Saoudien</option>
+														<option value="Sénégalais ">Sénégalais</option>
+														<option value="Serbe  ">Serbe</option>
+														<option value="Serbo-Croate   ">Serbo-Croate</option>
+														<option value="Singapour">Singapour</option>
+														<option value="Slovaque   ">Slovaque</option>
+														<option value="Soudanais  ">Soudanais</option>
+														<option value="Soviétique ">Soviétique</option>
+														<option value="Sri-Lankais    ">Sri-Lankais</option>
+														<option value="Sud-Africain">Sud-Africain</option>
+														<option value="Sud-Coréen ">Sud-Coréen</option>
+														<option value="Suédois    ">Suédois</option>
+														<option value="Suisse ">Suisse</option>
+														<option value="Syrien ">Syrien</option>
+														<option value="Tadjik">Tadjik</option>
+														<option value="Taïwanais  ">Taïwanais</option>
+														<option value="Tanzanien  ">Tanzanien</option>
+														<option value="Tchadien   ">Tchadien</option>
+														<option value="Tchèque    ">Tchèque</option>
+														<option value="Thaïlandais">Thaïlandais</option>
+														<option value="Tunisien   ">Tunisien</option>
+														<option value="Turc   ">Turc</option>
+														<option value="Ukranien   ">Ukranien</option>
+														<option value="Uruguayen  ">Uruguayen</option>
+														<option value="Vénézuélien">Vénézuélien</option>
+														<option value="Vietnamien ">Vietnamien</option>
+														<option value="Yéménite   ">Yéménite</option>
+														<option value="Yougoslave ">Yougoslave</option>
+														<option value="Zimbabwéen">Zimbabwéen</option>
+														<option value="Autres">Autres</option>
+
+													</select>
+												</div>
+
+
+
+
+
+
+
+												<div class="form-group">
+													<label>Province</label> <select name="province"
+														class="form-control">
+														<option value="Province de Tétouan">Province de
+															Tétouan</option>
+														<option value="Province de Fahs-Anjra">Province
+															de Fahs-Anjra</option>
+														<option value="Province de Larache">Province de
+															Larache</option>
+														<option value="Province d&#x27;Al Hoceïma">
+															Province Al Hoceïma</option>
+														<option value="Province de Chefchaouen">Province
+															de Chefchaouen</option>
+														<option value="Province d&#x27;Ouezzane">
+															Province Ouezzane</option>
+														<option value="Province de Nador">Province de
+															Nador</option>
+														<option value="Province de Driouch">Province de
+															Driouch</option>
+														<option value="Province de Jerada">Province de
+															Jerada</option>
+														<option value="Province de Berkane">Province de
+															Berkane</option>
+														<option value="Province de Taourirt">Province de
+															Taourirt</option>
+														<option value="Province de Guercif">Province de
+															Guercif</option>
+														<option value="Province de Figuig">Province de
+															Figuig</option>
+														<option value="Province d’El Hajeb">Province d’El
+															Hajeb</option>
+														<option value="Province d’Ifrane">Province
+															d’Ifrane</option>
+														<option value="Province de Moulay Yaâcoub">
+															Province de Moulay Yaâcoub</option>
+														<option value="Province de Séfrou">Province de
+															Séfrou</option>
+														<option value="Province de Boulemane">Province de
+															Boulemane</option>
+														<option value="Province de Taounate">Province de
+															Taounate</option>
+														<option value="Province de Taza">Province de Taza
+														</option>
+														<option value="Province de Kénitra">Province de
+															Kénitra</option>
+														<option value="Province de Khémisset">Province de
+															Khémisset</option>
+														<option value="Province de Sidi Kacem">Province
+															de Sidi Kacem</option>
+														<option value="Province de Sidi Slimane">
+															Province de Sidi Slimane</option>
+														<option value="Province de Béni-Mellal">Province
+															de Béni-Mellal</option>
+														<option value="Province d&#x27;Azilal">Province
+															Azilal</option>
+														<option value="Province de Fquih Ben Salah">
+															Province de Fquih Ben Salah</option>
+														<option value="Province de Khénifra">Province de
+															Khénifra</option>
+														<option value="Province de Khouribga">Province de
+															Khouribga</option>
+														<option value="Province d&#x27;El Jadida">
+															Province El Jadida</option>
+														<option value="Province de Nouaceur">Province de
+															Nouaceur</option>
+														<option value="Province de Médiouna">Province de
+															Médiouna</option>
+														<option value="Province de Benslimane">Province
+															de Benslimane</option>
+														<option value="Province de Berrechid">Province de
+															Berrechid</option>
+														<option value="Province de Settat">Province de
+															Settat</option>
+														<option value="Province de Sidi Bennour">
+															Province de Sidi Bennour</option>
+														<option value="Province de Chichaoua">Province de
+															Chichaoua</option>
+														<option value="Province d&#x27;Al Haouz">
+															Province Al Haouz</option>
+														<option value="Province d&#x27;El Kelaâ des Sraghna">
+															Province El Kelaâ des Sraghna</option>
+														<option value="Province d&#x27;Essaouira">
+															Province Essaouira</option>
+														<option value="Province de Rehamna">Province de
+															Rehamna</option>
+														<option value="Province de Safi">Province de Safi
+														</option>
+														<option value="Province de Youssoufia">Province
+															de Youssoufia</option>
+														<option value="Province d&#x27;Errachidia">
+															Province Errachidia</option>
+														<option value="Province de Ouarzazate">Province
+															de Ouarzazate</option>
+														<option value="Province de Midelt">Province de
+															Midelt</option>
+														<option value="Province de Tinghir">Province de
+															Tinghir</option>
+														<option value="Province de Zagora">Province de
+															Zagora</option>
+														<option value="Province de Chtouka-Aït Baha">
+															Province de Chtouka-Aït Baha</option>
+														<option value="Province de Taroudant">Province de
+															Taroudant</option>
+														<option value="Province de Tiznit">Province de
+															Tiznit</option>
+														<option value="Province de Tata">Province de Tata
+														</option>
+														<option value="Province de Guelmim">Province de
+															Guelmim</option>
+														<option value="Province d&#x27;Assa-Zag">
+															Province Assa-Zag</option>
+														<option value="Province de Tan-Tan">Province de
+															Tan-Tan</option>
+														<option value="Province de Sidi Ifni">Province de
+															Sidi Ifni</option>
+														<option value="Province de Laâyoune">Province de
+															Laâyoune</option>
+														<option value="Province de Boujdour">Province de
+															Boujdour</option>
+														<option value="Province de Tarfaya">Province de
+															Tarfaya</option>
+														<option value="Province d&#x27;Es-Semara">
+															Province Es-Semara</option>
+														<option value="Province d&#x27;Oued Ed Dahab">
+															Province Oued Ed Dahab</option>
+														<option value="Province d&#x27;Aousserd">
+															Province Aousserd</option>
+														<option value="Autres">Autres</option>
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Region</label> <select name="region"
+														class="form-control">
+														<option value="Région de Tanger-Tétouan-Al Hoceïma">
+															Région de Tanger-Tétouan-Al Hoceïma</option>
+														<option value="Région de Fès-Meknès">Région de
+															Fès-Meknès</option>
+														<option value="Région de Rabat-Salé-Kénitra">
+															Région de Rabat-Salé-Kénitra</option>
+														<option value="Région de Béni Mellal-Khénifra">
+															Région de Béni Mellal-Khénifra</option>
+														<option value="Région de Casablanca-Settat">
+															Région de Casablanca-Settat</option>
+														<option value="Région de Marrakech-Safi">Région
+															de Marrakech-Safi</option>
+														<option value="Région de Drâa-Tafilalet">Région
+															de Drâa-Tafilalet</option>
+														<option value="Région de Souss-Massa">Région de
+															Souss-Massa</option>
+														<option value="Région de Guelmim-Oued Noun">
+															Région de Guelmim-Oued Noun</option>
+														<option value="Région de Laâyoune-Sakia El Hamra">
+															Région de Laâyoune-Sakia El Hamra</option>
+														<option value="Région de Dakhla-Oued Ed Dahab">
+															Région de Dakhla-Oued Ed Dahab</option>
+														<option value="Autres">Autres</option>
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Etat Physique</label> <input type="text"
+														name="etatPhysique" class="form-control"
+														th:value="${enligne.etatPhysique}" required="required">
+												</div>
+												
+												
+												<div class="form-group">
+													<label>Group Socioprofessionel</label> <select
+														name="groupeSocioProfessionnel" class="form-control">
+
+														<option value="Agriculteurs exploitants">
+															Agriculteurs exploitants</option>
+														<option
+															value="Artisans, commerçants et chefs d’entreprise">
+															Artisans, commerçants et chefs d’entreprise</option>
+														<option
+															value="Cadres et professions intellectuelles supérieures">
+															Cadres et professions intellectuelles supérieures</option>
+														<option value="Professions intermédiaires">
+															Professions intermédiaires</option>
+														<option value="Employés">Employés</option>
+														<option value="Ouvriers">Ouvriers</option>
+														<option value="Retraités">Retraités</option>
+														<option
+															value="Autres personnes sans activité professionnelle">
+															Autres personnes sans activité professionnelle</option>
+														<option value="Autres">Autres</option>
+
+													</select>
+												</div>
+
+												<div class="form-group text-right">
+													<button type="submit"
+														class="btn btn-round btn-lg btn-primary">Send
+														Form</button>
+												</div>
+
+
+
+											</div>
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 								</div>
-						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 							</div>
-						</div>
-</form>
+						</form>
 					</div>
 				</div>
 			</div>

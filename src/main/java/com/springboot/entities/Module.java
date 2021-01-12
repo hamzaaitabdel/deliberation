@@ -38,4 +38,5 @@ public class Module {
 	@OneToMany(mappedBy = "module" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Element> elements;
 	
+	
 }

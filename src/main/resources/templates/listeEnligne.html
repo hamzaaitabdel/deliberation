@@ -430,6 +430,7 @@
                     <table class="table table-striped mb-0">
                       <thead>
                         <tr>
+                        <th>ID</th>
                         <th>CNE</th>
                           <th>Name</th>
                           <th>Prenom</th>
@@ -443,12 +444,14 @@
                 
                         <tr th:each="p:${enlignes}">
                         
+                        <td th:text="${p.id}"></td>
+				   
 						<td th:text="${p.cne}"></td>
 				   
-						<td th:text="${p.nom_fr}"></td>
-						<td th:text="${p.prenom_fr}"></td>
-						<td th:text="${p.mention_bac}"></td>
-						<td th:text="${p.valide_enligne}"></td>
+						<td th:text="${p.nomFr}"></td>
+						<td th:text="${p.prenomFr}"></td>
+						<td th:text="${p.mentionBac}"></td>
+						<td th:text="${p.valideEnligne}"></td>
 					
 							  <!-- 
                           <td>
@@ -456,7 +459,7 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfirmationEnligne(id=${p.cne})}
+                            <a  th:href=@{ConfirmationEnligne(id=${p.id})}
                             class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"

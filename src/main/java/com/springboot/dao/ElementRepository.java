@@ -1,5 +1,7 @@
 package com.springboot.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +18,8 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
     @Query("select e from Element e where module =:module")
     public List<Element> elements(@Param("module")Module module);
 
+	public Long findIdByName(String element);
+
+	@Query("select d from Element d where d.module.id= :x")
+	public List<Element> findById_moduleContains(@Param("x")Long parseLong);
 }

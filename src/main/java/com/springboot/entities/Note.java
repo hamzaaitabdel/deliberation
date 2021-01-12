@@ -30,7 +30,7 @@ public class Note {
 	
 	private String etats;
 	private String session;
-			
+	private double coefficient;		
 	@Enumerated(EnumType.STRING)
 	private Examen examen;
 	

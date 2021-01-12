@@ -29,253 +29,258 @@
 	<div id="app">
 		<section class="section">
 			<div class="container mt-5">
-				<div class="row">
+				<!-- <div class="row"> -->
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
 						<div class="login-brand">Inscription Administrative</div>
-
+<!--
 						<div class="card card-primary">
 							<div class="row">
-								<div class="col-12 col-md-12 col-lg-5 p-0">
+								 <div class="col-12 col-md-12 col-lg-5 p-0">
 									<div class="card-header text-center">
-											<h4>Enregistrement effectue</h4>
+										<h4>Enregistrement effectue</h4>
 									</div>
-									
-									
-				<div class="card-body">					
-					<div class="form-group">
-					<label>CNE : </label>
-					<strong><label th:text="${enligne.cne}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Nom en Francais : </label>
-					<strong><label th:text="${enligne.nom_fr}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Prenom en Francais : </label>
-					<strong><label th:text="${enligne.prenom_fr}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Date de Naissance : </label>
-					<strong><label th:text="${enligne.date_naissance}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Annee de Bac : </label>
-					<strong><label th:text="${enligne.annee_bac}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Serie de Bac : </label>
-					<strong><label th:text="${enligne.serie_bac}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Mention : </label>
-					<strong><label th:text="${enligne.mention_bac}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>CIN : </label>
-					<strong><label th:text="${enligne.cin}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Lieu de Naissance en Francais : </label>
-					<strong><label th:text="${enligne.lieu_naissance_fr}"></label></strong>
-					</div>
-					<div class="form-group">
-					<label>Nationalite : </label>
-					<strong><label th:text="${enligne.nationalite}"></label></strong>
-					</div>
-									</div>									
-									
-									
-								</div>
 
-								<div class="col-12 col-md-12 col-lg-5 p-0">
-									<div class="card">
-										<!-- <div class="card-header text-center">
-											<div class="card-header text-center" th:if="${mode=='new'}">
-										<h4>Formulaire de saisie </h4>
-									</div>
-									<div class="card-header text-center" th:if="${mode=='edit'}">
-										<h4>Formulaire de mise a jour </h4>
-									</div>
-										</div>
-										 -->
-										 <div class="card-header text-center">
-											<div class="card-header text-center" th:if="${mode=='new'}">
-										<h4>Formulaire de saisie </h4>
-									</div>
-									<div class="card-header text-center" th:if="${mode=='edit'}">
-										<h4>Formulaire de mise a jour </h4>
-									</div>
-									</div>
-										
+
 									<div class="card-body">
-
-										<form th:action="@{saveAdmin}" method="post">
 										<div class="form-group">
-												<label>CNE</label> 
-												 
-													 <input type="text" class="form-control" name="cne" th:value="${cne}" readonly="readonly">
-											</div> 
-																							<div class="form-group">
-					<label>Filiere</label> 
-												<select name="filiere" th:value="${filiere}"
-													class="form-control">
-													<option  value="1"  >BGI</option>
-													<option  value="2"  >BGB</option>
-													<option  value="3"  >BCA</option>
-													
+											<label>CNE : </label> <strong><label
+												th:text="${enligne.cne}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Nom en Francais : </label> <strong><label
+												th:text="${enligne.nomFr}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Prenom en Francais : </label> <strong><label
+												th:text="${enligne.prenomFr}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Date de Naissance : </label> <strong><label
+												th:text="${enligne.dateNaissance}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Annee de Bac : </label> <strong><label
+												th:text="${enligne.anneeBac}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Serie de Bac : </label> <strong><label
+												th:text="${enligne.serieBac}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Mention : </label> <strong><label
+												th:text="${enligne.mentionBac}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>CIN : </label> <strong><label
+												th:text="${enligne.cin}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Lieu de Naissance en Francais : </label> <strong><label
+												th:text="${enligne.lieuNaissanceFr}"></label></strong>
+										</div>
+										<div class="form-group">
+											<label>Nationalite : </label> <strong><label
+												th:text="${enligne.nationalite}"></label></strong>
+										</div>
+									</div>
 
-												</select>
+
+								</div> -->
+
+								<!-- <div class="col-12 col-md-12 col-lg-5 p-0"> -->
+									<div class="card">
+										<div class="card-header text-center">
+											<div class="card-header text-center" th:if="${mode=='new'}">
+												<h4>Formulaire de saisie</h4>
 											</div>
-								 
-											 	<div class="form-group">
-												<label>Annee Academique</label> 
-												<select name="annee_academique" 
-													class="form-control">
-			
-            
-            <option value="2020/2021"> 2020/2021 </option>
-            <option value="2021/2022"> 2021/2022 </option>
-            <option value="2022/2023"> 2022/2023 </option>
-            <option value="2023/2024"> 2023/2024 </option>
-            <option value="2024/2025"> 2024/2025 </option>
-            <option value="2025/2026"> 2025/2026 </option>
-            
-            <option value="2026/2027"> 2026/2027 </option>
-            <option value="2027/2028"> 2027/2028 </option>
-            
-            
-            									</select>
+											<div class="card-header text-center" th:if="${mode=='edit'}">
+												<h4>Formulaire de mise a jour</h4>
 											</div>
-										
-						
-											
-
-											<div class="form-group">
-												<label>Date de validation d'inscription</label> <input
-													type="date" name="date_inscription_valide"
-													class="form-control"
-													th:value="${admin.date_inscription_valide}"
-													required="required">
-											</div>
+										</div>
 
 
-											<div class="form-group">
-												<label>Adresse Personnel</label> <input type="text"
-													name="adresse_personnel" class="form-control"
-													th:value="${admin.adresse_personnel}" required="required">
+										<div class="card-body">
 
-											</div>
+											<form th:action="@{saveAdmin}" method="post">
+												<div class="form-group">
+													<label>ID Enligne</label> <input type="text"
+														class="form-control" th:name="id_enligne"
+														th:value="${id}" >
+												</div>
+												<div class="form-group">
+													<label>CNE</label> <input type="text" class="form-control"
+														th:name="cne" th:value="${cne}"
+														readonly="readonly">
+												</div>
+<!--
+												 <div class="form-group">
+													<label>Filiere</label> <select
+														class="custom-select" id="inputGroupSelect08"
+														name="filiere">
 
-																<div class="form-group">
-												<label>Ville</label> 
-												<select name="ville" 
-													class="form-control">
-													
-										<option value=" AL HAJEB"> AL HAJEB </option>
-              <option value=" AGADIR "> AGADIR </option>
-              <option value="AL HOCEIMA "> AL HOCEIMA </option>
-              <option value="ASSA "> ASSA </option>
-              <option value="ZAG "> ZAG </option>
-              <option value="AZILAL "> AZILAL </option>
-              <option value="BENI MELLAL"> BENI MELLAL </option>
-              <option value=" BENSLIMANE "> BENSLIMANE </option>
-              <option value="BOUJDOUR"> BOUJDOUR </option>
-              <option value=" BOULEMANE "> BOULEMANE </option>
-              <option value="BERRECHID "> BERRECHID </option>
-              <option value="CASABLANCA "> CASABLANCA </option>
-              <option value="CHEFCHAOUEN "> CHEFCHAOUEN </option>
-              <option value="CHTOUKA "> CHTOUKA </option>
-              <option value="AIT BAHA "> AIT BAHA </option>
-              <option value="CHICHAOUA"> CHICHAOUA </option>
-              <option value=" EL JADIDA"> EL JADIDA </option>
-              <option value=" EL KELAA DES SRAGHNAS"> EL KELAA DES SRAGHNAS </option>
-              <option value=" ERRACHIDIA "> ERRACHIDIA </option>
-              <option value="ESSAOUIRA"> ESSAOUIRA </option>
-              <option value=" ES SEMARA"> ES SEMARA </option>
-              <option value=" FES "> FES </option>
-              <option value="FIGUIG"> FIGUIG </option>
-              <option value=" GUELMIM"> GUELMIM </option>
-              <option value=" IFRANE"> IFRANE </option>
-              <option value=" KENITRA"> KENITRA </option>
-              <option value=" KHEMISSET"> KHEMISSET </option>
-              <option value=" KHENIFRA "> KHENIFRA </option>
-              <option value="KHOURIBGA "> KHOURIBGA </option>
-              <option value="LAAYOUNE"> LAAYOUNE </option>
-              <option value=" LARACHE "> LARACHE </option>
-              <option value="MOHAMMEDIA "> MOHAMMEDIA </option>
-              <option value="MARRAKECH "> MARRAKECH </option>
-              <option value="MEKNES "> MEKNES </option>
-              <option value="NADOR"> NADOR </option>
-              <option value=" OUARZAZATE"> OUARZAZATE </option>
-              <option value=" OUJDA "> OUJDA </option>
-              <option value="OUED EDDAHAB "> OUED EDDAHAB </option>
-              <option value="RABAT "> RABAT </option>
-              <option value="SALE "> SALE </option>
-              <option value="SKHIRAT"> SKHIRAT </option>
-              <option value=" TEMARA "> TEMARA </option>
-              <option value="SEFROU"> SEFROU </option>
-              <option value=" SAFI"> SAFI </option>
-              <option value=" SETTAT"> SETTAT </option>
-              <option value=" SIDI KACEM "> SIDI KACEM </option>
-              <option value="TANGER "> TANGER </option>
-              <option value="TAN TAN"> TAN TAN </option>
-              <option value=" TAOUNAT "> TAOUNAT </option>
-              <option value="TAROUDANNT"> TAROUDANNT </option>
-              <option value=" TATA"> TATA </option>
-              <option value=" TAZA"> TAZA </option>
-              <option value=" TETOUAN "> TETOUAN </option>
-              <option value="TIZNIT"> TIZNIT </option>
+														<option th:each="p:${filieres}" th:value="${p.name}"
+															th:text="${p.name}"></option>
 
-               <option value="AUTRES"> AUTRES </option>
-															
+													</select>
 
-												</select>
-											</div>
-				
-											<div class="form-group">
-												<label>Telephone</label> <input type="text" name="telephone"
-													class="form-control" th:value="${admin.telephone}"
-													placeholder="tt-tt-tt" required="required">
+												</div>
+												<!--
+												<div class="form-group">
+													<label>Annee Universitaire</label> <select
+														class="custom-select" id="inputGroupSelect07"
+														name="annee">
 
-											</div>
-											<div class="form-group">
-												<label>Email Etudiant</label> <input type="email"
-													name="email_etud" class="form-control"
-													th:value="${admin.email_etud}" placeholder="xyz@gmail.abc"
-													required="required">
+														<option th:each="p:${annees}" th:value="${p.id}"
+															th:text="${p.annee}"></option>
 
-											</div>
-											<div class="form-group">
-												<label>Email Parent</label> <input type="email"
-													name="email_parent" class="form-control"
-													th:value="${admin.email_parent}"
-													placeholder="xyz@gmail.abc" required="required">
+													</select>
 
-											</div>
+												</div>
+ -->
+												<div class="form-group">
+													<label>Filiere</label> <input type="text"
+														th:name="filiere" class="form-control"
+														>
+												</div>
+												<div class="form-group">
+													<label>Annee Universitaire</label> <input type="text"
+														th:name="annee" class="form-control"
+														>
+												</div>
+
+												<div class="form-group">
+													<label>Etablissement</label> <input type="text"
+														th:name="etablissement" class="form-control"
+														>
+												</div>
 
 
-											<!-- <div class="form-group">
+
+												<div class="form-group">
+													<label>Date de validation d'inscription</label> <input
+														type="date" th:name="dateInscriptionValide"
+														class="form-control"
+														>
+												</div>
+
+
+												<div class="form-group">
+													<label>Adresse Personnel</label> <input type="text"
+														th:name="adressePersonnel" class="form-control"
+														>
+
+												</div>
+
+												<div class="form-group">
+													<label>Ville</label> <select th:name="ville" 
+														class="form-control">
+
+														<option value=" AL HAJEB">AL HAJEB</option>
+														<option value=" AGADIR ">AGADIR</option>
+														<option value="AL HOCEIMA ">AL HOCEIMA</option>
+														<option value="ASSA ">ASSA</option>
+														<option value="ZAG ">ZAG</option>
+														<option value="AZILAL ">AZILAL</option>
+														<option value="BENI MELLAL">BENI MELLAL</option>
+														<option value=" BENSLIMANE ">BENSLIMANE</option>
+														<option value="BOUJDOUR">BOUJDOUR</option>
+														<option value=" BOULEMANE ">BOULEMANE</option>
+														<option value="BERRECHID ">BERRECHID</option>
+														<option value="CASABLANCA ">CASABLANCA</option>
+														<option value="CHEFCHAOUEN ">CHEFCHAOUEN</option>
+														<option value="CHTOUKA ">CHTOUKA</option>
+														<option value="AIT BAHA ">AIT BAHA</option>
+														<option value="CHICHAOUA">CHICHAOUA</option>
+														<option value=" EL JADIDA">EL JADIDA</option>
+														<option value=" EL KELAA DES SRAGHNAS">EL KELAA
+															DES SRAGHNAS</option>
+														<option value=" ERRACHIDIA ">ERRACHIDIA</option>
+														<option value="ESSAOUIRA">ESSAOUIRA</option>
+														<option value=" ES SEMARA">ES SEMARA</option>
+														<option value=" FES ">FES</option>
+														<option value="FIGUIG">FIGUIG</option>
+														<option value=" GUELMIM">GUELMIM</option>
+														<option value=" IFRANE">IFRANE</option>
+														<option value=" KENITRA">KENITRA</option>
+														<option value=" KHEMISSET">KHEMISSET</option>
+														<option value=" KHENIFRA ">KHENIFRA</option>
+														<option value="KHOURIBGA ">KHOURIBGA</option>
+														<option value="LAAYOUNE">LAAYOUNE</option>
+														<option value=" LARACHE ">LARACHE</option>
+														<option value="MOHAMMEDIA ">MOHAMMEDIA</option>
+														<option value="MARRAKECH ">MARRAKECH</option>
+														<option value="MEKNES ">MEKNES</option>
+														<option value="NADOR">NADOR</option>
+														<option value=" OUARZAZATE">OUARZAZATE</option>
+														<option value=" OUJDA ">OUJDA</option>
+														<option value="OUED EDDAHAB ">OUED EDDAHAB</option>
+														<option value="RABAT ">RABAT</option>
+														<option value="SALE ">SALE</option>
+														<option value="SKHIRAT">SKHIRAT</option>
+														<option value=" TEMARA ">TEMARA</option>
+														<option value="SEFROU">SEFROU</option>
+														<option value=" SAFI">SAFI</option>
+														<option value=" SETTAT">SETTAT</option>
+														<option value=" SIDI KACEM ">SIDI KACEM</option>
+														<option value="TANGER ">TANGER</option>
+														<option value="TAN TAN">TAN TAN</option>
+														<option value=" TAOUNAT ">TAOUNAT</option>
+														<option value="TAROUDANNT">TAROUDANNT</option>
+														<option value=" TATA">TATA</option>
+														<option value=" TAZA">TAZA</option>
+														<option value=" TETOUAN ">TETOUAN</option>
+														<option value="TIZNIT">TIZNIT</option>
+
+														<option value="AUTRES">AUTRES</option>
+
+
+													</select>
+												</div>
+
+												<div class="form-group">
+													<label>Telephone</label> <input type="tel" th:name="tel"
+														class="form-control" 
+														placeholder="06-22-22-22-22"
+														pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
+														>
+
+												</div>
+												<div class="form-group">
+													<label>Email Etudiant</label> <input type="email"
+														th:name="emailEtud" class="form-control"
+														placeholder="xyz@gmail.abc">
+
+												</div>
+												<div class="form-group">
+													<label>Email Parent</label> <input type="email"
+														th:name="emailParent" class="form-control"
+														placeholder="xyz@gmail.abc" >
+
+												</div>
+
+
+												<!-- <div class="form-group">
                       <label>Photo</label>
                       <input type="file" class="form-control" name="file">
                     </div>
                      -->
 
 
-											<div class="form-group text-right">
-												<button type="submit"
-													class="btn btn-round btn-lg btn-success">Send Form
-												</button>
-											</div>
-										</form>
+												<div class="form-group text-right">
+													<button type="submit"
+														class="btn btn-round btn-lg btn-success">Send
+														Form</button>
+												</div>
+											</form>
+
+
+										</div>
+
+
 
 
 									</div>
-										
-										
-										
-										
-									</div>
-								</div>
+								<!-- </div> -->
 
 
 
@@ -290,9 +295,10 @@
 
 
 
-							</div>
+						<!-- 	</div> 
 						</div>
-					</div>
+						-->
+					<!-- </div> -->
 				</div>
 			</div>
 		</section>

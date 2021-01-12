@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
 	name="viewport">
-<title>Validation Inscription EnLigne</title>
+<title>Modifier Filière</title>
 
 <!-- General CSS Files -->
 <link rel="stylesheet"
@@ -28,51 +28,43 @@
 <body>
 	<div id="app">
 		<section class="section">
-			<div class="container mt-4">
-				
+			<div class="container mt-5">
+				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">
-						<label th:text="${enligne.nomFr}"></label>
-						<label th:text="${enligne.prenomFr}"></label>
-						
-						</div>
+						<div class="login-brand">Modifier Filière</div>
+						<form th:action="@{confirmEditFiliere}" method="post">
+							<div class="card card-primary">
+								<div class="row">
 
-						<div class="card card-primary">
+									<div class="col-20 col-md-20 col-lg-5 p-0">
+										<div class="card-header text-center">
+											<h4>Formulaire de saisie</h4>
+										</div>
 
-								<div class="container mt-5 col-6">
-									<div class="card-header text-center">
-									
-										<h4>Enregistrement En ligne effectue avec Succees</h4>
+										<div class="card-body">
+
+											<div class="form-group">
+												<label>ID</label> <input type="text" name="cne"
+													class="form-control" th:value="${filiere.id_filiere}"
+													readonly="readonly">
+											</div>
+
+											<div class="form-group">
+												<label>Libellé Filière</label> <input type="text" name="nom"
+													class="form-control" th:value="${filiere.nom_filiere}">
+											</div>
+
+											
+											<div class="form-group text-right">
+												<button type="submit"
+													class="btn btn-round btn-lg btn-primary">Send Form</button>
+											</div>
+										</div>
 									</div>
-					
+
 								</div>
-
-										<div class="card-footer pt-0">
-                  
-                  <a  th:href=@{index}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Back To Home" ><i class="fas fa-arrow-circle-left"></i>
-                            </a>
-                            
-                  </div>
-										
-										
-															
-										
-										
-									</div>
-								</div>
-
-
-
-
-
-
-
-
-
-
-
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

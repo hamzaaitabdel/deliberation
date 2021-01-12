@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Inscription Administrative</title>
+  <title>Inscription Pédagogique</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
   <div id="app">
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
@@ -248,7 +247,7 @@
             <h4>Admin</h4>
           </div>
           
-           <ul class="sidebar-menu">
+          <ul class="sidebar-menu">
               <li class="menu-header">Inscription</li>
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
@@ -256,21 +255,19 @@
                   <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
                   <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
-                  <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
-                  <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
-                  
+                  <li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
                 </ul>
-              </li>
-              <li class="menu-header">Starter</li>
+              </li><li class="menu-header">Structure</li>
               <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
-                  <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
-                  <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
+                  <li><a class="nav-link" th:href="@{formEtape}">Etape , Semestre & Module</a></li>
+                  <li><a class="nav-link" th:href="@{formSemestre}">Inscription par Semestre</a></li>
+                  <li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
                 </ul>
               </li>
-              <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+              
+              
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
                 <ul class="dropdown-menu">
@@ -408,7 +405,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Liste des inscriptions enligne</h1>
+            <h1>Liste des inscriptions pédagogiques</h1>
           </div>
          
 
@@ -417,52 +414,57 @@
                 <div class="card-header">
                   <h4>Latest Inscriptions</h4>
                   <div class="card-header-action">
-                    <a th:href="@{administrativeAll}" class="btn btn-primary">View All</a>
+                    <a th:href="@{listePedago}" class="btn btn-primary">View All</a>
                   </div>
                 </div>
                 <div class="card-body p-0">
-                <form th:action="@{enlignes}" method="get">
+                 <form th:action="@{pedagogique}" method="get">
 				<div class="form-group"></div>
 				<label>Name</label>
 				<input type="text" name="keyword" th:value="${keyword}">
 				<button class="btn btn-info">Chercher</button>
 				</form>
-                  <div class="table-responsive">
+                   <div class="table-responsive">
                     <table class="table table-striped mb-0">
                       <thead>
                         <tr>
-                        <th>CNE</th>
-                          <th>Name</th>
-                          <th>Prenom</th>
-    					<th>Mention</th>
-    					<th>Valide</th>
-    					
-    				      <th>Action</th>
+                       	<th>ID</th>
+    					<th>CNE</th>
+    					<th>Nom</th>
+    					<th>Prenom</th>
+    					<th>Semestre</th>
+    					<th>Module</th>
+    					<th>Element</th>
+    				    <th>Edit</th>
+    				    <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody >
                 
-                        <tr th:each="p:${enligne}">
+                        <tr th:each="p:${pedagogiques}">
                         
-						<td th:text="${p.cne}"></td>
-				   
-						<td th:text="${p.nomFr}"></td>
-						<td th:text="${p.prenomFr}"></td>
-						<td th:text="${p.mentionBac}"></td>
-						<td th:text="${p.valideEnligne}"></td>
-					
-							  <!-- 
+                        	<td th:text="${p.id}"></td>
+                        	<td th:text="${p.etudiant.cne}"></td>
+							<td th:text="${p.etudiant.nom}"></td>
+							<td th:text="${p.etudiant.prenom}"></td>
+							<td th:text="${p.element.module.semestre.name}"></td>
+							<td th:text="${p.element.module.name}"></td>
+							<td th:text="${p.element.name}"></td>
+							
+							
+							
                           <td>
-                            <a href="#" class="font-weight-600"><img src="../assets/img/avatar/avatar-1.png" alt="avatar" width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                          </td>
-                           -->
-                          <td>
-                            <a  th:href=@{ConfirmationAdmin(id_enligne=${p.id},cne=${p.cne})}
-                            class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Inscription Administrative"><i class="fas fa-pencil-alt"></i></a>
-                            <!-- <a 
+                             <a  th:href=@{editPedago(id=${p.id})}
+                            class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i>
+                            </a> 
+                            </td>
+                            <td>
+                            <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteEnligne(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
+                            th:href=@{deletePedago(id=${p.id})}><i class="fas fa-trash"></i>
+                            </a> 
                           </td>
+                          
                         </tr>
  						
  
@@ -471,7 +473,7 @@
                     <ul class="nav nav-pills">
 				<li  th:each="page,status:${pages}">
 					<a th:class="${status.index==currentPage?'btn btn-warning':'btn'}" 
-					th:href="@{enlignesAll(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:href="@{listePedago(page=${status.index},keyword=${keyword},size=${size})}" 
 					th:text="${status.index}"></a>
 				</ul>
                   </div>

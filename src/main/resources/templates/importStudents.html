@@ -446,14 +446,14 @@
 			<div class="main-content">
 				<section class="section">
 					<div class="section-header">
-						<h1>Liste des inscriptions Administatives</h1>
+						<h1>Import des étudiants</h1>
 					</div>
 
 
 					<div class="container mt-5">
 						<div class="card">
 							 <div class="card-header">
-								<h4>Inscriptions Administratives</h4>
+								<h4>Import des étudiants</h4>
 								<div class="card-header-action">
 									<a th:href="@{administrativesAll}" class="btn btn-primary">View
 										All</a>
@@ -462,7 +462,7 @@
 							 
 							<div class="card-body p-0">
 							<div class="card-header">	
-								<form th:action="@{/importStudents}" method="post" enctype="multipart/form-data">
+								<form th:action="@{/importetudiants}" method="post" enctype="multipart/form-data">
 									<input type="file" th:name="file" value="Choisir Fichier Excel" class="btn btn-info"><p></p>
 									<input th:type="submit" value="Importer étudiants" class="btn btn-warning">
 								</form>

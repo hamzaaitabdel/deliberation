@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
 	name="viewport">
-<title>Liste Filière</title>
+<title>Etudiants Par Filière</title>
 
 <!-- General CSS Files -->
 <link rel="stylesheet"
@@ -260,29 +260,27 @@
 			<div class="main-sidebar">
 				<aside id="sidebar-wrapper">
 					<div class="sidebar-brand">
+					<br>
 						<h4>Admin</h4>
 					</div>
 
 					<ul class="sidebar-menu">
-						<li class="menu-header">Inscription</li>
+						<li class="menu-header">Inscriptions</li>
 						<li class="nav-item dropdown active"><a href="#"
-							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
+							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Inscription</span></a>
 							<ul class="dropdown-menu">
 								<li class="active"><a class="nav-link"
-									th:href="@{enlignesAll}">List Inscription</a></li>
-								<li><a class="nav-link" href="#">Administrative</a></li>
+									th:href="@{enlignesAll}">Inscriptions en ligne</a></li>
+								<li><a class="nav-link" href="@{administratives}">Administratives</a></li>
 							</ul></li>
-						<li class="menu-header">Starter</li>
+							
+						<li class="menu-header">Etudiants</li>
 						<li class="nav-item dropdown"><a href="#"
 							class="nav-link has-dropdown" data-toggle="dropdown"><i
-								class="fas fa-columns"></i> <span>Layout</span></a>
+								class="fas fa-columns"></i> <span>Etudiants</span></a>
 							<ul class="dropdown-menu">
-								<li><a class="nav-link" href="layout-default.html">Default
-										Layout</a></li>
-								<li><a class="nav-link" href="layout-transparent.html">Transparent
-										Sidebar</a></li>
-								<li><a class="nav-link" href="layout-top-navigation.html">Top
-										Navigation</a></li>
+								<li><a class="nav-link" href="#">Liste Etudiants</a></li>
+								
 							</ul></li>
 						<li><a class="nav-link" href="blank.html"><i
 								class="far fa-square"></i> <span>Blank Page</span></a></li>
@@ -312,7 +310,7 @@
 								<li><a class="nav-link" href="bootstrap-tooltip.html">Tooltip</a></li>
 								<li><a class="nav-link" href="bootstrap-typography.html">Typography</a></li>
 							</ul></li>
-						<li class="menu-header">Inscription Pedagogique</li>
+						<li class="menu-header">Stisla</li>
 						<li class="nav-item dropdown"><a href="#"
 							class="nav-link has-dropdown"><i class="fas fa-th-large"></i>
 								<span>Components</span></a>
@@ -443,65 +441,52 @@
 			<div class="main-content">
 				<section class="section">
 					<div class="section-header">
-						<h1>Liste des filières</h1>
+						<h1>Liste des Etudiants Par Filière</h1>
 					</div>
 
 
 					<div class="container mt-5">
 						<div class="card">
 							<div class="card-header">
-								<h4>Filières</h4>
-								<div class="card-header-action">
-									<a th:href="@{filiere}" class="btn btn-primary">View All</a>
-								</div>
+								<h4>Liste Etudiants par Filière</h4>
+								<!-- <div class="card-header-action">
+									<a th:href="@{EtudiantsParFiliere}" class="btn btn-primary">View
+										All</a>
+								</div> -->
 							</div>
 							<div class="card-body p-0">
-								<form th:action="@{filiere}" method="get">
+								<!-- <form th:action="@{EtudiantsParFiliere}" method="get">
 									<div class="form-group"></div>
 									<label>Name</label> <input type="text" name="keyword"
 										th:value="${keyword}">
 									<button class="btn btn-info">Chercher</button>
-								</form>
-								<br>
-
+								</form>-->
 								<div class="table-responsive">
 									<table class="table table-striped mb-0">
 										<thead>
 											<tr>
-												<th>ID</th>
+												<th>Massar</th>
 												<th>Nom</th>
-												<th>Etudiants Par Filière</th>
-												<th>Action</th>
+												<th>Prénom</th>
 												
+												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
 
-											<tr th:each="p:${filiere}">
+											<tr th:each="p:${etudiants}">
 
-												<td th:text="${p.id}"></td>
+												<td th:text="${p.cne}"></td>
 
-												<td th:text="${p.name}"></td>
-
-
-												<td><a
-													th:href=@{etudiantsParFiliere(id=${p.id})}
+												<td th:text="${p.nom}"></td>
+												<td th:text="${p.prenom}"></td>
+												
+												
+												<td><a th:href="@{inscrirePedagogiquement(cne=${p.cne})}"
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
-														class="fas fa-pencil-alt"></i></a></td>
-
-												<td><a
-													th:href=@{editFiliere(id=${p.id})}
-													class="btn btn-primary btn-action mr-1"
-													data-toggle="tooltip" title="Edit"><i
-														class="fas fa-pencil-alt"></i></a>
-
-												<a
-													th:href=@{deleteFiliere(id=${p.id})}
-													class="btn btn-primary btn-action mr-1"
-													data-toggle="tooltip" title="Delete"><i
-														class="fas fa-pencil-alt"></i></a></td>
-
+														class="fas fa-pencil-alt"></i></a> 
+												</td>
 											</tr>
 
 

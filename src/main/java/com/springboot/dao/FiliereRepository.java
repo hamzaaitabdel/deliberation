@@ -1,5 +1,7 @@
 package com.springboot.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +13,18 @@ import com.springboot.entities.Etablissement;
 import com.springboot.entities.Filiere;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere,Long> {
+
+//	public Long findIdByName(String filiere);
+	
+	@Query("select f from Filiere f")
+	public List<Filiere> getAll();
+	
+	
+	@Query("select f from Filiere f where f.id =: id")
+	public Filiere findById_filiere(@Param("id")Long id);
+	
+	@Query("select f.id from Filiere f where f.name =: x")
+	public Long getId_filiere(@Param("x")String nom);
 	
 //	@Query("select f from Filiere f where f.id_filiere =: id_filiere")
 //	public Filiere findById_filiere(@Param("id_filiere")Long id_filiere);

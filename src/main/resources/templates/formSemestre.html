@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
+	name="viewport">
+<title>Structure & Insertion d'Etape , Semestre et Module</title>
+
+<!-- General CSS Files -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+	crossorigin="anonymous">
+
+<!-- CSS Libraries -->
+
+<!-- Template CSS -->
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+</head>
+
+<body>
+	<div id="app">
+		<section class="section">
+			<div class="container mt-5">
+				<div class="row">
+
+					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+						<div class="login-brand">Insertion Semestre</div>
+
+						<div class="card card-primary">
+							<div class="row">
+								<div class="col-12 col-md-12 col-lg-5 p-0">
+									<div class="card-header text-center">
+										<h4>Formulaire de saisie</h4>
+									</div>
+									<div class="card-body">
+										<form th:action="@{saveSemestre}" method="post">
+
+											<div class="form-group">
+												<label>Semestre</label> <input type="text"
+													name="name" class="form-control"
+													th:value="${semestre.name}" required="required">
+											</div>
+											
+											<div class="form-group">
+												<label>ID Etape</label> <input type="text"
+													name="etape" class="form-control"
+													th:value="${etape}">
+											</div>
+											
+												<div class="form-group text-right">
+										<button type="submit" class="btn btn-round btn-lg btn-primary">Send
+											Form</button>
+									</div>
+								</form>		
+									</div>
+								</div>
+								<div class="col-12 col-md-6 col-lg-6">
+									<div class="card">
+										<div class="card-header">
+											<h4>Liste des Semestres</h4>
+											<div class="card-header-action">
+                    
+                  					</div>
+										</div>
+										<div class="card-body">
+
+											<div class="section-title mt-0">Light</div> 
+                    						<table class="table table-striped">
+												<thead>
+													<tr>
+														
+														<th scope="col">Semestre</th>
+														<th scope="col">Etape</th>
+														<th scope="col">Etat</th>
+														
+														<th scope="col">Action</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="p:${semestres}">
+
+														<td th:text="${p.name}"></td>
+
+														<td th:text="${p.Etape.id}"></td>
+														<td th:text="${p.etats}"></td>
+														
+													<td><a class="btn btn-danger btn-action"
+															data-toggle="tooltip" title="Delete"
+															onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+															th:href=@{deleteSemestre(id=${p.id},,page=${currentPage},size=${size})}><i
+																class="fas fa-trash"></i></a> <a
+															class="btn btn-danger btn-action" data-toggle="tooltip"
+															title="Edit" th:href=@{editSemestre(id=${p.id})}><i
+																class="fas fa-alt"></i></a></td>
+													</tr>
+
+												</tbody>
+											</table>
+											<ul class="nav nav-pills">
+												<li th:each="page,status:${pages}"><a
+													th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
+													th:href="@{semestres(page=${status.index},size=${size})}"
+													th:text="${status.index}"></a>
+											</ul>
+										</div>
+									</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+
+
+
+
+				</div>
+			</div>
+	</div>
+	</div>
+	</section>
+	</div>
+
+	<!-- General JS Scripts -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script src="../assets/js/stisla.js"></script>
+
+	<!-- JS Libraies -->
+	<script
+		src="http://maps.google.com/maps/api/js?key=AIzaSyB55Np3_WsZwUQ9NS7DP-HnneleZLYZDNw&amp;sensor=true"></script>
+	<script src="../node_modules/gmaps/gmaps.min.js"></script>
+
+	<!-- Template JS File -->
+	<script src="../assets/js/scripts.js"></script>
+	<script src="../assets/js/custom.js"></script>
+
+	<!-- Page Specific JS File -->
+	<script src="../assets/js/page/utilities-contact.js"></script>
+</body>
+</html>

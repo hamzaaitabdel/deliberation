@@ -446,10 +446,10 @@
                 
                         <tr th:each="p:${admins}">
                         
-                        	<td th:text="${p.InscriptionEnligne.cne}"></td>
+                        	<td th:text="${p.inscriptionEnligne.cne}"></td>
 						
-                        	<td th:text="${p.email_etud}"></td>
-						<td th:text="${p.annee_academique}"></td>
+                        	<td th:text="${p.emailEtud}"></td>
+						<td th:text="${p.anneeUniversitaire.annee}"></td>
 					
 							  <!-- 
                           <td>
@@ -457,16 +457,16 @@
                           </td>
                            -->
                           <td>
-                             <a  th:href=@{editAdmin(id=${p.id_inscription_administrative},cne=${p.InscriptionEnligne.cne})}
+                             <a  th:href=@{editAdmin(id=${p.id},cne=${p.inscriptionEnligne.cne})}
                             class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i>
                             </a> 
                             <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-                            th:href=@{deleteAdmin(id=${p.id_inscription_administrative},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i>
+                            th:href=@{deleteAdmin(id=${p.id},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i>
                             </a> 
                             <a 
                             class="btn btn-success btn-action" data-toggle="tooltip" title="Valid"  onclick="return confirm('Etes vous sur de vouloir continuer la Validation de l'inscription administrative?')"
-                            th:href=@{validAdmin(id=${p.id_inscription_administrative},keyword=${keyword},page=${currentPage},size=${size})}><i class="fa fa-folder"></i>
+                            th:href=@{validAdmin(id=${p.id},keyword=${keyword},page=${currentPage},size=${size})}><i class="fa fa-folder"></i>
                             </a> 
                             
                           </td>

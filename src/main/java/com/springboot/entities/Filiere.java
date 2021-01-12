@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
+@Data @NoArgsConstructor @AllArgsConstructor 
 public class Filiere {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +32,13 @@ public class Filiere {
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<InscriptionAdministrative> inscriptionAdministratives;
 	
+//	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	List<InscriptionPedagogique> inscriptionPedagogiques;
+//	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etudiant> etudiants;
 	
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etape> etapes;
-	
 	
 }

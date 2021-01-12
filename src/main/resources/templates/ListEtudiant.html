@@ -471,7 +471,7 @@
 												<th>Nom</th>
 												<th>Prenom</th>
 												<th>Email</th>
-												
+												<th>Action</th>
 												
 											</tr>
 										</thead>
@@ -481,15 +481,24 @@
 
 												<td th:text="${p.cne}"></td>
 
-												<td th:text="${p.nom_etud}"></td>
-												<td th:text="${p.prenom_etud}"></td>
-												<td th:text="${p.email_etud}"></td>
+												<td th:text="${p.nom}"></td>
+												<td th:text="${p.prenom}"></td>
+												<td th:text="${p.email}"></td>
 												
+												
+												<td><a th:href="@{editEtudiant(cne=${p.cne})}" class="btn btn-primary btn-action mr-1"
+													data-toggle="tooltip" title="Edit"><i
+														class="fas fa-pencil-alt"></i>	</a>
+												</td>
 												<!-- 
 												<td><a th:href="@{modifetud}"
 													class="btn btn-primary btn-action mr-1"
 													data-toggle="tooltip" title="Edit"><i
 														class="fas fa-pencil-alt"></i></a> 
+														 <a 
+                            class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
+                            th:href=@{deleteEtudiant(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> 
+												</td>
 														
 												</td> -->
 											</tr>
@@ -500,7 +509,7 @@
 									<ul class="nav nav-pills">
 										<li th:each="page,status:${pages}"><a
 											th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-											th:href="@{enlignesAll(page=${status.index},keyword=${keyword},size=${size})}"
+											th:href="@{etudiantsAll(page=${status.index},keyword=${keyword},size=${size})}"
 											th:text="${status.index}"></a>
 									</ul>
 								</div>

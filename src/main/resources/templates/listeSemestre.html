@@ -249,7 +249,7 @@
           
           <ul class="sidebar-menu">
               <li class="menu-header">Inscription</li>
-              <li class="nav-item dropdown active">
+              <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
                 <ul class="dropdown-menu">
                   <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enilgne</a></li>
@@ -257,10 +257,13 @@
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
                 </ul>
               </li><li class="menu-header">Structure</li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" th:href="@{formEtape}">Etape , Semestre & Module</a></li>
+                  <li><a class="nav-link" th:href="@{formEtape}">Etape, Semestre & Module</a></li>
+                  <p></p>
+                  <li><a class="nav-link" th:href="@{etudiantsParFiliere}">Liste des etudiants par Filiere</a></li>
+                  <p></p>
                   <li><a class="nav-link" th:href="@{formSemestre}">Inscription par Semestre</a></li>
                   <li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
                 </ul>
@@ -404,23 +407,54 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Liste des inscriptions administrative</h1>
+            <h1>Liste des etudiants par Filiere</h1>
+
           </div>
-         
 
             <div class="container mt-5">
               <div class="card">
                            <div class="card-body p-0">
-                 <form th:action="@{selectParFiliere}" method="get">
-				 <div class="section-title">Select Par Filiere</div>
+<!--                  <form th:action="@{selectFiliere}" method="get"> -->
+<!-- 				<div class="form-group"></div> -->
+<!-- 				<label>Name</label> -->
+<!-- 				<input type="text" name="filiere" th:value="${filiere}"> -->
+<!-- 				<button class="btn btn-info">Chercher</button> -->
+<!-- 				</form> -->
+<form th:action="@{selectFiliere}" method="get">
+				 <div class="section-title">Select Filiere, Annee universitaire & Etape</div>
                     <div class="form-group">
                       <div class="input-group">
-                        <select class="custom-select"  id="inputGroupSelect04" name="filiere" th:value="${filiere}">
-                          <option selected>Choose...</option>
-                          <option value="1">BGI</option>
-                          <option value="2">BGB</option>
-                          <option value="3">BCA</option>
+                        <select class="custom-select"  id="inputGroupSelect04" name="filiere">
+                          <!-- <option selected>Choose...</option> -->
+
+                          <option th:each="p:${filiere}" th:value="${p.nom_filiere}" th:text="${p.nom_filiere}"></option>
+                          
                         </select>
+                                <!--  <select class="custom-select"  id="inputGroupSelect04" name="filiere" th:value="${filiere}" >
+                          <option selected>Choose...</option>
+                          <option value="BGI">BGI</option>
+                          <option value="BGB">BGB</option>
+                          <option value="BCA">BCA</option>
+                        </select> -->
+                  		<!-- <select class="custom-select"  id="inputGroupSelect05" name="annee" th:value="${annee}" >
+                            	
+                            <option value="2020/2021"> 2020/2021 </option>
+            				<option value="2021/2022"> 2021/2022 </option>
+            				<option value="2022/2023"> 2022/2023 </option>
+            				<option value="2023/2024"> 2023/2024 </option>
+            				<option value="2024/2025"> 2024/2025 </option>
+            				<option value="2025/2026"> 2025/2026 </option>
+            				<option value="2026/2027"> 2026/2027 </option>
+            				<option value="2027/2028"> 2027/2028 </option>
+                     
+                        </select> -->
+                  		<!-- <select class="custom-select"  id="inputGroupSelect06" name="etape" th:value="${etape}" >
+                          <option selected>Choose...</option>
+                          <option value="Annee1">Annee1</option>
+                          <option value="Annee2">Annee2</option>
+                          <option value="Annee3">Annee3</option>
+                        </select> -->
+                        
                         <div class="input-group-append">
                           <button class="btn btn-primary" type="submit">Select</button>
                         </div>
@@ -443,7 +477,7 @@
                       </thead>
                       <tbody >
                 
-                        <tr th:each="p:${listParFiliere}">
+                        <tr th:each="p:${selectFiliere}">
                         
                         	<td th:text="${p.cne}"></td>
 						
@@ -453,10 +487,12 @@
                         	<td th:text="${p.email_etud}"></td>
 							
                           <td>
-                             <a  th:href=@{ajoutParSemestre(id=${p.cne)}
+                              <a  
+                             th:href=@{ajouterParSemestre} id="modal-5"
                             class="btn btn-warning btn-action mr-1" data-toggle="tooltip" title="Ajout"><i class="fas fa-pencil-alt"></i>
+                            
                             </a> 
-                             
+                              
                           </td>
                         </tr>
  						
@@ -466,7 +502,7 @@
                     <ul class="nav nav-pills">
 				<li  th:each="page,status:${pages}">
 					<a th:class="${status.index==currentPage?'btn btn-warning':'btn'}" 
-					th:href="@{adminsAll(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:href="@{etudiantsParFiliere(page=${status.index},filiere=${filiere},size=${size})}" 
 					th:text="${status.index}"></a>
 				</ul>
                   </div>
