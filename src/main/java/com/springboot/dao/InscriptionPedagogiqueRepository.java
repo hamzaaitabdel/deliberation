@@ -13,11 +13,11 @@ import com.springboot.entities.Module;
 @Repository
 public interface InscriptionPedagogiqueRepository extends JpaRepository<InscriptionPedagogique,Long> {
 	
-	@Transactional
-	@Modifying
-	@Query("update InscriptionPedagogique s set s.module= :x where s.id = :id")
-	public void UpdateId_module(@Param("x")Module m, @Param("id")Long id);
-	
+//	@Transactional
+//	@Modifying
+//	@Query("update InscriptionPedagogique s set s.module= :x where s.id = :id")
+//	public void UpdateId_module(@Param("x")Module m, @Param("id")Long id);
+//	
 	@Transactional
 	@Modifying
 	@Query("delete from InscriptionPedagogique s where s.id = :id")

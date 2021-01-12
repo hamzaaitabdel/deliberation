@@ -1,5 +1,7 @@
 package com.springboot.dao;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +27,10 @@ public interface InscriptionEnligneRepository extends JpaRepository<InscriptionE
 	@Query(value="select e.cne from inscription_enligne e where e.idie = ?",nativeQuery=true)
 	public String findCneById(Long id);
 
-
-//	public String findByCne(String cne);
+	@Transactional
+	@Modifying
+	@Query("delete from InscriptionEnligne s where s.id = :id")
+	public void DeleteIDIE(@Param("id")Long id);
+	
 	
 }

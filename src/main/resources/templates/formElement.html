@@ -30,90 +30,96 @@
 		<section class="section">
 			<div class="container mt-5">
 				<div class="row">
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">Insertion Module</div>
+
+					<div class="col-col-xs-7 col-sm-6 col-lg-12">
+						<div class="login-brand">Insertion Element</div>
 
 						<div class="card card-primary">
 							<div class="row">
-								<div class="col-12 col-md-12 col-lg-5 p-0">
-									<div class="card-header text-center">
+								<div class="col-xs-5 col-sm-6 col-lg-4">
+									<div class="card-header text-center" th:if="${mode=='new'}">
 										<h4>Formulaire de saisie</h4>
 									</div>
+									<div class="card-header text-center" th:if="${mode=='edit'}">
+										<h4>Formulaire de mis a jour</h4>
+									</div>
 									<div class="card-body">
-										<form th:action="@{saveElement}" method="post">
-
-											<div class="form-group">
+										<form th:action="@{saveElement}" method="post"
+											>
+											
+										<div class="form-group">
 												<label>Element</label> <input type="text"
 													name="name" class="form-control"
-													th:value="${element.name}" required="required">
-											</div>
-											<div class="form-group">
-												<label>ID Module</label> <input type="text"
-													name="module" class="form-control"
-													th:value="${module}" required="required">
-											</div>
-											<div class="form-group">
-												<label>ID Professeur</label> <input type="text"
-													name="professeur" class="form-control"
-													th:value="${professeur}" required="required">
+													 required="required">
 											</div>
 											
+											
+																						<div class="form-group">
+												<label>Module</label> <select class="custom-select"
+													id="inputGroupSelect08" name="module">
+
+													<option th:each="p:${module}" th:value="${p.id}"
+														th:text="${p.name}"></option>
+
+												</select>
+
+											</div>											
+
+
 											<div class="form-group">
+												<label>Professeur</label> <select class="custom-select"
+													id="inputGroupSelect08" name="professeur">
+
+													<option th:each="p:${professeur}" th:value="${p.id}"
+														th:text="${p.nom}"></option>
+
+												</select>
+
+											</div>
+
+
+
+										<div class="form-group">
 												<label>Note Validation</label> <input type="text"
 													name="noteValidation" class="form-control"
-													th:value="element.noteValidation" required="required">
+													required="required">
 											</div>
 											<div class="form-group">
 												<label>Note Eliminatoire</label> <input type="text"
 													name="noteEliminatoire" class="form-control"
-													th:value="element.noteElement" required="required">
+													 required="required">
 											</div>
 											<div class="form-group">
 												<label>Coefficient</label> <input type="text"
-													name="coeffecient" class="form-control"
-													th:value="element.coefficient" required="required">
+													name="coefficient" class="form-control"
+													 required="required">
 											</div>
 											
-											
-												<div class="form-group text-right">
-										<button type="submit" class="btn btn-round btn-lg btn-primary">Send
-											Form</button>
-									</div>
-								</form>		
+											<div class="form-group text-right">
+												<button type="submit"
+													class="btn btn-round btn-lg btn-success">Send Form</button>
+											</div>
+										</form>
 									</div>
 								</div>
-								<div class="col-12 col-md-6 col-lg-6">
+
+								<div class="col-6 col-md-6 col-lg-7">
 									<div class="card">
 										<div class="card-header">
-											<h4>Liste des Modules</h4>
+											<h4>Liste des Elements</h4>
 											<div class="card-header-action">
-                    
-                  					</div>
+												<a th:href="@{elements}" class="btn btn-primary">View
+													All</a>
+											</div>
+											<div class="card-header-action"></div>
 										</div>
 										<div class="card-body">
 
-											<!-- <div class="section-title">Dark</div>
-                    						<table class="table table-striped table-dark">
-                    						 -->
-                    						<div class="section-title mt-0">Light</div> 
-                    						<table class="table table-striped">
-											
+											<div class="section-title mt-0">Light</div>
+											<table class="table table-striped">
 												<thead>
 													<tr>
-														
-														
-														<th scope="col">Element</th>
+	<th scope="col">Element</th>
 														
 														<th scope="col">Module</th>
 														<th scope="col">Professor</th>
@@ -130,23 +136,24 @@
 					
 														<td th:text="${p.name}"></td>
 
-														<td th:text="${p.Module.id}"></td>
-														<td th:text="${p.Professeur.id}"></td>
+														<td th:text="${p.Module.name}"></td>
+														<td th:text="${p.Professeur.nom}"></td>
 														
 														<td th:text="${p.noteEliminatoire}"></td>
 														<td th:text="${p.noteValidation}"></td>
 														<td th:text="${p.coefficient}"></td>
-																												<td th:text="${p.name}"></td>
-																												<td th:text="${p.name}"></td>
-														
-												<td><a class="btn btn-danger btn-action"
+															
+														<td>
+														<a class="btn btn-danger btn-action"
 															data-toggle="tooltip" title="Delete"
 															onclick="return confirm('Etes vous sur de vouloir supprimer?')"
 															th:href=@{deleteElement(id=${p.id},,page=${currentPage},size=${size})}><i
-																class="fas fa-trash"></i></a> <a
-															class="btn btn-danger btn-action" data-toggle="tooltip"
+																class="fas fa-trash"></i></a> 
+																<a
+															class="btn btn-primary btn-action" data-toggle="tooltip"
 															title="Edit" th:href=@{editElement(id=${p.id})}><i
-																class="fas fa-alt"></i></a></td>
+																class="fas fa-pencil-alt"></i></a></td>
+
 													</tr>
 
 												</tbody>
@@ -160,16 +167,17 @@
 										</div>
 									</div>
 
+								</div>
 							</div>
 						</div>
+
 					</div>
 
+
+
+
 				</div>
-				
-				
-				
 			</div>
-	</div>
 	</div>
 	</div>
 	</section>

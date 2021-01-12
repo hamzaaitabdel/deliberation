@@ -253,8 +253,8 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
-                  <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+                  <li><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
+                  <li class="active"><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
                   <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
                   <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
@@ -416,17 +416,17 @@
               <div class="card">
                 <div class="card-header">
                   <h4>Latest Inscriptions</h4>
-                  <div class="card-header-action">
-                    <a th:href="@{administrativeAll}" class="btn btn-primary">View All</a>
-                  </div>
+<!--                   <div class="card-header-action"> -->
+<!--                     <a th:href="@{administrativeAll}" class="btn btn-primary">View All</a> -->
+<!--                   </div> -->
                 </div>
                 <div class="card-body p-0">
-                <form th:action="@{enlignes}" method="get">
+              <!--   <form th:action="@{enlignes}" method="get">
 				<div class="form-group"></div>
 				<label>Name</label>
 				<input type="text" name="keyword" th:value="${keyword}">
-				<button class="btn btn-info">Chercher</button>
-				</form>
+				<button class="btn btn-success">Chercher</button>
+				</form> -->
                   <div class="table-responsive">
                     <table class="table table-striped mb-0">
                       <thead>
@@ -449,7 +449,9 @@
 						<td th:text="${p.nomFr}"></td>
 						<td th:text="${p.prenomFr}"></td>
 						<td th:text="${p.mentionBac}"></td>
-						<td th:text="${p.valideEnligne}"></td>
+						<td >
+						<div class="badge badge-success" th:text="${p.valideEnligne}"> </div>
+						</td>
 					
 							  <!-- 
                           <td>
@@ -457,8 +459,8 @@
                           </td>
                            -->
                           <td>
-                            <a  th:href=@{ConfirmationAdmin(id_enligne=${p.id},cne=${p.cne})}
-                            class="btn btn-success btn-action mr-1" data-toggle="tooltip" title="Inscription Administrative"><i class="fas fa-pencil-alt"></i></a>
+                            <a  th:href=@{ConfirmationAdmin(id_enligne=${p.id},cne=${p.cne},nom=${p.nomFr},prenom=${p.prenomFr},tel=${p.phone},email=${p.email})}
+                            class="btn btn-info btn-action mr-1" data-toggle="tooltip" title="Inscription Administrative"><i class="fas fa-book"></i></a>
                             <!-- <a 
                             class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"  onclick="return confirm('Etes vous sur de vouloir supprimer?')"
                             th:href=@{deleteEnligne(id=${p.cne},keyword=${keyword},page=${currentPage},size=${size})}><i class="fas fa-trash"></i></a> -->
@@ -471,7 +473,7 @@
                     <ul class="nav nav-pills">
 				<li  th:each="page,status:${pages}">
 					<a th:class="${status.index==currentPage?'btn btn-warning':'btn'}" 
-					th:href="@{enlignesAll(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:href="@{administrativeAll(page=${status.index},size=${size})}" 
 					th:text="${status.index}"></a>
 				</ul>
                   </div>

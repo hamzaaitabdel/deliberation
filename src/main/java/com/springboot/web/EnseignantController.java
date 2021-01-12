@@ -13,6 +13,7 @@ import com.springboot.dao.InscriptionEnligneRepository;
 import com.springboot.dao.InscriptionPedagogiqueRepository;
 import com.springboot.dao.ModuleRepository;
 import com.springboot.dao.ProfesseurRepository;
+import com.springboot.entities.AnneeUniversitaire;
 import com.springboot.entities.Element;
 import com.springboot.entities.Etablissement;
 import com.springboot.entities.Etape;
@@ -71,83 +72,14 @@ public class EnseignantController {
 
 	//1.Structure d'enseignants
 	
-
-	//Supprission filiere,etape , semestre ,module,element
-	
-	@GetMapping(path="/deleteFiliere")
-	public String deleteFiliere(Long id , int page , int size) {
-		filiereRepository.deleteById(id);
-		return "redirect:/filieres?page="+page+"&size="+size;
-	}
-	
-	@GetMapping(path="/deleteEtape")
-	public String deleteEtape(Long id , int page , int size) {
-		etapeRepository.deleteById(id);
-		return "redirect:/etapes?page="+page+"&size="+size;
-	}
-	@GetMapping(path="/deleteSemestre")
-	public String deleteSemestre(Long id , int page , int size) {
-		semestreRepository.deleteById(id);
-		return "redirect:/semestres?page="+page+"&size="+size;
-	}
-	@GetMapping(path="/deleteModule")
-	public String deleteModule(Long id , int page , int size) {
-		moduleRepository.deleteById(id);
-		return "redirect:/modules?page="+page+"&size="+size;
-	}
-	@GetMapping(path="/deleteElement")
-	public String deleteElement(Long id , int page , int size) {
-		elementRepository.deleteById(id);
-		return "redirect:/elements?page="+page+"&size="+size;
-	}
-
-	// 4.Inscription Pedagogique ,affecter filiere a l'etape
-
 	@GetMapping(path="/formEtape")
 	public String formEtape(Model model) {
 		model.addAttribute("etape", new Etape());
+		List<Filiere> f = filiereRepository.findAll();
+		model.addAttribute("filiere", f);
+		model.addAttribute("mode", "new");
 		return "formEtape";
 	}
-	@GetMapping(path="/formFiliere")
-	public String formFiliere(Model model) {
-		model.addAttribute("filiere", new Filiere());
-		return "formFiliere";
-	}
-	@GetMapping(path="/formSemestre")
-	public String formSemestre(Model model) {
-		model.addAttribute("semestre", new Semestre());
-		return "formSemestre";
-	}
-	@GetMapping(path="/formModule")
-	public String formModule(Model model) {
-		model.addAttribute("module", new Module());
-		return "formModule";
-	}
-	@GetMapping(path="/formElement")
-	public String formElement(Model model) {
-		model.addAttribute("element", new Element());
-		return "formElement";
-	}
-	
-	@RequestMapping(path="/saveFiliere" , method = RequestMethod.POST)
-	public String saveFiliere(Model model,
-			@Valid Filiere  filiere,
-			@RequestParam("etablissement")Long etablissement,
-			BindingResult bindingResult){
-		if(bindingResult.hasErrors()) return "formFiliere";
-
-		Etablissement f = etablissementRepository.findById(etablissement).get();
-		f.setId(etablissement);
-		filiere.setEtablissement(f);
-
-		filiereRepository.save(filiere);
-		model.addAttribute("filiere", filiere);
-		model.addAttribute("etablissement", etablissement);
-
-		return "redirect:/filieres";
-	}
-	
-	
 	@RequestMapping(path="/saveEtape" , method = RequestMethod.POST)
 	public String saveEtape(Model model,
 			@Valid Etape  etape,
@@ -161,11 +93,149 @@ public class EnseignantController {
 
 		etapeRepository.save(etape);
 		model.addAttribute("filiere",filiere);
-		model.addAttribute("etape", etape);
+		//model.addAttribute("etape", etape);
 
 		return "redirect:/etapes";
 	}
+	@GetMapping(path = "/etapes")
+	public String etapes(Model model,Long id,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size){
+		
+		Page<Etape> pageEtudiants = etapeRepository.findAll(PageRequest.of(page, size));
+		List<Filiere> f = filiereRepository.findAll();
+		model.addAttribute("etapes", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("size", size);
+		model.addAttribute("filiere", f);
+		
+		return "formEtape";
+	}
+	@GetMapping(path="/deleteEtape")
+	public String deleteEtape(Long id , int page , int size) {
+		etapeRepository.DeleteIDEt(id);
+		return "redirect:/etapes?page="+page+"&size="+size;
+	}
 	
+	@GetMapping(path="/editEtape") 
+	public String editAdmin(Model model,Long id) {
+		Etape e = etapeRepository.findById(id).get();
+		model.addAttribute("etape",e);
+		List<Filiere> f = filiereRepository.findAll();
+		model.addAttribute("filiere", f);
+		model.addAttribute("mode", "edit");
+		return "editEtape"; 
+	}
+	@RequestMapping(path="/updateEtape" , method = RequestMethod.POST)
+	public String updateEtape(Model model,
+			@RequestParam(name="filiere")String filiere,
+			@RequestParam(name="id")Long id,
+			@RequestParam(name="name")String nom,
+			@RequestParam(name="diplome", defaultValue = "false")boolean dipl
+			){
+		
+		
+		Etape e = etapeRepository.findById(id).get();
+		
+		e.setId(id);
+		e.setDiplome(dipl);
+		e.setName(nom);
+		e.setFiliere(filiereRepository.findById(Long.parseLong(filiere)).get());
+		etapeRepository.save(e);
+		
+		return "redirect:/etapes";
+	}
+	
+	
+	/************************************************/
+	
+	@GetMapping(path="/formFiliere")
+	public String formFiliere(Model model) {
+		model.addAttribute("filiere", new Filiere());
+		model.addAttribute("mode", "new");
+		return "formFiliere";
+		}
+	@RequestMapping(path="/saveFiliere" , method = RequestMethod.POST)
+	public String saveFiliere(Model model,
+			@Valid Filiere  filiere,
+			@RequestParam("etablissement")Long etablissement,
+			BindingResult bindingResult){
+		if(bindingResult.hasErrors()) return "formFiliere";
+
+		Etablissement f = etablissementRepository.findById(etablissement).get();
+		f.setId(etablissement);
+		filiere.setEtablissement(f);
+
+		filiereRepository.save(filiere);
+		//model.addAttribute("filiere", filiere);
+		model.addAttribute("etablissement", etablissement);
+
+		return "redirect:/filieres";
+	}
+	@GetMapping(path = "/filieres")
+	public String filieres(Model model,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size){
+		
+		Page<Filiere> pageEtudiants = filiereRepository.findAll(PageRequest.of(page, size));
+		List<Etablissement> e = etablissementRepository.findAll();
+		model.addAttribute("filieres", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("size", size);
+		model.addAttribute("etablissement", e);
+		return "formFiliere";
+	}
+	@GetMapping(path="/deleteFiliere")
+	public String deleteFiliere(Long id , int page , int size) {
+		filiereRepository.DeleteIDF(id);
+		return "redirect:/filieres?page="+page+"&size="+size;
+	}
+	
+	
+
+	@GetMapping(path="/editFiliere") 
+	public String editFiliere(Model model,Long id) {
+		Filiere f = filiereRepository.findById(id).get();
+		model.addAttribute("filiere",f);
+		List<Etablissement> e = etablissementRepository.findAll();
+		model.addAttribute("etablissement", e);
+		model.addAttribute("mode", "edit");
+		return "editFiliere"; 
+	}
+	@RequestMapping(path="/updateFiliere" , method = RequestMethod.POST)
+	public String updateFiliere(Model model,
+			@RequestParam(name="etablissement")String etabli,
+			@RequestParam(name="id")Long id,
+			@RequestParam(name="name")String nom
+			
+			){
+		
+		
+		Filiere e = filiereRepository.findById(id).get();
+		
+		e.setId(id);
+		
+		e.setName(nom);
+		e.setEtablissement(etablissementRepository.findById(Long.parseLong(etabli)).get());
+		filiereRepository.save(e);
+		
+		return "redirect:/filieres";
+	}
+	
+	
+	
+	/**********************************************/
+	
+	@GetMapping(path="/formSemestre")
+	public String formSemestre(Model model) {
+		model.addAttribute("semestre", new Semestre());
+		List<Etape> s = etapeRepository.findAll();
+		model.addAttribute("etape", s);
+		model.addAttribute("mode", "new");
+		return "formSemestre";
+	}
 	@RequestMapping(path="/saveSemestre" , method = RequestMethod.POST)
 	public String saveSemstre(Model model,
 			@Valid Semestre  semestre,
@@ -176,14 +246,78 @@ public class EnseignantController {
 		Etape f = etapeRepository.findById(etape).get();
 		f.setId(etape);
 		semestre.setEtape(f);
-
+		
 		semestreRepository.save(semestre);
-		model.addAttribute("semestre", semestre);
+		//model.addAttribute("semestre", semestre);
 		model.addAttribute("etape", etape);
-
+		
 		return "redirect:/semestres";
 	}
-
+	@GetMapping(path = "/semestres")
+	public String semestres(Model model,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size){
+		
+		Page<Semestre> pageEtudiants = semestreRepository.findAll(PageRequest.of(page, size));
+		
+		List<Etape> s = etapeRepository.findAll();
+		model.addAttribute("semestres", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("size", size);
+		model.addAttribute("etape", s);
+		
+		return "formSemestre";
+	}
+	@GetMapping(path="/deleteSemestre")
+	public String deleteSemestre(Long id , int page , int size) {
+		semestreRepository.DeleteIDS(id);
+		return "redirect:/semestres?page="+page+"&size="+size;
+	}
+	
+	@GetMapping(path="/editSemestre") 
+	public String editSemestre(Model model,Long id) {
+		Semestre s = semestreRepository.findById(id).get();
+		model.addAttribute("semestre",s);
+		List<Etape> e = etapeRepository.findAll();
+		model.addAttribute("etape", e);
+		model.addAttribute("mode", "edit");
+		return "editSemestre"; 
+	}
+	
+	@RequestMapping(path="/updateSemestre" , method = RequestMethod.POST)
+	public String updateSemestre(Model model,
+			@RequestParam(name="etape")String etape,
+			@RequestParam(name="id")Long id,
+			@RequestParam(name="name")String nom,
+			@RequestParam(name="etats",defaultValue = "false")boolean etat
+			
+			
+			){
+		
+		
+		Semestre e = semestreRepository.findById(id).get();
+		
+		e.setId(id);
+		e.setEtats(etat);
+		e.setName(nom);
+		e.setEtape(etapeRepository.findById(Long.parseLong(etape)).get());
+		semestreRepository.save(e);
+		
+		return "redirect:/semestres";
+	}
+	
+	/***************************************************/
+	
+	
+	@GetMapping(path="/formModule")
+	public String formModule(Model model) {
+		model.addAttribute("module", new Module());
+		List<Semestre> mo = semestreRepository.findAll();
+		model.addAttribute("semestre", mo);
+		model.addAttribute("mode", "new");
+		return "formModule";
+	}
 	@RequestMapping(path="/saveModule" , method = RequestMethod.POST)
 	public String saveModule(Model model,
 			@Valid Module  module,
@@ -198,9 +332,81 @@ public class EnseignantController {
 
 		moduleRepository.save(module);
 		model.addAttribute("semestre", semestre);
-		model.addAttribute("module", module);
+		//model.addAttribute("module", module);
 
 		return "redirect:/modules";
+	}
+	@GetMapping(path = "/modules")
+	public String modules(Model model,
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "5") int size){
+		
+		Page<Module> pageEtudiants = moduleRepository.findAll(PageRequest.of(page, size));
+		List<Semestre> s = semestreRepository.findAll();
+		model.addAttribute("modules", pageEtudiants.getContent());
+		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("size", size);
+		model.addAttribute("semestre", s);
+		
+		return "formModule";
+	}	
+	@GetMapping(path="/deleteModule")
+	public String deleteModule(Long id , int page , int size) {
+		moduleRepository.DeleteIDM(id);
+		return "redirect:/modules?page="+page+"&size="+size;
+	}
+	
+	@GetMapping(path="/editModule") 
+	public String editModule(Model model,Long id) {
+		Module s = moduleRepository.findById(id).get();
+		model.addAttribute("module",s);
+		List<Semestre> e = semestreRepository.findAll();
+		model.addAttribute("semestre", e);
+		model.addAttribute("mode", "edit");
+		return "editModule"; 
+	}
+	
+	
+	@RequestMapping(path="/updateModule" , method = RequestMethod.POST)
+	public String updateModule(Model model,
+			@RequestParam(name="semestre")String semestre,
+			@RequestParam(name="id")Long id,
+			@RequestParam(name="name")String nom,
+			@RequestParam(name="noteEliminatoire",defaultValue = "5")double noteE,
+			@RequestParam(name="noteValidation",defaultValue = "10")double noteV,
+			@RequestParam(name="coefficient",defaultValue = "1")double coeff
+			
+			){
+		 
+		
+		Module e = moduleRepository.findById(id).get();
+		
+		e.setId(id);
+		e.setCoefficient(coeff);
+		e.setNoteEliminatoire(noteE);
+		e.setNoteValidation(noteV);
+		e.setName(nom);
+		e.setSemestre(semestreRepository.findById(Long.parseLong(semestre)).get());
+		moduleRepository.save(e);
+		
+		return "redirect:/modules";
+	}
+	
+	
+	/***************************************************************/
+
+	
+	@GetMapping(path="/formElement")
+	public String formElement(Model model) {
+		model.addAttribute("element", new Element());
+		List<Professeur> p = professeurRepository.findAll();
+		List<Module> m = moduleRepository.findAll();
+		model.addAttribute("module", m);
+		model.addAttribute("professeur", p);
+		
+		model.addAttribute("mode", "new");
+		return "formElement";
 	}
 
 	@RequestMapping(path="/saveElement" , method = RequestMethod.POST)
@@ -222,77 +428,87 @@ public class EnseignantController {
 		
 		
 		elementRepository.save(element);
-		model.addAttribute("element", element);
+		//model.addAttribute("element", element);
 		model.addAttribute("professeur", professeur);
 		model.addAttribute("module", module);
 
 		return "redirect:/elements";
 	}
-
-	
-	@GetMapping(path = "/filieres")
-	public String filieres(Model model,
-			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size){
-		
-		Page<Filiere> pageEtudiants = filiereRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("filieres", pageEtudiants.getContent());
-		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("size", size);
-		return "formFiliere";
-	}
-	@GetMapping(path = "/etapes")
-	public String etapes(Model model,
-			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size){
-		
-		Page<Etape> pageEtudiants = etapeRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("etapes", pageEtudiants.getContent());
-		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("size", size);
-		return "formEtape";
-	}
-	
-	@GetMapping(path = "/semestres")
-	public String semestres(Model model,
-			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size){
-		
-		Page<Semestre> pageEtudiants = semestreRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("semestres", pageEtudiants.getContent());
-		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("size", size);
-		return "formSemestre";
-	}
-	
-	@GetMapping(path = "/modules")
-	public String modules(Model model,
-			@RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "5") int size){
-		
-		Page<Module> pageEtudiants = moduleRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("modules", pageEtudiants.getContent());
-		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("size", size);
-		return "formModule";
-	}
-	
 	@GetMapping(path = "/elements")
 	public String elements(Model model,
 			@RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "5") int size){
 		
 		Page<Element> pageEtudiants = elementRepository.findAll(PageRequest.of(page, size));
+		
+		List<Professeur> p = professeurRepository.findAll();
+		List<Module> m = moduleRepository.findAll();
 		model.addAttribute("elements", pageEtudiants.getContent());
 		model.addAttribute("pages", new int[pageEtudiants.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("size", size);
+		model.addAttribute("module", m);
+		model.addAttribute("professeur", p);
 		return "formElement";
 	}
+	@GetMapping(path="/deleteElement")
+	public String deleteElement(Long id , int page , int size) {
+		elementRepository.DeleteIDEl(id);
+		return "redirect:/elements?page="+page+"&size="+size;
+	}
+
+
+	@RequestMapping(path="/updateElement" , method = RequestMethod.POST)
+	public String updateElement(Model model,
+			@RequestParam(name="module")String module,
+			@RequestParam(name="professeur")String professeur,
+			
+			@RequestParam(name="id")Long id,
+			@RequestParam(name="name")String nom,
+			@RequestParam(name="noteEliminatoire",defaultValue = "5")double noteE,
+			@RequestParam(name="noteValidation",defaultValue = "10")double noteV,
+			@RequestParam(name="coefficient",defaultValue = "1")double coeff
+			
+			){
+		
+		
+		Element e = elementRepository.findById(id).get();
+		
+		e.setId(id);
+		e.setCoefficient(coeff);
+		e.setNoteEliminatoire(noteE);
+		e.setNoteValidation(noteV);
+		e.setName(nom);
+		e.setModule(moduleRepository.findById(Long.parseLong(module)).get());
+		e.setProfesseur(professeurRepository.findById(Long.parseLong(professeur)).get());
+		elementRepository.save(e);
+		
+		return "redirect:/elements";
+	}
+	
+	@GetMapping(path="/editElement") 
+	public String editElement(Model model,Long id) {
+		Element s = elementRepository.findById(id).get();
+		model.addAttribute("element",s);
+		List<Module> m = moduleRepository.findAll();
+		List<Professeur> e = professeurRepository.findAll();
+		
+		model.addAttribute("professeur", e);
+		model.addAttribute("module", m);
+		
+		model.addAttribute("mode", "edit");
+		return "editElement"; 
+	}
+	
+	
+	
+	/***************************************************************/
+	
+	
+	
+	
+	
+	
 	
 	/*
 	 * @RequestMapping(path="/saveSemestre" , method = RequestMethod.POST) public

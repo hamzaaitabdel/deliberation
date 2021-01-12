@@ -31,12 +31,11 @@
 			<div class="container mt-5">
 				<div class="row">
 
-					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">Insertion Semestre</div>
+					<div class="col-6 col-md-6 offset-md-3 col-lg-10 offset-lg-1">
+						<div class="login-brand">Edition Etape</div>
 
 						<div class="card card-primary">
-							<div class="row">
-								<div class="col-12 col-md-12 col-lg-5 p-0">
+							
 									<div class="card-header text-center" th:if="${mode=='new'}">
 										<h4>Formulaire de saisie</h4>
 									</div>
@@ -44,99 +43,44 @@
 										<h4>Formulaire de mis a jour</h4>
 									</div>
 									<div class="card-body">
-										<form th:action="@{saveSemestre}" method="post"
+										<form th:action="@{updateEtape}" method="post"
 											>
 											
 											<div class="form-group">
-												<label>Semestre</label> <input type="text" class="form-control"
-													th:name="name" required="required">
+												<label>ID</label> <input type="text" class="form-control"
+													th:name="id" th:value="${etape.id}" readonly="readonly">
+											</div>
+					
+											<div class="form-group">
+												<label>Etape</label> <input type="text" class="form-control"
+													th:name="name" th:value="${etape.name}" required="required">
 											</div>
 
 
 
 											<div class="form-group">
-												<label>Etape</label> <select class="custom-select"
-													id="inputGroupSelect08" name="etape">
+												<label>Filiere</label> <select class="custom-select"
+													id="inputGroupSelect08" name="filiere">
 
-													<option th:each="p:${etape}" th:value="${p.id}"
+													<option th:each="p:${filiere}" th:value="${p.id}"
 														th:text="${p.name}"></option>
 
 												</select>
 
 											</div>
-												<div class="form-group">
-												<label>Etats</label> <input type="checkbox"
-													th:name="etats" class="form-control"
+
+											<div class="form-group">
+												<label>HasDiplome</label> <input type="checkbox"
+													th:name="diplome" th:checked="${etape.diplome}" class="form-control"
 													>
 											</div>
-											
-
 											<div class="form-group text-right">
 												<button type="submit"
-													class="btn btn-round btn-lg btn-success">Send Form</button>
+													class="btn btn-round btn-lg btn-warning">Update</button>
 											</div>
 										</form>
 									</div>
-								</div>
-
-								<div class="col-6 col-md-6 col-lg-7">
-									<div class="card">
-										<div class="card-header">
-											<h4>Liste des Semestres</h4>
-											<div class="card-header-action">
-												<a th:href="@{semestres}" class="btn btn-primary">View
-													All</a>
-											</div>
-											<div class="card-header-action"></div>
-										</div>
-										<div class="card-body">
-
-											<div class="section-title mt-0">Light</div>
-											<table class="table table-striped">
-												<thead>
-													<tr>
-
-														<th scope="col">Semestre</th>
-														<th scope="col">Etape</th>
-														<th scope="col">Etat</th>
-														
-														<th scope="col">Action</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="p:${semestres}">
-
-														<td th:text="${p.name}"></td>
-
-														<td th:text="${p.Etape.name}"></td>
-														<td th:text="${p.etats}"></td>
-														<td>
-														<a class="btn btn-danger btn-action"
-															data-toggle="tooltip" title="Delete"
-															onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-															th:href=@{deleteSemestre(id=${p.id},,page=${currentPage},size=${size})}><i
-																class="fas fa-trash"></i></a> 
-																<a
-															class="btn btn-primary btn-action" data-toggle="tooltip"
-															title="Edit" th:href=@{editSemestre(id=${p.id})}><i
-																class="fas fa-pencil-alt"></i></a></td>
-
-													</tr>
-
-												</tbody>
-											</table>
-											<ul class="nav nav-pills">
-												<li th:each="page,status:${pages}"><a
-													th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-													th:href="@{etapes(page=${status.index},size=${size})}"
-													th:text="${status.index}"></a>
-											</ul>
-										</div>
-									</div>
-
-								</div>
-							</div>
+					
 						</div>
 
 					</div>
