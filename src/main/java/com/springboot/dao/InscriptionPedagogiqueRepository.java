@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.entities.*;
 @Repository
-public interface InscriptionPedagogiqueRepository extends JpaRepository<Etudiant,String> {
+public interface InscriptionPedagogiqueRepository extends JpaRepository<InscriptionPedagogique,Long> {
     // @Query(value="SELECT u from InscriptionPedagogique u where u.semestre =:s")
     // public Page<InscriptionPedagogique> findByid_moduleAndid_semestre(@Param("s")Semestre s,Pageable pageable);
 

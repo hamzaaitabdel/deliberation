@@ -29,7 +29,6 @@ public class Element {
 	private double coefficient;
 	private double noteEliminatoire;
 	private double noteValidation;
-	private String nom;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_module")
 	private Module module;
