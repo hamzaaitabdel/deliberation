@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register &mdash; Stisla</title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="../node_modules/selectric/public/selectric.css">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+</head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+            <div class="login-brand">
+              <img src="../assets/img/g.jpg" alt="logo" width="200" >
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header"><h4>Registration</h4></div>
+<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully registered
+						to our awesome app!</div>
+				</div>
+              <div class="card-body">
+              <form th:action="@{/registration}" th:object="${user}" method="post">
+              	<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+						th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+						error</p>
+                  <div class="row">
+                    <div class="form-group col-6">
+                   <div class="form-group"
+						th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+						<label for="firstName" class="control-label">First name</label> <input
+							id="firstName" class="form-control" th:field="*{firstName}" />
+						<p class="error-message"
+							th:each="error: ${#fields.errors('firstName')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                    </div>
+                    <div class="form-group col-6">
+                   <div class="form-group"
+						th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
+						<label for="lastName" class="control-label">Last name</label> <input
+							id="lastName" class="form-control" th:field="*{lastName}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('lastName')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                    </div>
+                  </div>
+  				<div class="row">
+  				 <div class="form-group col-6">
+               <div class="form-group"
+						th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+						<label for="email" class="control-label">E-mail</label> <input
+							id="email" class="form-control" th:field="*{email}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
+							error</p>
+					</div>
+                  </div>
+                   <div class="form-group col-6">
+                    <div class="form-group"
+						th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
+						<label for="confirmEmail" class="control-label">Confirm
+							e-mail</label> <input id="confirmEmail" class="form-control"
+							th:field="*{confirmEmail}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('confirmEmail')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                    </div>
+				</div>
+							<div class="row">
+  				 <div class="form-group col-6">
+               	<div class="form-group"
+						th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+						<label for="password" class="control-label">Password</label> <input
+							id="password" class="form-control" type="password"
+							th:field="*{password}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('password')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                  </div>
+                   <div class="form-group col-6">
+              	<div class="form-group"
+						th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
+						<label for="confirmPassword" class="control-label">Confirm
+							password</label> <input id="confirmPassword" class="form-control"
+							type="password" th:field="*{confirmPassword}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('confirmPassword')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                    </div>
+				</div>
+                  <div class="row">
+                    <div class="form-group col-6">
+                    <div class="form-group"
+						th:classappend="${#fields.hasErrors('cin')}? 'has-error':''">
+						<label for="cin" class="control-label">CIN</label> <input
+							id="cin" class="form-control" th:field="*{cin}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('cin')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                      <div id="pwindicator" class="pwindicator">
+                        <div class="bar"></div>
+                        <div class="label"></div>
+                      </div>
+                    </div>
+                      <div class="form-group col-6">
+                      	<div class="form-group"
+						th:classappend="${#fields.hasErrors('telephone')}? 'has-error':''">
+						<label for="telephone" class="control-label">Telephone
+							</label> <input id="telephone" class="form-control"
+							type="text" th:field="*{telephone}" />
+						<p class="error-message"
+							th:each="error : ${#fields.errors('telephone')}"
+							th:text="${error}">Validation error</p>
+					</div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-divider">
+                    Veuillez choisir votre role
+                  </div>
+                  <div  class="row">
+                    <div class="form-group col-6">
+                      <label>Role</label>
+                      <select name="Role" id="test" th:field="*{Role}"  class=" form-control selectric">
+                        <option th:value="${r.id}" th:text="${r.name}" th:each="r:${Role}"   ></option>
+
+                      </select>
+                    
+                    </div>
+                    <!-- <div style="display:none;" id="hidden_div"  class="form-group col-6">
+                      <label id="hidden_label">Choisir filiere</label>
+                      <select name="Filiere"  th:field="*{Filiere}"  class=" form-control selectric">
+                        <option th:value="${f.id}" th:text="${f.name}" th:each="f:${Filiere}" ></option>
+                       
+                      </select>
+                    </div>
+                    <div style="display:none;" id="hidden_di"  class="form-group col-6">
+                      <label id="hidden_la">Choisir filiere</label>
+                      <select name="Filiere"  th:field="*{Filiere}"  class=" form-control selectric">
+                        <option th:value="${f.id}" th:text="${f.name}" th:each="f:${Filiere}" ></option>
+                       
+                      </select>
+                    </div> -->
+                   <!--  <div style="display:none;" id="fil"  class="form-group col-6">
+                      <label id="hidden_l">Choisir filiere</label>
+                      <select name="Filiere"  th:field="*{Filiere}"  class=" form-control selectric">
+                        <option th:value="${f.id}" th:text="${f.name}" th:each="f:${Filiere}" ></option>
+                       
+                      </select>
+                    </div>
+                  </div>
+                  <div   class="row">
+                    <div class="form-group col-6">
+                      
+                    </div>
+                    <div  style="display:none;" id="mod" class="form-group col-6">
+                      <label  id="hidden_label1">Choisir Module</label>
+                       <select name="Module"  th:field="*{Module}"  class=" form-control selectric">
+                        <option th:value="${m.id}" th:text="${m.name}" th:each="m:${Module}"></option>
+                       
+                      </select>
+                    </div> -->
+                  <!--   <div  style="display:none;" id="hidden_di1" class="form-group col-6">
+                      <label  id="hidden_la1">Choisir Module</label>
+                      <select name="Module"  th:field="*{Module}"  class=" form-control selectric">
+                        <option th:value="${m.id}" th:text="${m.name}" th:each="m:${Module}"></option>
+                       
+                      </select>
+                    </div> -->
+
+                    
+                    
+                    <div class="form-group col-6">
+                      
+                    </div>
+
+                   
+                    
+                  </div>
+
+
+               
+
+            
+
+
+                  <script  >
+                    
+                    document.getElementById('test').addEventListener('change', function () {
+                        var style = this.value == 1 ? 'block' : 'none';
+
+                      
+                    });
+                    document.getElementById('test').addEventListener('change', function () {
+                        var style = this.value == 0 ? 'block' : 'none';
+                        
+                        document.getElementById('el').style.display = style;
+                        
+
+
+
+
+                    });
+                    document.getElementById('test').addEventListener('change', function () {
+                        var style = this.value == 2 ? 'block' : 'none';
+                    
+                    
+                    });
+               
+                    
+                    </script>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                    	<div class="form-group"
+						th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
+						<input id="terms" type="checkbox" th:field="*{terms}" />   <label
+							class="control-label" for="terms"> I agree with the <a
+							href="#">terms and conditions</a> for Registration.
+						</label>
+						<p class="error-message"
+							th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation
+							error</p>
+					</div>
+                    </div>
+                  </div>
+                  
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                      Ajouter Utilisateur
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="simple-footer">
+              Copyright &copy; Stisla 2018
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="../assets/js/stisla.js"></script>
+
+  <!-- JS Libraies -->
+  <script src="../node_modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
+  <script src="../node_modules/selectric/public/jquery.selectric.min.js"></script>
+
+  <!-- Template JS File -->
+  <script src="../assets/js/scripts.js"></script>
+  <script src="../assets/js/custom.js"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="../assets/js/page/auth-register.js"></script>
+</body>
+</html>
