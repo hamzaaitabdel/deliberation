@@ -26,11 +26,13 @@ public class Professeur {
 	private Long id;
 	private String nom;
 	private String prenom;
-	private String role;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_etablissement")
 	private Etablissement etablissement;
+	
+	@OneToOne(mappedBy = "professeur" )
+	private User user;
 	
 	@OneToMany(mappedBy = "professeur" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Element> elements;

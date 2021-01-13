@@ -240,7 +240,20 @@ public class AdminiController {
 		 return "listeAdmin";
 	}
 
+	  @GetMapping("/")
+	    public String root() {
+	        return "index";
+	    }
 
+	    @GetMapping("/login")
+	    public String login(Model model) {
+	        return "login";
+	    }
+
+	    @GetMapping("/user")
+	    public String userIndex() {
+	        return "user/index";
+	    }
 	//Affichage avec pagination :tous
 	@GetMapping(path="/adminsAll") 
 	public String listAdminAll(Model model ,
