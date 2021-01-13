@@ -19,7 +19,7 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,String> {
 
 	
 	@Query("select e from Etudiant e where e.nom like :x ")
-    public Page<Etudiant> findByNom_etudContains(@Param("x")String keyword, Pageable of);
+    public Page<Etudiant> findByNomEtudContains(@Param("x")String keyword, Pageable of);
 
 	@Query(value="select iu from Etudiant iu where iu.filiere.id like :x ")
 	public Page<Etudiant> findById_FiliereContains(@Param("x")Long Id_filiere,Pageable of);

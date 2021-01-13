@@ -36,9 +36,9 @@
 							<div class="card card-primary">
 								<div class="row">
 
-									<div class="col-20 col-md-20 col-lg-5 p-0">
+									
 										<div class="card-header text-center">
-											<h4>Formulaire de saisie</h4>
+											<h4>Formulaire de mise a jour</h4>
 										</div>
 
 										<div class="card-body">
@@ -64,6 +64,18 @@
 											</div>
 
 											<div class="form-group">
+													<label>Filiere</label> <select
+														class="custom-select" id="inputGroupSelect08"
+														name="filiere">
+
+														<option th:each="p:${filieres}" th:value="${p.id}"
+															th:text="${p.name}"></option>
+
+													</select>
+
+												</div>
+
+											<div class="form-group">
 												<label>E-mail</label> <input type="email" name="email"
 													class="form-control" th:value="${etudiant.email}">
 											</div>
@@ -73,7 +85,7 @@
 													class="form-control" th:value="${etudiant.telephone}">
 											</div>
 
-											<div class="form-group">
+					<!-- 						<div class="form-group">
 												<label>Filière</label>
 
 												<table class="table table-striped mb-0">
@@ -102,12 +114,15 @@
 													</tbody>
 												</table>
 
-											</div>
-
+											</div> -->
+	
+	
+											
+	
 											<div class="form-group text-right">
 												<button type="submit"
 													class="btn btn-round btn-lg btn-primary">Send Form</button>
-											</div>
+											
 										</div>
 									</div>
 

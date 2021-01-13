@@ -269,11 +269,11 @@
 						<li class="nav-item dropdown active"><a href="#"
 							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
 							<ul class="dropdown-menu">
-								<li class="active"><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
+								<li ><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
                   <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
                   <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
                   <li><a class="nav-link" th:href="@{administrativesAll}">Importer Les Etudiants</a></li>
-						<li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+						<li class="active"><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
                   
 							</ul></li>
 						</li><li class="menu-header">Structure</li>
@@ -509,7 +509,7 @@
 									<ul class="nav nav-pills">
 										<li th:each="page,status:${pages}"><a
 											th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-											th:href="@{etudiantsAll(page=${status.index},keyword=${keyword},size=${size})}"
+											th:href="@{etudiants(page=${status.index},keyword=${keyword},size=${size})}"
 											th:text="${status.index}"></a>
 									</ul>
 								</div>

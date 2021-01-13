@@ -101,68 +101,78 @@
 
 										<div class="card-body">
 
-											<form th:action="@{saveAdmin}" method="post">
+											<form th:action="@{saveAdmin}" method="post" enctype="multipart/form-data">
 												<div class="form-group">
 													<label>ID Enligne</label> <input type="text"
 														class="form-control" th:name="id_enligne"
-														th:value="${id}" >
+														th:value="${id}" readonly="readonly">
 												</div>
 												<div class="form-group">
 													<label>CNE</label> <input type="text" class="form-control"
 														th:name="cne" th:value="${cne}"
-														readonly="readonly">
+														>
 												</div>
-<!--
+														<div class="form-group">
+													<label>Name</label> <input type="text"
+														th:name="nom" class="form-control"
+														th:value="${nom}">
+
+												</div>
+												<div class="form-group">
+													<label>Prenom</label> <input type="text"
+														th:name="prenom" class="form-control"
+														th:value="${prenom}">
+
+												</div>
+												
 												 <div class="form-group">
 													<label>Filiere</label> <select
 														class="custom-select" id="inputGroupSelect08"
 														name="filiere">
 
-														<option th:each="p:${filieres}" th:value="${p.name}"
+														<option th:each="p:${filiere}" th:value="${p.id}"
 															th:text="${p.name}"></option>
 
 													</select>
 
 												</div>
-												<!--
+												
 												<div class="form-group">
 													<label>Annee Universitaire</label> <select
 														class="custom-select" id="inputGroupSelect07"
 														name="annee">
 
-														<option th:each="p:${annees}" th:value="${p.id}"
+														<option th:each="p:${annee}" th:value="${p.id}"
 															th:text="${p.annee}"></option>
 
 													</select>
 
 												</div>
- -->
+ 
+											
+							
+													
 												<div class="form-group">
-													<label>Filiere</label> <input type="text"
-														th:name="filiere" class="form-control"
-														>
+													<label>Etablissement</label> <select
+														class="custom-select" id="inputGroupSelect02"
+														name="etablissement" >
+														<option th:each="p:${etablissement}" th:value="${p.id}"
+															th:text="${p.name}"></option>
+													</select>
 												</div>
-												<div class="form-group">
-													<label>Annee Universitaire</label> <input type="text"
-														th:name="annee" class="form-control"
-														>
-												</div>
-
-												<div class="form-group">
-													<label>Etablissement</label> <input type="text"
-														th:name="etablissement" class="form-control"
-														>
-												</div>
-
-
+												
 
 												<div class="form-group">
 													<label>Date de validation d'inscription</label> <input
+														id="today"
 														type="date" th:name="dateInscriptionValide"
 														class="form-control"
 														>
+														<script type="text/javascript">
+														document.querySelector("#today").valueAsDate = new Date();
+														</script>
 												</div>
-
+												
 
 												<div class="form-group">
 													<label>Adresse Personnel</label> <input type="text"
@@ -238,32 +248,38 @@
 												</div>
 
 												<div class="form-group">
-													<label>Telephone</label> <input type="tel" th:name="tel"
+													<label>Telephone</label> <input type="tel" th:name="telephone"
 														class="form-control" 
 														placeholder="06-22-22-22-22"
 														pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
-														>
+														th:value="${tel}">
 
 												</div>
 												<div class="form-group">
 													<label>Email Etudiant</label> <input type="email"
-														th:name="emailEtud" class="form-control"
+														th:name="emailEtud" th:value="${email}"class="form-control"
 														placeholder="xyz@gmail.abc">
 
 												</div>
 												<div class="form-group">
 													<label>Email Parent</label> <input type="email"
-														th:name="emailParent" class="form-control"
+														th:name="emailParent"  class="form-control"
 														placeholder="xyz@gmail.abc" >
 
 												</div>
 
 
-												<!-- <div class="form-group">
+										 <div class="form-group">
                       <label>Photo</label>
-                      <input type="file" class="form-control" name="file">
-                    </div>
-                     -->
+                      <input type="file" class="form-control" name="doc1" >
+                      
+                    						</div> 
+                     					 <div class="form-group">
+                      <label>Document</label>
+                      <input type="file" class="form-control" name="doc2" >
+                      
+                    						</div> 
+                     
 
 
 												<div class="form-group text-right">

@@ -1,6 +1,5 @@
 package com.springboot.web;
 
-
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -27,7 +26,6 @@ import com.springboot.entities.Module;
 import com.springboot.entities.Semestre;
 
 import com.springboot.service.ImportXLSX;
-
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -61,7 +59,6 @@ import com.springboot.entities.Etape;
 import com.springboot.entities.Filiere;
 import com.springboot.entities.InscriptionAdministrative;
 import com.springboot.entities.InscriptionEnligne;
-
 
 @org.springframework.stereotype.Controller
 public class PedagogiqueController {

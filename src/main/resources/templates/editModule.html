@@ -31,12 +31,11 @@
 			<div class="container mt-5">
 				<div class="row">
 
-					<div class="col-col-xs-7 col-sm-6 col-lg-12">
-						<div class="login-brand">Insertion Module</div>
+					<div class="col-6 col-md-6 offset-md-3 col-lg-10 offset-lg-1">
+						<div class="login-brand">Edition Module</div>
 
 						<div class="card card-primary">
-							<div class="row">
-								<div class="col-xs-5 col-sm-6 col-lg-4">
+							
 									<div class="card-header text-center" th:if="${mode=='new'}">
 										<h4>Formulaire de saisie</h4>
 									</div>
@@ -44,16 +43,22 @@
 										<h4>Formulaire de mis a jour</h4>
 									</div>
 									<div class="card-body">
-										<form th:action="@{saveModule}" method="post"
+										<form th:action="@{updateModule}" method="post"
 											>
 											
-												<div class="form-group">
+											<div class="form-group">
+												<label>ID</label> <input type="text" class="form-control"
+													th:name="id" th:value="${module.id}" readonly="readonly">
+											</div>
+					
+										
+											<div class="form-group">
 												<label>Module</label> <input type="text"
-													name="name" class="form-control"
+													name="name" th:value="${module.name}" class="form-control"
 													required="required">
 											</div>
-
-
+											
+											
 											<div class="form-group">
 												<label>Semestre</label> <select class="custom-select"
 													id="inputGroupSelect08" name="semestre">
@@ -68,94 +73,30 @@
 
 																						<div class="form-group">
 												<label>Coefficient</label> <input type="text"
-													name="coefficient" class="form-control"
+													name="coeffecient"  th:value="${module.coefficient}" class="form-control"
 													 required="required">
 											</div>
 											
 											<div class="form-group">
 												<label>Note Validation</label> <input type="text"
-													name="noteValidation" class="form-control"
+													name="noteValidation"  th:value="${module.noteValidation}" class="form-control"
 													 required="required">
 											</div>
 											<div class="form-group">
 												<label>Note Eliminatoire</label> <input type="text"
-													name="noteEliminatoire" class="form-control"
+													name="noteEliminatoire" th:value="${module.noteEliminatoire}" class="form-control"
 												 required="required">
 											</div>
+												
 											
 
 											<div class="form-group text-right">
 												<button type="submit"
-													class="btn btn-round btn-lg btn-success">Send Form</button>
+													class="btn btn-round btn-lg btn-warning">Update</button>
 											</div>
 										</form>
 									</div>
-								</div>
-
-								<div class="col-6 col-md-6 col-lg-7 p-1">
-									<div class="card">
-										<div class="card-header">
-											<h4>Liste des Modules</h4>
-											<div class="card-header-action">
-												<a th:href="@{modules}" class="btn btn-primary">View
-													All</a>
-											</div>
-											<div class="card-header-action"></div>
-										</div>
-										<div class="card-body">
-
-											<div class="section-title mt-0">Light</div>
-											<table class="table table-striped">
-												<thead>
-													<tr>
-
-														<th scope="col">Module</th>
-														<th scope="col">Semestre</th>
-														<th scope="col">Coefficient</th>
-														<th scope="col">Note Validation</th>
-														<th scope="col">Note Eliminatoire</th>
-														
-														<th scope="col">Action</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="p:${modules}">
-
-
-										<td th:text="${p.name}"></td>
-
-														<td th:text="${p.Semestre.name}"></td>
-														<td th:text="${p.coefficient}"></td>
-														<td th:text="${p.noteValidation}"></td>
-														<td th:text="${p.noteEliminatoire}"></td>
-															
-														<td>
-														<a class="btn btn-danger btn-action"
-															data-toggle="tooltip" title="Delete"
-															onclick="return confirm('Etes vous sur de vouloir supprimer?')"
-															th:href=@{deleteModule(id=${p.id},,page=${currentPage},size=${size})}><i
-																class="fas fa-trash"></i></a> 
-																<a
-															class="btn btn-primary btn-action" data-toggle="tooltip"
-															title="Edit" th:href=@{editModule(id=${p.id})}><i
-																class="fas fa-pencil-alt"></i></a></td>
-
-													</tr>
-
-												</tbody>
-											</table>
-											<ul class="nav nav-pills">
-												<li th:each="page,status:${pages}"><a
-													th:class="${status.index==currentPage?'btn btn-warning':'btn'}"
-													th:href="@{semestres(page=${status.index},size=${size})}"
-													th:text="${status.index}"></a>
-											</ul>
-										</div>
-									</div>
-
-								</div>
-							</div>
+					
 						</div>
 
 					</div>

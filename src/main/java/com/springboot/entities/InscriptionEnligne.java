@@ -1,7 +1,9 @@
 package com.springboot.entities;
+import java.time.Month;
 import java.time.Year;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,6 +51,8 @@ public class InscriptionEnligne {
 	private Date dateInscription;
 	
 	private String anneeBac;
+	//private Month anneeBac;
+	
 	private String serieBac;
 	private String mentionBac;
 	private String lyceeBac;
@@ -61,12 +66,19 @@ public class InscriptionEnligne {
 	@Column(name = "GSP")
 	private String groupeSocioProfessionnel;
 	
+
 	@Lob
-	private Byte[] photo; 
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private String photoEtud; 
+	
 	
 	private boolean valideEnligne;
 	
-	@OneToOne(mappedBy = "inscriptionEnligne")
+	@OneToOne(mappedBy = "inscriptionEnligne" ,cascade = CascadeType.ALL)
 	InscriptionAdministrative inscriptionAdministrative;
+	
+	@Email
+	private String email;
+	private String phone;
 	
 }

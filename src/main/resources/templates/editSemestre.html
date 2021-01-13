@@ -5,7 +5,7 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"
 	name="viewport">
-<title>Validation Inscription EnLigne</title>
+<title>Structure & Insertion d'Etape , Semestre et Module</title>
 
 <!-- General CSS Files -->
 <link rel="stylesheet"
@@ -28,58 +28,69 @@
 <body>
 	<div id="app">
 		<section class="section">
-			<div class="container mt-4">
-				
-					<div class="col-12 col-md-10 offset-md-1 col-lg-10 offset-lg-1">
-						<div class="login-brand">
-						<label th:text="${enligne.nomFr}"></label>
-						<label th:text="${enligne.prenomFr}"></label>
-						
-						
-						</div>
+			<div class="container mt-5">
+				<div class="row">
+
+					<div class="col-6 col-md-6 offset-md-3 col-lg-10 offset-lg-1">
+						<div class="login-brand">Edition Semestre</div>
 
 						<div class="card card-primary">
 
-								<div class="container mt-5 col-6">
-									<div class="card-header text-center">
-									
-										<h4>Enregistrement En ligne effectue avec Succees,Un Email avec votre numero d'inscription a ete envoye</h4>
-										<p></p>
-										
+							<div class="card-header text-center" th:if="${mode=='new'}">
+								<h4>Formulaire de saisie</h4>
+							</div>
+							<div class="card-header text-center" th:if="${mode=='edit'}">
+								<h4>Formulaire de mis a jour</h4>
+							</div>
+							<div class="card-body">
+								<form th:action="@{updateSemestre}" method="post">
+
+									<div class="form-group">
+										<label>ID</label> <input type="text" class="form-control"
+											th:name="id" th:value="${semestre.id}" readonly="readonly">
 									</div>
-					
-								</div>
 
-										<div class="card-footer pt-0">
-                  
-                  <a  th:href=@{index}
-                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Back To Home" ><i class="fas fa-arrow-circle-left"></i>
-                            </a>
-                            
-                  </div>
-										
-										
-															
-										
-										
+									<div class="form-group">
+										<label>Semestre</label> <input type="text"
+											class="form-control" th:name="name"
+											th:value="${semestre.name}" required="required">
 									</div>
-								</div>
 
 
 
+									<div class="form-group">
+										<label>Etape</label> <select class="custom-select"
+											id="inputGroupSelect08" name="etape">
 
+											<option th:each="p:${etape}" th:value="${p.id}"
+												th:text="${p.name}"></option>
 
+										</select>
 
+									</div>
+									<div class="form-group">
+										<label>Etats</label> <input type="checkbox" th:name="etats"
+											th:checked="${semestre.etats}" class="form-control">
+									</div>
 
-
-
-
+									<div class="form-group text-right">
+										<button type="submit" class="btn btn-round btn-lg btn-warning">Update</button>
+									</div>
+								</form>
+							</div>
 
 						</div>
+
 					</div>
+
+
+
+
 				</div>
 			</div>
-		</section>
+	</div>
+	</div>
+	</section>
 	</div>
 
 	<!-- General JS Scripts -->

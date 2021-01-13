@@ -3,6 +3,10 @@ package com.springboot.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import javax.transaction.Transactional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,4 +26,11 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
 
 	@Query("select d from Element d where d.module.id= :x")
 	public List<Element> findById_moduleContains(@Param("x")Long parseLong);
+	
+	@Transactional
+	@Modifying
+	@Query("delete from Element s where s.id = :id")
+	public void DeleteIDEl(@Param("id")Long id);
+	
+	
 }

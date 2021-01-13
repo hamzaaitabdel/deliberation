@@ -9,10 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+
+import java.nio.file.Path;
 import java.util.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,6 +39,7 @@ public class InscriptionAdministrative {
 	private String adressePersonnel;
 	private String ville;
 	private String emailEtud;
+	@Email
 	private String emailParent;
 	private String telephone;
 
@@ -57,6 +62,13 @@ public class InscriptionAdministrative {
 	@OneToOne(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
     @JoinColumn(name = "id_enligne")
 	private InscriptionEnligne inscriptionEnligne;
-
+	
+	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private String file1; 
+	
+	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private String file2; 
 	
 }

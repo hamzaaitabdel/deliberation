@@ -420,40 +420,17 @@
 <!-- 				<input type="text" name="filiere" th:value="${filiere}"> -->
 <!-- 				<button class="btn btn-info">Chercher</button> -->
 <!-- 				</form> -->
-<form th:action="@{selectFiliere}" method="get">
-				 <div class="section-title">Select Filiere, Annee universitaire & Etape</div>
+<form th:action="@{selectFiliere}" method="post">
+				 <div class="section-title">Select Filiere</div>
                     <div class="form-group">
                       <div class="input-group">
                         <select class="custom-select"  id="inputGroupSelect04" name="filiere">
-                          <!-- <option selected>Choose...</option> -->
+                          
 
-                          <option th:each="p:${filiere}" th:value="${p.nom_filiere}" th:text="${p.nom_filiere}"></option>
+                          <option th:each="p:${filiere}" th:value="${p.id}" th:text="${p.name}"></option>
                           
                         </select>
-                                <!--  <select class="custom-select"  id="inputGroupSelect04" name="filiere" th:value="${filiere}" >
-                          <option selected>Choose...</option>
-                          <option value="BGI">BGI</option>
-                          <option value="BGB">BGB</option>
-                          <option value="BCA">BCA</option>
-                        </select> -->
-                  		<!-- <select class="custom-select"  id="inputGroupSelect05" name="annee" th:value="${annee}" >
-                            	
-                            <option value="2020/2021"> 2020/2021 </option>
-            				<option value="2021/2022"> 2021/2022 </option>
-            				<option value="2022/2023"> 2022/2023 </option>
-            				<option value="2023/2024"> 2023/2024 </option>
-            				<option value="2024/2025"> 2024/2025 </option>
-            				<option value="2025/2026"> 2025/2026 </option>
-            				<option value="2026/2027"> 2026/2027 </option>
-            				<option value="2027/2028"> 2027/2028 </option>
-                     
-                        </select> -->
-                  		<!-- <select class="custom-select"  id="inputGroupSelect06" name="etape" th:value="${etape}" >
-                          <option selected>Choose...</option>
-                          <option value="Annee1">Annee1</option>
-                          <option value="Annee2">Annee2</option>
-                          <option value="Annee3">Annee3</option>
-                        </select> -->
+                          
                         
                         <div class="input-group-append">
                           <button class="btn btn-primary" type="submit">Select</button>
