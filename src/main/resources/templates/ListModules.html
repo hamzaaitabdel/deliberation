@@ -250,7 +250,7 @@
                   <span>Delibiration Semestre</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="layout-default.html">Delibiration Modules</a></li>
-                  <li><a class="nav-link" href="layout-transparent.html">Delibiration Semestres</a></li>
+                  <li><a class="nav-link" th:href="@{delibirationSemestre}">Delibiration Semestres</a></li>
                 </ul>
               </li>
               
@@ -314,8 +314,8 @@
                   <thead>
                     <tr>
                       <th scope="col">Nom</th>
+                      <th scope="col">Element</th>
                       <th scope="col">Note</th>
-                      <th scope="col">Etat</th>
                       <th scope="col">Details</th>
                     </tr>
                   </thead>
@@ -323,7 +323,7 @@
                     <tr th:each ="m:${notes}">
                       
                       <td th:text="${m.etudiant.nom}"></td>
-                      <td th:text="${m.element.id}">
+                      <td th:text="${m.element.name}">
                         
                       </td>
                       
@@ -341,7 +341,7 @@
                         </th:block>
                       </td>
                       <td>
-                        <a th:href="@{modifier(id=${m.id})}" class="btn btn-primary">Primary</a>
+                        <a th:href="@{modifier(id=${m.id})}" class="btn btn-primary">Modifier</a>
                       </td>
                     </tr>
                   </tbody>

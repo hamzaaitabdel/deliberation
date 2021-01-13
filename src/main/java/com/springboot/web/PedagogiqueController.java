@@ -317,7 +317,7 @@ public class PedagogiqueController {
 	@GetMapping(path="/listePedago") 
 	public String listePedago(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "15")int size , 
+			@RequestParam(name="size",defaultValue = "7")int size , 
 			@RequestParam(name="keyword",defaultValue = "")String keyword) {
 		Page<InscriptionPedagogique> pageinscpedago = inscriptionPedagogiqueRepository.findAll(PageRequest.of(page, size));
 		model.addAttribute("pedagogiques",pageinscpedago.getContent());

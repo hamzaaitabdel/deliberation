@@ -57,7 +57,7 @@ xmlns:th="http://www.thymeleaf.org">
               <li class="nav-item">
                 <!--  -->
                 <div sec:authorize="!isAuthenticated()"><a class="btn btn-singin" href="#">Log-in</a></div>
-                <div sec:authorize="isAuthenticated()"><a class="btn btn-singin" href="#">au travail</a></div>
+                <div sec:authorize="isAuthenticated()"><a class="btn btn-singin" th:href="@{adminsAll}">au travail</a></div>
               </li>
             </ul>
           </div>

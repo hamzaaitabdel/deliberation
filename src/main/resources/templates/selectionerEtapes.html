@@ -412,16 +412,16 @@
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">Element</th>
+                      <th scope="col">Note</th>
+                      <th scope="col">Modifier</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr th:each ="m:${Lnots}">
                       
                       <td th:text="${m.etudiant.nom}"></td>
-                      <td th:text="${m.element.id}">
+                      <td th:text="${m.element.name}">
                         
                       </td>
                       
@@ -439,7 +439,7 @@
                         </th:block>
                       </td>
                       <td>
-                        <a th:href="@{modifier(id=${m.id})}" class="btn btn-primary">Primary</a>
+                        <a th:href="@{modifier(id=${m.id})}" class="btn btn-primary">Modifier</a>
                       </td>
                     </tr>
                   </tbody>

@@ -5,6 +5,7 @@ import com.springboot.dao.InscriptionAdministrativeRepository;
 import com.springboot.dao.InscriptionEnligneRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @org.springframework.stereotype.Controller
@@ -19,6 +20,9 @@ public class Controller {
 	@Autowired
 	FiliereRepository filiereRepository;
 
-
+@GetMapping("/error")
+public String error(){
+	return "errors-500";
+}
 
 }

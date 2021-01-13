@@ -265,27 +265,34 @@
 
 					<ul class="sidebar-menu">
 						<li class="menu-header">Inscription </li>
-						<li class="nav-item dropdown active">
+						<li class="nav-item dropdown">
 						  <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Les inscriptions</span></a>
 						  <ul class="dropdown-menu">
 							<li><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
 							<li ><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
 							<li ><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
-							<li class="active"><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
+							<li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
 							<li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
-                  <li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
+                  <li><a class="nav-link" th:href="@{filiere}">Inscription par Module</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
+<li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
+<li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
 							
 						  </ul>
 						</li><li class="menu-header">Structure</li>
 						<li class="nav-item dropdown">
 						  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
 						  <ul class="dropdown-menu">
-							<li><a class="nav-link" th:href="@{formEtape}">Etape , Semestre & Module</a></li>
-							<li><a class="nav-link" th:href="@{formSemestre}">Inscription par Semestre</a></li>
-							<li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
+							<li><a class="nav-link" th:href="@{formEtape}">Insertion Etape</a></li>
+							<li><a class="nav-link" th:href="@{formSemestre}">Insertion Semestres</a></li>
+                <li><a class="nav-link" th:href="@{formElement}">Insertion des Elements</a></li>
+                <li><a class="nav-link" th:href="@{formModule}">Insertion des Modules</a></li>
+                <li><a class="nav-link" th:href="@{formFiliere}">Insertion Filieres</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
+							<li><a class="nav-link" th:href="@{filiere}">Inscription par Module</a></li>
+                  <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
+<li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
 						  </ul>
 						</li>
 						
@@ -295,8 +302,8 @@
 							<span>Delibiration Semestre</span></a>
 						  <ul class="dropdown-menu">
 							<li><a class="nav-link" th:href="@{selectEtablissement}">Delibiration Des Modules</a></li>
-							<li><a class="nav-link" href="layout-transparent.html">Delibiration Semestres</a></li>
-							<li><a class="nav-link" href="layout-transparent.html">Delibiration Anuelle</a></li>
+							<li><a class="nav-link" th:href="@{delibirationSemestre}">Delibiration Semestres</a></li>
+							<li><a class="nav-link" th:href="@{delibirationAnnuelle}">Delibiration Anuelle</a></li>
 						  </ul>
 						</li>
 						<li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>

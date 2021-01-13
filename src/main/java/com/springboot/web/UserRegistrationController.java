@@ -78,10 +78,10 @@ public class UserRegistrationController {
             return "registration";
         }
         String role=userDto.getRole();
-		  if(role.equals("0")) { Professeur p=new Professeur();
+		  if(role.equals("2")) { Professeur p=new Professeur();
 		  p.setNom(userDto.getFirstName()); p.setPrenom(userDto.getLastName());
 		  p.setEtablissement(etablissementRepository.findById(1L).get());
-		   professeurRepository.save(p); }
+		  professeurRepository.save(p); }
 		 
         userService.save(userDto);
         

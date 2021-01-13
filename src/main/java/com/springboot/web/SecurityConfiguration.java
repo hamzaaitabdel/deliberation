@@ -21,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                     .antMatchers(
                             "/registration**",
@@ -29,7 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                             "/assets/**",
                             "/node_modules/**",
                             "/img/**",
-                            "/webjars/**").permitAll()
+                            "/webjars/**","/formEnligne").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

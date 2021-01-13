@@ -281,7 +281,10 @@ public class AdminiController {
 		inscriptionAdministrativeRepository.save(admin);
 		return "redirect:/adminsAll";
 	}
-	
+	@GetMapping("/home")
+	    public String root1() {
+	        return "index";
+	    }
 	  @GetMapping("/")
 	    public String root() {
 	        return "index";

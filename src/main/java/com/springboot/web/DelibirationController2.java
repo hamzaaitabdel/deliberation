@@ -34,6 +34,7 @@ import com.springboot.dao.ElementRepository;
 import com.springboot.dao.EtudiantRepository;
 import com.springboot.dao.NoteRepository;
 import com.springboot.dao.ProfesseurRepository;
+import com.springboot.dao.UserRepository;
 import com.springboot.entities.AnneeUniversitaire;
 import com.springboot.entities.Element;
 import com.springboot.entities.Etudiant;
@@ -43,12 +44,14 @@ import com.springboot.entities.Note;
 import com.springboot.entities.Note.Examen;
 import com.springboot.entities.Professeur;
 
+import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +69,8 @@ public class DelibirationController2 {
     EtudiantRepository Etud_rep;
     @Autowired
     ElementRepository Elem_rep;
-
+    @Autowired
+    UserRepository userRepository;
     @Autowired
     AnneUniversitaireRepository anneUniversitaireRep;
     @Autowired
@@ -235,9 +239,12 @@ public class DelibirationController2 {
 
     //////select element
     @RequestMapping(path="/select_element",method = RequestMethod.GET)
-    public String importation1(Model model, HttpServletRequest request){
+    public String importation1(Model model, HttpServletRequest request,
+    Authentication authentication){
     Professeur P=new Professeur();
-    Long a = (long) 1;
+    userRepository.findByEmail(authentication.getName());
+    System.out.println("prof =>"+authentication.getName());
+    Long a =userRepository.findByEmail(authentication.getName()).getProfesseur().getId();
     P=Prof_rep.getOne(a);
     List <Element> elements = P.getElements();
 
@@ -249,10 +256,15 @@ public class DelibirationController2 {
     }
     
     @RequestMapping(path="/modifier",method = RequestMethod.GET)
-    public String select(@RequestParam("id") String idS,Model model, HttpServletRequest request){
+    public String select(@RequestParam("id") String idS,Model model, HttpServletRequest request,
+    Authentication authentication){
+        Professeur P=new Professeur();
+        userRepository.findByEmail(authentication.getName());
+        System.out.println("prof =>"+authentication.getName());
+        Long a =userRepository.findByEmail(authentication.getName()).getProfesseur().getId();
+        P=Prof_rep.getOne(a);
         long id = Long.parseLong(idS);
         Note n = noteRep.getOne(id);
-        Professeur P=new Professeur();
         double note = n.getNote();
         model.addAttribute("Note", n);
     
@@ -346,19 +358,22 @@ public class DelibirationController2 {
          
         noteRep.save(n);
 
-        return "";//home
+        return "index";//home
     }
 
 
 
 
     @RequestMapping(path="/modifiercomplet",method = RequestMethod.GET)
-    public String modify(@RequestParam("id") String idS,Model model, HttpServletRequest request){
-        
+    public String modify(@RequestParam("id") String idS,Model model, HttpServletRequest request,
+    Authentication authentication){
+        Professeur P=new Professeur();
+        userRepository.findByEmail(authentication.getName());
+        System.out.println("prof =>"+authentication.getName());
+        Long a =userRepository.findByEmail(authentication.getName()).getProfesseur().getId();
+        P=Prof_rep.getOne(a);
         long id = Long.parseLong(idS);
         Note n = noteRep.getOne(id);
-        Professeur P=new Professeur();
-        P=Prof_rep.getOne((long)(1));
         List <Element> elements = P.getElements();
 
         double note = n.getNote();
@@ -368,10 +383,14 @@ public class DelibirationController2 {
     }
     @GetMapping("/noteModules")
     public String noteModule(Model model,
-    @RequestParam(name = "idElement",defaultValue = "1")Long id){
-        Long idProf=1l;
-        Professeur p=Prof_rep.getOne(idProf);
-        List<Element>list=p.getElements();
+    @RequestParam(name = "idElement",defaultValue = "1")Long id
+    ,Authentication authentication){
+        Professeur P=new Professeur();
+        userRepository.findByEmail(authentication.getName());
+        System.out.println("prof =>"+authentication.getName());
+        Long a =userRepository.findByEmail(authentication.getName()).getProfesseur().getId();
+        P=Prof_rep.getOne(a);
+        List<Element>list=P.getElements();
         List<Note> notes=noteRep.getNoteByElement(Elem_rep.getOne(id));
         System.out.println("size="+notes.size());
         model.addAttribute("notes",notes);
