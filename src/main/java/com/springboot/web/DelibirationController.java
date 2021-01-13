@@ -150,7 +150,7 @@ public class DelibirationController {
         modules.add(moduleRepository.getOne(idModule));
         //here i have modules for requested Semestre
         for(Module module :modules){
-            ArrayList<DelibirationElement>delibirationElement=new ArrayList<DelibirationElement>();
+            
             List<Element>elements=elementRepository.elements(module);
             for(Element elem:elements){
                 List<Note>notes =noteRepository.getNoteByElement(elem);
@@ -161,10 +161,12 @@ public class DelibirationController {
                 }
             }
             for(String cne:cnes){
+                ArrayList<DelibirationElement>delibirationElement=new ArrayList<DelibirationElement>();
                 s2=0;
                 coeffs1=0;
                 System.out.println("for cne=>"+cne +":");
                 DelibirationElement de = new DelibirationElement();
+                
                 for(Element elem:elements){
                     
                     List<Note>notes =noteRepository.findByCneAndElement(etudiantRepository.getOne(cne), elem);
@@ -214,12 +216,16 @@ public class DelibirationController {
                 delib.put(dm, delibirationElement);
                 delibirationModuleRepository.save(dm);
                 delibirationModule.add(dm);
+                System.out.println("pour>"+dm.getModule().getName()+",note="
+                +dm.getNote()+"et elems");
+                for(DelibirationElement d:delibirationElement){
+                    System.out.println("pour cne="+cne+" : "+d.getElement().getName()+":"+d.getNote());
+                }
                 
         }
-        
         }
-        // for(DelibirationModule d:delibirationModule){
-        //     Map<Integer,Double> map =new HashMap<Integer,Double>();
+        // for(DelibirationModule d:delib.){
+            
         //     //System.out.println(d.toString());
         // }
         model.addAttribute("modules", delibirationModule);
@@ -252,7 +258,6 @@ public class DelibirationController {
                 List<Module>modules=semestre.getModules();
                 //here i have modules for requested Semestre
                 for(Module module :modules){
-                    ArrayList<DelibirationElement>delibirationElement=new ArrayList<DelibirationElement>();
                     List<Element>elements=elementRepository.elements(module);
                     for(Element elem:elements){
                         List<Note>notes =noteRepository.getNoteByElement(elem);
@@ -263,6 +268,7 @@ public class DelibirationController {
                         }
                     }
                     for(String cne:cnes){
+                        ArrayList<DelibirationElement>delibirationElement=new ArrayList<DelibirationElement>();
                         s2=0;
                         coeffs1=0;
                         //System.out.println("for cne=>"+cne +":");
@@ -313,7 +319,11 @@ public class DelibirationController {
                         double moyenneModule=s2/coeffs1;
                         moyenneModule=Double.parseDouble(String.format("%.2f", moyenneModule));
                         DelibirationModule dm = new DelibirationModule(module,moyenneModule,etudiantRepository.getOne(cne));
-                        delib.put(dm, delibirationElement);
+                        if(!Double.isNaN(dm.getNote())){
+                            delib.put(dm, delibirationElement);
+                        }
+                        
+                        System.out.println("notenull"+dm.getNote());
                         delibirationModule.add(dm);
                         if(save){
                             delibirationModuleRepository.save(dm);
@@ -334,6 +344,7 @@ public class DelibirationController {
                 e.printStackTrace();
                 return "errors-500";
             }
+
     return "delibiration-table";
    }
    

@@ -314,7 +314,10 @@ xmlns:th="http://www.thymeleaf.org">
                             <th>Note</th>
                             <th>Details</th>
                         </tr>
-                        <tr th:each ="m:${modules1}">
+                        <tr th:each ="m:${modules1}" >
+                          <div th:if="${m.key.note != 0.0}">
+
+                          
                           <td class="p-0 text-center">
                             <div class="custom-checkbox custom-control">
                               <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
@@ -329,19 +332,22 @@ xmlns:th="http://www.thymeleaf.org">
                           </td>
                           
                           <td >
+                            <th:block th:if="${m.key.note eq null}">
+                              wa l3ali
+                            </th:block>
                             <th:block th:if="${m.key.note ge 10}">
                                   
-                                  <div class="badge badge-success" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-success" th:text="${m.key.note}">Note manquant</div>
                                 
                             </th:block>
                             <th:block th:if="${m.key.note le 8}">
                                   
-                                  <div class="badge badge-danger" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-danger" th:text="${m.key.note}">Note manquant</div>
                                 
                             </th:block>
                             <th:block th:if="${m.key.note lt 10} AND ${m.key.note gt 8}">
                                   
-                                  <div class="badge badge-warning" th:text="${m.key.note}"></div>
+                                  <div class="badge badge-warning" th:text="${m.key.note}">Note manquant</div>
                                 
                             </th:block>
                           </td>
@@ -358,6 +364,7 @@ xmlns:th="http://www.thymeleaf.org">
                                 
                               </div>
                             </div>
+                          </div>
                           </td>
                         </tr>
                         
