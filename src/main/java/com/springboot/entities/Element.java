@@ -43,4 +43,5 @@ public class Element {
 	
 	@OneToMany(mappedBy = "element" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Note> notes;
+	
 }

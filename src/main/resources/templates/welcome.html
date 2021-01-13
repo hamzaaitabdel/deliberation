@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+</head>
+<body>
+	  <div th:text="${#authentication.name}" > </div> 
+</div>
+	<br/>
+     <a th:href="@{logout}">
+	<button type="button">LOGOUT</button>
+	</a>
+</body>
+</html>

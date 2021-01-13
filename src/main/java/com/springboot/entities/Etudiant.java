@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -41,7 +40,6 @@ public class Etudiant {
 	private String prenom;
 	private String nom;
 	private String telephone;
-	@Email
 	private String email;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

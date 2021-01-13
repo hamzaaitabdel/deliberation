@@ -19,6 +19,10 @@ import com.springboot.entities.Module;
 @Repository
 public interface ElementRepository extends JpaRepository<Element, Long> {
     
+	
+	@Query("select s from Element s where s.id = :id")
+	public Element findById_Element(@Param("id")Long id);
+	
     @Query("select e from Element e where module =:module")
     public List<Element> elements(@Param("module")Module module);
 

@@ -21,8 +21,8 @@ public interface ModuleRepository extends JpaRepository<Module,Long> {
     
     // @Query(value = "select m from Module m where m.libelle_module = :libelle")
     // public Module getByLibellemodule(@Param("libelle")String libelle_module);
-    // @Query(value = "select m from Module m where m.id_module = :id")
-    // public Module findByid(@Param("id")Long id);
+     @Query(value = "select m from Module m where m.id = :id")
+     public Module findByid(@Param("id")Long id);
     
     // @Query(value="select m from Module m where m.semestre = :sem")
     // public Page<Module>getModuleBySemestre(@Param("sem")Semestre s,Pageable p);
@@ -33,7 +33,7 @@ public interface ModuleRepository extends JpaRepository<Module,Long> {
 	@Query(value="select * from Module  where libelle_module= :x ",nativeQuery=true)
 	public Module findByLibelle_module(@Param("x")String libelle_module);
 
-	@Query("select m from Module m where m.semestre.etape.filiere.id= :x")
+	@Query("select m from Module m where m.semestre.etape.filiere.id = :x")
 	public List<Module> findById_filiereContains(@Param("x")Long id_filiere);
 	
 	

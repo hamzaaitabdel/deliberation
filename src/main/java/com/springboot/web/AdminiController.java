@@ -194,20 +194,6 @@ public class AdminiController {
 	}
 
 
-	//Affichage avec pagination :tous
-	@GetMapping(path="/adminsAll") 
-	public String listAdminAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("admins",pageAdmins.getContent());
-		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "listeAdmin";
-	}
 
 	//Supprission
 	@GetMapping(path="/deleteAdmin")
@@ -295,6 +281,36 @@ public class AdminiController {
 		inscriptionAdministrativeRepository.save(admin);
 		return "redirect:/adminsAll";
 	}
+	
+	  @GetMapping("/")
+	    public String root() {
+	        return "index";
+	    }
+
+	    @GetMapping("/login")
+	    public String login(Model model) {
+	        return "login";
+	    }
+
+	    @GetMapping("/user")
+	    public String userIndex() {
+	        return "user/index";
+	    }
+	//Affichage avec pagination :tous
+	@GetMapping(path="/adminsAll") 
+	public String listAdminAll(Model model ,
+			@RequestParam(name="page",defaultValue = "0")int page ,
+			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="keyword",defaultValue = "")String keyword) {
+		Page<InscriptionAdministrative> pageAdmins = inscriptionAdministrativeRepository.findAll(PageRequest.of(page, size));
+		model.addAttribute("admins",pageAdmins.getContent());
+		model.addAttribute("pages",new int[pageAdmins.getTotalPages()]);
+		model.addAttribute("currentPage",page);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("size",size);
+		return "listeAdmin";
+	}
+	//validation Admini manuelle
 
 	@GetMapping(path="/validAdmin")
 	public String validAdmin(Model model,Long id ) {

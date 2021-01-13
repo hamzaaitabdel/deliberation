@@ -41,4 +41,5 @@ public class Filiere {
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etape> etapes;
 	
+	
 }
