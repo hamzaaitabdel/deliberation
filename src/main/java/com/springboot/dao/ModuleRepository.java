@@ -27,8 +27,8 @@ public interface ModuleRepository extends JpaRepository<Module,Long> {
     // @Query(value="select m from Module m where m.semestre = :sem")
     // public Page<Module>getModuleBySemestre(@Param("sem")Semestre s,Pageable p);
 	
-	@Query(value="select * from Module  where id= :x ",nativeQuery=true)
-	public List<Module> findById_semestreContains(@Param("x")Long Id_semestre);
+	@Query("select m from Module m where m.semestre= :x ")
+	public List<Module> findBySemestre(@Param("x")Semestre semestre);
 
 	@Query(value="select * from Module  where libelle_module= :x ",nativeQuery=true)
 	public Module findByLibelle_module(@Param("x")String libelle_module);

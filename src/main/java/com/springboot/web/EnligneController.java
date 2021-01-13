@@ -131,16 +131,19 @@ public class EnligneController {
 		
 		inscriptionEnligneRepository.save(inscriptionEnligne);
 		
-		Mail mail = new Mail();
-		mail.setMailFrom("ryfysafwane@gmail.com");
-		mail.setMailTo(inscriptionEnligne.getEmail());
-		mail.setMailSubject("Inscription Enligne");
-		mail.setMailContent("Bonjour Monsieur :" + inscriptionEnligne.getNomFr() +" "
-				+ inscriptionEnligne.getPrenomFr() +".\n" +
-				"Votre inscription est effectuee avec success." + "\n" + "Le numero de votre inscription est : " + inscriptionEnligne.getId());
+		try{
+			Mail mail = new Mail();
+			mail.setMailFrom("ryfysafwane@gmail.com");
+			mail.setMailTo(inscriptionEnligne.getEmail());
+			mail.setMailSubject("Inscription Enligne");
+			mail.setMailContent("Bonjour Monsieur :" + inscriptionEnligne.getNomFr() +" "
+					+ inscriptionEnligne.getPrenomFr() +".\n" +
+					"Votre inscription est effectuee avec success." + "\n" + "Le numero de votre inscription est : " + inscriptionEnligne.getId());
 
-		mailService.sendEmail(mail);
-		
+			mailService.sendEmail(mail);
+		}catch(Exception e){
+			System.out.println("[ERROR]-> email error due to:"+e.getMessage());
+		}
 		
 		model.addAttribute("enligne", inscriptionEnligne);
 		return "EnregistrementEnligne";

@@ -260,19 +260,23 @@
 			<div class="main-sidebar">
 				<aside id="sidebar-wrapper">
 					<div class="sidebar-brand">
-						<h4>Admin</h4>
+						<img src="../assets/img/umi.png">
 					</div>
 
 					<ul class="sidebar-menu">
-						<li class="menu-header">Inscription Enligne</li>
-						<li class="nav-item dropdown"><a href="#"
-							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
+						<li class="menu-header">Inscription Enligne </li>
+						<li class="nav-item ">
+							<a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>EnLigne</span></a>
 							<ul class="dropdown-menu">
-								<li class="active"><a class="nav-link"
-									th:href="@{enlignesAll}">List Inscription</a></li>
-								<li><a class="nav-link" href="#">Administrative</a></li>
+							  <li><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
+							  <li><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+							  <li><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
+							  <li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
+							  <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+							  
 							</ul>
-						</li>
+						  </li>
+						
 						<li class="nav-item dropdown active"><a href="#"
 							class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Inscription Pedagogique</span></a>
 							<ul class="dropdown-menu">

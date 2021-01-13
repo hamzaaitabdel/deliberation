@@ -163,7 +163,7 @@ public class DelibirationController {
             for(String cne:cnes){
                 s2=0;
                 coeffs1=0;
-                //System.out.println("for cne=>"+cne +":");
+                System.out.println("for cne=>"+cne +":");
                 DelibirationElement de = new DelibirationElement();
                 for(Element elem:elements){
                     
@@ -175,16 +175,16 @@ public class DelibirationController {
                     coeffs=0;
                     for(Note note :notes){
                         String temp=note.getExamen().toString();
-                        //System.out.println("\tfor note>type="+note.getExamen()+" value=>"+note.getNote());
+                        System.out.println("\tfor note>type="+note.getExamen()+" value=>"+note.getNote());
                         if(temp.equals("EXAM")){
-                            //System.out.println("\t (if true)------.>"+note.getExamen().toString());
+                            System.out.println("\t (if true)------.>"+note.getExamen().toString());
                             coeff=note.getCoefficient();
                             exams.add(note.getNote());
                         }
                         else{
                             s+=note.getNote()*note.getCoefficient();
                             coeffs+=note.getCoefficient();
-                            //System.out.println("\t(if true)------s==="+s+" coef==="+note.getCoefficient());
+                            System.out.println("\t(if false)------s==="+s+" coef==="+note.getCoefficient());
                         }
                         
                         
@@ -192,7 +192,7 @@ public class DelibirationController {
 
                     double max=0;
                     try{
-                        //System.out.println("_-----------arraydyali==="+exams.toString());
+                        System.out.println("_-----------arraydyali==="+exams.toString());
                         max=Collections.max(exams);
                     }catch(Exception e){
                         System.err.println("[error]:"+e.getMessage());

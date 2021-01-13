@@ -101,84 +101,7 @@ public class PedagogiqueController {
 	}
 
 
-
-
-
-
-
-	//list etudiantsAll
-	@GetMapping(path="/etudiantsAll") 
-	public String etudiantsAll(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<Etudiant> pageEtudiants = etudiantRepository.findAll(PageRequest.of(page, size));
-		model.addAttribute("etudiants",pageEtudiants.getContent());
-		model.addAttribute("pages",new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "ListEtudiant";
-	}
-
-	//list etudiants
-	@GetMapping(path="/etudiants") 
-	public String etudiants(Model model ,
-			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
-			@RequestParam(name="keyword",defaultValue = "")String keyword) {
-		Page<Etudiant> pageEtudiants = etudiantRepository.findByNom_etudContains(keyword, PageRequest.of(page, size));
-		model.addAttribute("etudiants",pageEtudiants.getContent());
-		model.addAttribute("pages",new int[pageEtudiants.getTotalPages()]);
-		model.addAttribute("currentPage",page);
-		model.addAttribute("keyword",keyword);
-		model.addAttribute("size",size);
-		return "ListEtudiant";
-	}
-
-	@GetMapping(path="/editEtudiant")
-	public String editEtudiant(Model model, String cne) {
-		Etudiant e =etudiantRepository.findById(cne).get();
-		List<Filiere> lf = filiereRepository.findAll();
-
-		model.addAttribute("etudiant", e);
-		model.addAttribute("filieres", lf);
-
-		return "/editEtudiant";
-	}
-
-	@PostMapping(path="/confirmEditEtudiant")
-	public String confirmEditEtudiant(@RequestParam(name="cne")String cne,
-			@RequestParam(name="oldcne")String oldcne,
-			@RequestParam(name="nom")String nom,
-			@RequestParam(name="prenom")String prenom,
-			@RequestParam(name="email")String email,
-			@RequestParam(name="tel")String tel,
-			@RequestParam(name="filiere")String filiere) {
-
-		Etudiant e=etudiantRepository.findById(oldcne).get();
-		e.setCne(cne);
-		e.setNom(nom);
-		e.setPrenom(prenom);
-		e.setEmail(email);
-		//e.setTel_etud(tel);
-		e.setFiliere(filiereRepository.findById(Long.parseLong(filiere)).get());
-		/*
-		InscriptionEnligne il = inscriptionEnligneRepository.findById(cne).get();
-		il.setCne(cne);
-		il.setNomFr(nom);
-		il.setPrenomFr(prenom);
-		//il.setTel(tel);
-		//there is a tel duplicate in insc en ligne and admin
-		/* the id of insc admin should be the cne 
-		 * amirite? */
-		//InscriptionAdministrative ai = inscriptionAdministrativeRepository.findById(id);
-		etudiantRepository.UpdateEtudiant(e,oldcne);
-
-		return "redirect:/etudiantsAll";
-	}
-
-	// filieres
+		// filieres
 	@GetMapping(path="/filiere") 
 	public String filiere(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
@@ -265,7 +188,8 @@ public class PedagogiqueController {
 		}
 
 		Semestre s = semestreRepository.findById(Long.parseLong(idsemestre)).get();
-		List<Module> ls = moduleRepository.findById_semestreContains(Long.parseLong(idsemestre));
+		List<Module> ls = moduleRepository.findBySemestre(semestreRepository.getOne(Long.parseLong(idsemestre)));
+		System.out.println(ls.size()+"idsemestre="+idsemestre);
 		model.addAttribute("etudiant", e);
 		model.addAttribute("modules", ls);
 		model.addAttribute("etape",etape);
@@ -393,7 +317,7 @@ public class PedagogiqueController {
 	@GetMapping(path="/listePedago") 
 	public String listePedago(Model model ,
 			@RequestParam(name="page",defaultValue = "0")int page ,
-			@RequestParam(name="size",defaultValue = "5")int size , 
+			@RequestParam(name="size",defaultValue = "15")int size , 
 			@RequestParam(name="keyword",defaultValue = "")String keyword) {
 		Page<InscriptionPedagogique> pageinscpedago = inscriptionPedagogiqueRepository.findAll(PageRequest.of(page, size));
 		model.addAttribute("pedagogiques",pageinscpedago.getContent());

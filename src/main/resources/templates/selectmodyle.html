@@ -240,7 +240,7 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <img src="../assets/img/umi.png">
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
@@ -419,12 +419,11 @@
               <div class="card-body">
                 <div class="form-group">
                   <form th:action="@{/import}" method="POST" enctype="multipart/form-data">
-                <p>selectioner filier</p>
                 
-                  <label>filier</label>
+                  <label>Element</label>
                   <select name="Element" class="form-control selectric">
                     <span th:if= "${Elements!=null}">
-                      <option th:each="E : ${Elements}" th:value="${E.getId()}" th:text="${E.getId()}"></option>
+                      <option th:each="E : ${Elements}" th:value="${E.getId()}" th:text="${E.name}"></option>
                   </select>
                 </span>
                
@@ -458,7 +457,7 @@
                   
                   
                       <input type="file" th:name="file" />
-                     <input th:type="submit" value="import" />
+                     <input th:type="submit" value="import" class="btn btn-primary" />
                 </form>
                 </div>
 

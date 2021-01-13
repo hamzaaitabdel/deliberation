@@ -240,35 +240,54 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <img src="../assets/img/umi.png">
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">St</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="index-0.html">Home</a></li>
-                </ul>
-              </li>
-              <li class="menu-header">Starter</li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> 
-                  <span>Delibiration Semestre</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="layout-default.html">Delibiration Modules</a></li>
-                  <li><a class="nav-link" href="layout-transparent.html">Delibiration Semestres</a></li>
-                </ul>
-              </li>
-              
+            <li class="menu-header">Inscription </li>
+            <li class="nav-item dropdown active">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Les inscriptions</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
+                <li ><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
+                <li class="active"><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
+                <li><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
+                <li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
+                
+              </ul>
+            </li><li class="menu-header">Structure</li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" th:href="@{formEtape}">Etape , Semestre & Module</a></li>
+                <li><a class="nav-link" th:href="@{formSemestre}">Inscription par Semestre</a></li>
+                <li><a class="nav-link" th:href="@{formModule}">Inscription par Module</a></li>
+              </ul>
+            </li>
+            
+            <li class="menu-header">Delibiration</li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> 
+                <span>Delibiration Semestre</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" th:href="@{selectEtablissement}">Delibiration Des Modules</a></li>
+                <li class="active"><a class="nav-link" href="layout-transparent.html">Delibiration Semestres</a></li>
+                <li><a class="nav-link" href="layout-transparent.html">Delibiration Anuelle</a></li>
+              </ul>
+            </li>
+            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+             
+            
 
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-              </a>
-            </div>
+          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <i class="fas fa-rocket"></i> Documentation
+            </a>
+          </div>
+      </aside>
+    </div>
         </aside>
       </div>
 
@@ -340,8 +359,11 @@
                         <div class="form-group row align-items-center">
                             <label class="col-md-4 text-md-right text-left">Select</label>
                             <div class="col-lg-4 col-md-6">
-                              <select name="etape" th:each="l:${list}"class="form-control">
-                                <option th:value="${l.id}" th:text="${l.name}"></option>
+                              <select name="etape"class="form-control">
+                                <div th:each="l:${list}">
+                                  <option th:value="${l.id}" th:text="${l.name}"></option>
+                                </div>
+                                
                               </select>
                             </div>
                             

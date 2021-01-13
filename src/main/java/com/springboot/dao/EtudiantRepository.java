@@ -37,8 +37,8 @@ public interface EtudiantRepository extends JpaRepository<Etudiant,String> {
 //	public Page<Etudiant> findById_filiereAndAnnee_academique(Long filiere,String annee, PageRequest of);
 //
 //
-//	@Query("select e from Etudiant e where e.nom_etud like :x ")
-//	public Page<Etudiant> findByNom_etudContains(@Param("x")String keyword, Pageable of);
+	// @Query("select e from Etudiant e where e.nom_etud like :x ")
+	// public Page<Etudiant> findByNom_etudContains(@Param("x")String keyword, Pageable of);
 //
 //	@Query(value="select e.* from Etudiant e  where e.annee_academique = ?",nativeQuery = true)
 //	public Page<Etudiant> findByAnnee_academique(String annee, PageRequest of);

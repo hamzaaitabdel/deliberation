@@ -389,12 +389,7 @@ public class AdminiController {
 	}
 	
 	
-	//Supprission
-	@GetMapping(path="/deleteAdmin")
-	public String deleteAdmin(Long id ) {
-		inscriptionAdministrativeRepository.deleteById(id);
-		return "redirect:/adminsAll";
-	}
+
 	// import etudiants
 	// @PostMapping(path = "/importetudiants")
 	// public String importetudiants(Model model, @RequestParam("file") MultipartFile reapExcelDataFile) {

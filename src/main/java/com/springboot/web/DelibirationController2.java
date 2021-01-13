@@ -103,6 +103,7 @@ public class DelibirationController2 {
             System.out.println("here gibt es problemmmmme .......  file incorectos");
             e.printStackTrace();
         }
+
         XSSFSheet worksheet = workbook.getSheetAt(0);
         com.springboot.entities.Module m;
 
@@ -114,14 +115,37 @@ public class DelibirationController2 {
             n.setCoefficient(coef);
             n.setAnneeUniversitaire(ann);
             XSSFRow row = worksheet.getRow(i);
-            n.setNote((Double) row.getCell(2).getNumericCellValue());
+            try{
+            if (row.getCell(2).getStringCellValue().equals("abs")){
+                n.setNote((double)0);
+            }
+        }
+        catch(IllegalStateException e){
+     n.setNote((Double) row.getCell(2).getNumericCellValue());
+        }
+
+            
+
             n.setEtudiant(Etud_rep.getOne(row.getCell(1).getStringCellValue())); 
             n.setExamen(Examen.valueOf(Typen));
             Double nt = n.getNote();
-            n.setSession(session);
+            
             n.setElement(el);
+//  cas d'exame :  tester si il s'agit d'un abcent
             if (Typen.equals(Examen.EXAM.toString()) ) {
-           //etas not so fast : 
+                n.setSession(session);
+                try{
+                    if (row.getCell(2).getStringCellValue().equals("abs")){
+                        n.setEtats("nonvalidé");
+                    }
+                }
+                catch(IllegalStateException e){
+             n.setNote((Double) row.getCell(2).getNumericCellValue());
+                
+                
+               
+
+
           System.out.println("here is 1");
             List<Note>notes =noteRep.findByCneAndElement(n.getEtudiant(), el);
 
@@ -162,7 +186,7 @@ public class DelibirationController2 {
                 max=Collections.max(exams);
                 System.out.println("le max est : "+max);
                 System.out.println("coef"+ coeff);
-            }catch(Exception e){
+            }catch(Exception ex){
                 System.err.println("[error]:==>database");
                 max=n.getNote();
                 coeff=n.getCoefficient();
@@ -189,6 +213,7 @@ public class DelibirationController2 {
                 n.setEtats("validé"); 
             }
         }
+    }
 
         else{
             n.setSession("...");
@@ -200,7 +225,7 @@ public class DelibirationController2 {
        
         List list_note= noteRep.getNoteByElement(el);
 
-        model.addAttribute("Lnots", list_note);
+        model.addAttribute("Lnots", noteList);
         
         System.out.println("seccesss");
        
@@ -234,15 +259,98 @@ public class DelibirationController2 {
         return "selectionerfil";
     }
 
+
+
     @RequestMapping(path="/confirmer",method = RequestMethod.POST)
     public String modifier(@RequestParam("id") String ids,@RequestParam("note") String noteS,Model model, HttpServletRequest request){
         long id = Long.parseLong(ids);
         Note n = noteRep.getOne(id);
-        double note = Double.parseDouble(noteS);
-        n.setNote(note);
+        double noteD = Double.parseDouble(noteS);
+        n.setNote(noteD);
+
+        double X = n.getElement().getNoteValidation();
+        double Z = n.getElement().getNoteEliminatoire();
+
+        if (n.getExamen().EXAM.toString().equals(Examen.EXAM.toString()) ) {
+            //etas not so fast : 
+           System.out.println("here is 1");
+             List<Note>notes =noteRep.findByCneAndElement(n.getEtudiant(), n.getElement());
+ 
+            
+             ArrayList<Double> exams=new ArrayList<Double>();
+             System.out.println("here is 3");
+             exams.clear();
+             System.out.println("here is 4");
+             double coeff=0;
+             double s=0;
+             System.out.println("here is 5");
+             double coeffs=0;
+             
+             
+             System.out.println("heeeere is still ");
+             for(Note note :notes){
+                
+                 String temp=note.getExamen().toString();
+                
+                 if(temp.equals("EXAM")){
+                     System.out.println("\t (if true)------.>"+note.getExamen().toString());
+                     coeff=note.getCoefficient();
+                     exams.add(n.getNote());
+                     exams.add(note.getNote());
+                 }
+                 else{
+                     s+=note.getNote()*note.getCoefficient();
+                     coeffs+=note.getCoefficient();
+                     System.out.println("\t(if true)------s==="+s+" coef==="+note.getCoefficient());
+                 }
+                 
+                 
+             }
+ 
+             double max=0;
+             try{
+                 System.out.println("_-----------arraydyali==="+exams.toString());
+                 max=Collections.max(exams);
+                 System.out.println("le max est : "+max);
+                 System.out.println("coef"+ coeff);
+             }catch(Exception e){
+                 System.err.println("[error]:==>database");
+                 max=n.getNote();
+                 coeff=n.getCoefficient();
+                 System.out.println("max : "+ max);
+                 System.out.println("coeff ? "+coeff);
+                
+             }
+             double moyenneElem=(s+(max*coeff))/(coeffs+coeff);
+             
+             System.out.println("moyenne element est : "+ moyenneElem);
+ 
+             if(moyenneElem<Z){
+                 System.out.println("nonvalidé ? "+ Z);
+             n.setEtats("nonvalidé");
+             }
+        else if(moyenneElem<X && moyenneElem>=Z){
+                 if(n.getSession().equals("Ordinaire"))
+                 n.setEtats("Ratrapage");
+                 else {
+                 n.setEtats("nonvalidé");
+                 }
+             }
+             else{
+                 n.setEtats("validé"); 
+             }
+         }
+ 
+        
+           
+         
         noteRep.save(n);
+
         return "";//home
     }
+
+
+
 
     @RequestMapping(path="/modifiercomplet",method = RequestMethod.GET)
     public String modify(@RequestParam("id") String idS,Model model, HttpServletRequest request){
