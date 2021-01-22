@@ -148,14 +148,14 @@
                       </select>
                     
                     </div>
-                    <!-- <div style="display:none;" id="hidden_div"  class="form-group col-6">
+                     <div style="display:none;" id="fil"  class="form-group col-6">
                       <label id="hidden_label">Choisir filiere</label>
                       <select name="Filiere"  th:field="*{Filiere}"  class=" form-control selectric">
                         <option th:value="${f.id}" th:text="${f.name}" th:each="f:${Filiere}" ></option>
                        
                       </select>
                     </div>
-                    <div style="display:none;" id="hidden_di"  class="form-group col-6">
+                   <!-- <div style="display:none;" id="hidden_di"  class="form-group col-6">
                       <label id="hidden_la">Choisir filiere</label>
                       <select name="Filiere"  th:field="*{Filiere}"  class=" form-control selectric">
                         <option th:value="${f.id}" th:text="${f.name}" th:each="f:${Filiere}" ></option>
@@ -213,9 +213,9 @@
                       
                     });
                     document.getElementById('test').addEventListener('change', function () {
-                        var style = this.value == 0 ? 'block' : 'none';
+                        var style = this.value == 3 ? 'block' : 'none';
                         
-                        document.getElementById('el').style.display = style;
+                        document.getElementById('fil').style.display = style;
                         
 
 

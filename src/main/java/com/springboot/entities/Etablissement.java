@@ -32,4 +32,9 @@ public class Etablissement {
 	@OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Professeur> professeurs;
 	
+	/*
+	 * @OneToMany(mappedBy = "etablissement" , fetch = FetchType.LAZY, cascade =
+	 * CascadeType.ALL) List<Chef_de_Filiere> chf;
+	 */
+	
 }

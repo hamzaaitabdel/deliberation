@@ -19,6 +19,7 @@ import com.springboot.dao.FiliereRepository;
 import com.springboot.dao.ModuleRepository;
 import com.springboot.dao.ProfesseurRepository;
 import com.springboot.dao.RoleRepository;
+import com.springboot.dao.chefdefiliereRepository;
 import com.springboot.entities.*;
 import com.springboot.entities.Module;
 import com.springboot.service.*;
@@ -33,6 +34,8 @@ public class UserRegistrationController {
 
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private chefdefiliereRepository chefdefiliereRepository ;
     @Autowired
     private ProfesseurRepository professeurRepository;
     @Autowired
@@ -82,6 +85,12 @@ public class UserRegistrationController {
 		  p.setNom(userDto.getFirstName()); p.setPrenom(userDto.getLastName());
 		  p.setEtablissement(etablissementRepository.findById(1L).get());
 		  professeurRepository.save(p); }
+		  if(role.equals("3")) { Chef_de_Filiere p=new Chef_de_Filiere();
+		  p.setNom(userDto.getFirstName()); p.setPrenom(userDto.getLastName());
+		  p.setEtablissement(etablissementRepository.findById(1L).get());
+		  System.out.println(userDto.getFiliere());
+		  p.setFiliere(filiereRepository.findById(Long.parseLong(userDto.getFiliere())).get());
+		  chefdefiliereRepository.save(p); }
 		 
         userService.save(userDto);
         

@@ -22,6 +22,7 @@ import com.springboot.dao.ModuleRepository;
 import com.springboot.dao.ProfesseurRepository;
 import com.springboot.dao.RoleRepository;
 import com.springboot.dao.UserRepository;
+import com.springboot.dao.chefdefiliereRepository;
 import  com.springboot.web.*;
 
 @Service
@@ -40,6 +41,8 @@ public class UserServiceImpl implements UserService {
     private ModuleRepository moduleRepository;
     @Autowired
     private ElementRepository elementRepository;
+    @Autowired
+    private chefdefiliereRepository chefdefiliereRepository ;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -68,8 +71,8 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
        user.setRoles(Arrays.asList(r));
-       user.setProfesseur(professeurRepository.findByNom(registration.getFirstName()));
-       
+       user.setProfesseur(professeurRepository.findByNom(registration.getFirstName(),registration.getLastName()));
+       user.setChef_de_Filiere(chefdefiliereRepository.findByNom(registration.getFirstName(),registration.getLastName()));
       
         return userRepository.save(user);
         

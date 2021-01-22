@@ -41,5 +41,8 @@ public class Filiere {
 	@OneToMany(mappedBy = "filiere" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	List<Etape> etapes;
 	
+
+	 @OneToOne(mappedBy = "filiere") private Chef_de_Filiere chef_de_Filiere; ;
+	
 	
 }

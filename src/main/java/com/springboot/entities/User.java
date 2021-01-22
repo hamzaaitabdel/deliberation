@@ -46,9 +46,22 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_professeur")
 	private Professeur professeur;
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_chf")
+	private Chef_de_Filiere chef_de_Filiere;
    
 
-    public User() {
+    public Chef_de_Filiere getChef_de_Filiere() {
+		return chef_de_Filiere;
+	}
+
+	public void setChef_de_Filiere(Chef_de_Filiere chef_de_Filiere) {
+		this.chef_de_Filiere = chef_de_Filiere;
+	}
+
+	public User() {
     }
 
     public User(String firstName, String lastName, String email, String password, String cin,String Telephone) {

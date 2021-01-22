@@ -12,6 +12,7 @@ import com.springboot.entities.Professeur;
 public interface ProfesseurRepository extends JpaRepository<Professeur, Long>{
 	
 	public Long findIdByNom(String professeur);
-	@Query("select p from Professeur p where p.nom = :x")
-	public Professeur findByNom(@Param("x")String nom);
+	@Query("select p from Professeur p where p.nom = :x and p.prenom = :name")
+	public Professeur findByNom(@Param("x")String nom, 
+			  @Param("name") String name);
 }

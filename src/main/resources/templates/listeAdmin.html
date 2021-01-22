@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -241,31 +242,32 @@
 					<ul class="sidebar-menu">
 						<li class="menu-header">Inscription </li>
 						<li class="nav-item dropdown active">
-						  <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Les inscriptions</span></a>
-						  <ul class="dropdown-menu">
+						  <a href="#" class="nav-link has-dropdown" sec:authorize="hasAnyRole('ADMIN', 'CHEF')"><i class="fas fa-fire"></i><span>Les inscriptions</span></a>
+						  <ul class="dropdown-menu" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" >
 							<li><a class="nav-link" th:href="@{enlignesAll}">List Enligne</a></li>
 							<li ><a class="nav-link" th:href="@{administrativeAll}">Enligne Valide</a></li>
 							<li ><a class="nav-link" th:href="@{adminsAll}">List Administrative</a></li>
 							<li class="active"><a class="nav-link" th:href="@{importStudents}">Importer Les Etudiants</a></li>
 							<li><a class="nav-link" th:href="@{etudiantsAll}">List des Etudiants</a></li>
-                  <li><a class="nav-link" th:href="@{filiere}">Inscription par Module</a></li>
-                  <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
-<li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
+               			   <li><a class="nav-link" th:href="@{filiere}">Inscription par Module</a></li>
+       			           <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
+							<li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
 <li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
 							
 						  </ul>
 						</li><li class="menu-header">Structure</li>
 						<li class="nav-item dropdown">
-						  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
-						  <ul class="dropdown-menu">
-							<li><a class="nav-link" th:href="@{formEtape}">Insertion Etape</a></li>
-							<li><a class="nav-link" th:href="@{formSemestre}">Insertion Semestres</a></li>
-                <li><a class="nav-link" th:href="@{formElement}">Insertion des Elements</a></li>
-                <li><a class="nav-link" th:href="@{formModule}">Insertion des Modules</a></li>
-                <li><a class="nav-link" th:href="@{formFiliere}">Insertion Filieres</a></li>
+						  <a href="#" class="nav-link has-dropdown" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Insertion</span></a>
+						  <ul class="dropdown-menu">   
+						   <li><a class="nav-link"  sec:authorize="hasRole('ADMIN')" th:href="@{/registration}">Insertion des utilisateurs</a></li>
+							<li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" th:href="@{formEtape}">Insertion Etape</a></li>
+							<li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" th:href="@{formSemestre}">Insertion Semestres</a></li>
+                <li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" th:href="@{formElement}">Insertion des Elements</a></li>
+                <li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF')" th:href="@{formModule}">Insertion des Modules</a></li>
+                <li><a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{formFiliere}">Insertion Filieres</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
-							<li><a class="nav-link" th:href="@{filiere}">Inscription par Module</a></li>
+							<li><a class="nav-link"  th:href="@{filiere}">Inscription par Module</a></li>
                   <li><a class="nav-link" th:href="@{select_element}">Insertion des Notes</a></li>
 <li><a class="nav-link" th:href="@{noteModules}">Modification des Notes</a></li>
 						  </ul>
@@ -276,9 +278,9 @@
 						  <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> 
 							<span>Delibiration Semestre</span></a>
 						  <ul class="dropdown-menu">
-							<li><a class="nav-link" th:href="@{selectEtablissement}">Delibiration Des Modules</a></li>
-							<li><a class="nav-link" th:href="@{delibirationSemestre}">Delibiration Semestres</a></li>
-							<li><a class="nav-link" th:href="@{delibirationAnnuelle}">Delibiration Anuelle</a></li>
+							<li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF', 'PROFESSEUR')" th:href="@{selectEtablissement}">Delibiration Des Modules</a></li>
+							<li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF', 'PROFESSEUR')" th:href="@{delibirationSemestre}">Delibiration Semestres</a></li>
+							<li><a class="nav-link" sec:authorize="hasAnyRole('ADMIN', 'CHEF', 'PROFESSEUR')" th:href="@{delibirationAnnuelle}">Delibiration Anuelle</a></li>
 						  </ul>
 						</li>
 						<li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
